@@ -11,12 +11,12 @@
   "distinct": 5,
   "false_positives": 0,
   "index_entries": 103,
-  "laws": 156,
+  "laws": 160,
   "amending": 6,
   "graph_full": 8,
-  "snapshot": 136,
+  "snapshot": 140,
   "t1_targets": 14,
-  "library": 151,
+  "library": 155,
   "out_of_graph": 18021,
   "out_covered_by_index": 21
  },
@@ -3671,9 +3671,33 @@
    "name": "Luật Thú y",
    "vbhn": "79/2015/QH13 (nguyên bản — vbpl.vn)",
    "n": 116
+  },
+  {
+   "id": "69/2014/QH13",
+   "name": "Luật Quản lý, sử dụng vốn nhà nước đầu tư vào sản xuất, kinh doanh tại doanh nghiệp",
+   "vbhn": "69/2014/QH13 (nguyên bản — vbpl.vn; xem bản 68/2025)",
+   "n": 66
+  },
+  {
+   "id": "08/2012/QH13",
+   "name": "Luật Giáo dục đại học",
+   "vbhn": "08/2012/QH13 (nguyên bản — vbpl.vn; có sửa đổi 34/2018)",
+   "n": 73
+  },
+  {
+   "id": "75/2015/QH13",
+   "name": "Luật Mặt trận Tổ quốc Việt Nam",
+   "vbhn": "75/2015/QH13 (nguyên bản — vbpl.vn)",
+   "n": 41
+  },
+  {
+   "id": "57/2020/QH14",
+   "name": "Luật Thanh niên",
+   "vbhn": "57/2020/QH14 (nguyên bản — vbpl.vn)",
+   "n": 41
   }
  ],
- "coverage_note": "Phủ theo TẦNG: 8 đồ-thị + 136 ảnh-chụp-VBHN + 14 T1-đích. Thư viện 151 luật.",
+ "coverage_note": "Phủ theo TẦNG: 8 đồ-thị + 140 ảnh-chụp-VBHN + 14 T1-đích. Thư viện 155 luật.",
  "superseded": [
   {
    "old": "61/2020/QH14",

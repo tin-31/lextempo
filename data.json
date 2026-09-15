@@ -11,12 +11,12 @@
   "distinct": 5,
   "false_positives": 0,
   "index_entries": 103,
-  "laws": 146,
+  "laws": 148,
   "amending": 6,
   "graph_full": 8,
-  "snapshot": 126,
+  "snapshot": 128,
   "t1_targets": 14,
-  "library": 140,
+  "library": 143,
   "out_of_graph": 18021,
   "out_covered_by_index": 21
  },
@@ -3597,7 +3597,7 @@
   {
    "id": "100/2015/QH13",
    "name": "Bộ luật Hình sự",
-   "vbhn": "100/2015/QH13 (nguyên bản 2015 — vbpl.vn; chưa hợp nhất sửa đổi 12/2017)",
+   "vbhn": "HỢP NHẤT TỰ ĐỘNG (100/2015 + sửa đổi 12/2017) qua engine 957103a7 — 245/245 phép sửa Điều 1 áp OK. Điều 2 (thay cụm từ) CHƯA áp. CHƯA KIỂM TỪNG ĐIỀU; đối chiếu 01/VBHN-VPQH chính thức. Điều 292 đã bãi, +217a.",
    "n": 426
   },
   {
@@ -3605,9 +3605,27 @@
    "name": "Luật Thương mại",
    "vbhn": "36/2005/QH11 (nguyên bản 2005 — vbpl.vn)",
    "n": 324
+  },
+  {
+   "id": "101/2015/QH13",
+   "name": "Bộ luật Tố tụng hình sự",
+   "vbhn": "101/2015/QH13 (nguyên bản 2015 — vbpl.vn)",
+   "n": 510
+  },
+  {
+   "id": "50/2014/QH13",
+   "name": "Luật Xây dựng",
+   "vbhn": "50/2014/QH13 (nguyên bản 2014 — vbpl.vn; có sửa đổi 62/2020, chưa hợp nhất)",
+   "n": 168
+  },
+  {
+   "id": "83/2015/QH13",
+   "name": "Luật Ngân sách nhà nước",
+   "vbhn": "83/2015/QH13 (nguyên bản 2015 — vbpl.vn)",
+   "n": 77
   }
  ],
- "coverage_note": "Phủ theo TẦNG: 8 đồ-thị-đầy-đủ + 126 ảnh-chụp-VBHN (chưa đối chiếu eval) + 14 T1-đích. Thư viện toàn văn 140 luật.",
+ "coverage_note": "Phủ theo TẦNG: 8 đồ-thị + 128 ảnh-chụp-VBHN + 14 T1-đích. Thư viện 143 luật.",
  "superseded": [
   {
    "old": "61/2020/QH14",

@@ -11,12 +11,12 @@
   "distinct": 5,
   "false_positives": 0,
   "index_entries": 103,
-  "laws": 148,
+  "laws": 152,
   "amending": 6,
   "graph_full": 8,
-  "snapshot": 128,
+  "snapshot": 132,
   "t1_targets": 14,
-  "library": 143,
+  "library": 147,
   "out_of_graph": 18021,
   "out_covered_by_index": 21
  },
@@ -3623,9 +3623,33 @@
    "name": "Luật Ngân sách nhà nước",
    "vbhn": "83/2015/QH13 (nguyên bản 2015 — vbpl.vn)",
    "n": 77
+  },
+  {
+   "id": "55/2010/QH12",
+   "name": "Luật An toàn thực phẩm",
+   "vbhn": "55/2010/QH12 (nguyên bản — vbpl.vn)",
+   "n": 72
+  },
+  {
+   "id": "81/2015/QH13",
+   "name": "Luật Kiểm toán nhà nước",
+   "vbhn": "81/2015/QH13 (nguyên bản — vbpl.vn; có sửa đổi 55/2019)",
+   "n": 73
+  },
+  {
+   "id": "89/2015/QH13",
+   "name": "Luật Thống kê",
+   "vbhn": "89/2015/QH13 (nguyên bản — vbpl.vn)",
+   "n": 72
+  },
+  {
+   "id": "86/2015/QH13",
+   "name": "Luật An toàn thông tin mạng",
+   "vbhn": "86/2015/QH13 (nguyên bản — vbpl.vn)",
+   "n": 54
   }
  ],
- "coverage_note": "Phủ theo TẦNG: 8 đồ-thị + 128 ảnh-chụp-VBHN + 14 T1-đích. Thư viện 143 luật.",
+ "coverage_note": "Phủ theo TẦNG: 8 đồ-thị + 132 ảnh-chụp-VBHN + 14 T1-đích. Thư viện 147 luật.",
  "superseded": [
   {
    "old": "61/2020/QH14",

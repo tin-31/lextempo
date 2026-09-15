@@ -11,12 +11,12 @@
   "distinct": 5,
   "false_positives": 0,
   "index_entries": 103,
-  "laws": 160,
+  "laws": 164,
   "amending": 6,
   "graph_full": 8,
-  "snapshot": 140,
+  "snapshot": 144,
   "t1_targets": 14,
-  "library": 155,
+  "library": 159,
   "out_of_graph": 18021,
   "out_covered_by_index": 21
  },
@@ -3695,9 +3695,33 @@
    "name": "Luật Thanh niên",
    "vbhn": "57/2020/QH14 (nguyên bản — vbpl.vn)",
    "n": 41
+  },
+  {
+   "id": "39/2009/QH12",
+   "name": "Luật Người cao tuổi",
+   "vbhn": "39/2009/QH12 (nguyên bản — vbpl.vn)",
+   "n": 31
+  },
+  {
+   "id": "73/2006/QH11",
+   "name": "Luật Bình đẳng giới",
+   "vbhn": "73/2006/QH11 (nguyên bản — vbpl.vn)",
+   "n": 44
+  },
+  {
+   "id": "04/2017/QH14",
+   "name": "Luật Hỗ trợ doanh nghiệp nhỏ và vừa",
+   "vbhn": "04/2017/QH14 (nguyên bản — vbpl.vn)",
+   "n": 35
+  },
+  {
+   "id": "44/2019/QH14",
+   "name": "Luật Phòng, chống tác hại của rượu, bia",
+   "vbhn": "44/2019/QH14 (nguyên bản — vbpl.vn)",
+   "n": 36
   }
  ],
- "coverage_note": "Phủ theo TẦNG: 8 đồ-thị + 140 ảnh-chụp-VBHN + 14 T1-đích. Thư viện 155 luật.",
+ "coverage_note": "Phủ theo TẦNG: 8 đồ-thị + 144 ảnh-chụp-VBHN + 14 T1-đích. Thư viện 159 luật.",
  "superseded": [
   {
    "old": "61/2020/QH14",

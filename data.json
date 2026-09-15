@@ -11,12 +11,12 @@
   "distinct": 5,
   "false_positives": 0,
   "index_entries": 103,
-  "laws": 152,
+  "laws": 156,
   "amending": 6,
   "graph_full": 8,
-  "snapshot": 132,
+  "snapshot": 136,
   "t1_targets": 14,
-  "library": 147,
+  "library": 151,
   "out_of_graph": 18021,
   "out_covered_by_index": 21
  },
@@ -3647,9 +3647,33 @@
    "name": "Luật An toàn thông tin mạng",
    "vbhn": "86/2015/QH13 (nguyên bản — vbpl.vn)",
    "n": 54
+  },
+  {
+   "id": "97/2015/QH13",
+   "name": "Luật Phí và lệ phí",
+   "vbhn": "97/2015/QH13 (nguyên bản — vbpl.vn)",
+   "n": 25
+  },
+  {
+   "id": "46/2010/QH12",
+   "name": "Luật Ngân hàng Nhà nước Việt Nam",
+   "vbhn": "46/2010/QH12 (nguyên bản — vbpl.vn)",
+   "n": 66
+  },
+  {
+   "id": "67/2011/QH12",
+   "name": "Luật Kiểm toán độc lập",
+   "vbhn": "67/2011/QH12 (nguyên bản — vbpl.vn; có sửa đổi 56/2024)",
+   "n": 64
+  },
+  {
+   "id": "79/2015/QH13",
+   "name": "Luật Thú y",
+   "vbhn": "79/2015/QH13 (nguyên bản — vbpl.vn)",
+   "n": 116
   }
  ],
- "coverage_note": "Phủ theo TẦNG: 8 đồ-thị + 132 ảnh-chụp-VBHN + 14 T1-đích. Thư viện 147 luật.",
+ "coverage_note": "Phủ theo TẦNG: 8 đồ-thị + 136 ảnh-chụp-VBHN + 14 T1-đích. Thư viện 151 luật.",
  "superseded": [
   {
    "old": "61/2020/QH14",

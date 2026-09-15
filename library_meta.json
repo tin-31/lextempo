@@ -1,0 +1,824 @@
+{
+"61/2020/QH14": {
+"name": "Luật Đầu tư (2020 — xem bản 2025 §143)",
+"n": 79,
+"vbhn": "134/VBHN-VPQH",
+"date": "2025-09-04"
+},
+"22/2012/QH13": {
+"name": "Luật Dự trữ quốc gia",
+"n": 66,
+"vbhn": "30/VBHN-VPQH",
+"date": "2025-03"
+},
+"88/2015/QH13": {
+"name": "Luật Kế toán",
+"n": 75,
+"vbhn": "25/VBHN-VPQH",
+"date": "2025-03"
+},
+"15/2012/QH13": {
+"name": "Luật Xử lý vi phạm hành chính",
+"n": 148,
+"vbhn": "63/VBHN-VPQH",
+"date": "2025-08-30"
+},
+"38/2019/QH14": {
+"name": "Luật Quản lý thuế (2019 — xem bản 2025 §108)",
+"n": 152,
+"vbhn": "29/VBHN-VPQH",
+"date": "2025-03"
+},
+"10/2022/QH15": {
+"name": "Luật Thực hiện dân chủ ở cơ sở",
+"n": 91,
+"vbhn": "87/VBHN-VPQH",
+"date": "2025"
+},
+"54/2014/QH13": {
+"name": "Luật Hải quan",
+"n": 105,
+"vbhn": "54/VBHN-VPQH",
+"date": "2026"
+},
+"15/2017/QH14": {
+"name": "Luật Quản lý, sử dụng tài sản công",
+"n": 136,
+"vbhn": "97/VBHN-VPQH",
+"date": "2025-08-22"
+},
+"58/2024/QH15": {
+"name": "Luật Đầu tư công",
+"n": 105,
+"vbhn": "03/VBHN-VPQH",
+"date": "2026-02-05"
+},
+"54/2019/QH14": {
+"name": "Luật Chứng khoán",
+"n": 138,
+"vbhn": "24/VBHN-VPQH",
+"date": "2025-02-26"
+},
+"21/2017/QH14": {
+"name": "Luật Quy hoạch (2017 — xem bản 2025 §112)",
+"n": 60,
+"vbhn": "131/VBHN-VPQH",
+"date": "2025"
+},
+"64/2020/QH14": {
+"name": "Luật Đầu tư theo phương thức đối tác công tư",
+"n": 101,
+"vbhn": "08/VBHN-VPQH",
+"date": "2025-03-16"
+},
+"22/2023/QH15": {
+"name": "Luật Đấu thầu",
+"n": 99,
+"vbhn": "126/VBHN-VPQH",
+"date": "2025-08-27"
+},
+"59/2020/QH14": {
+"name": "Luật Doanh nghiệp",
+"n": 218,
+"vbhn": "67/VBHN-VPQH",
+"date": "2025-08-15"
+},
+"92/2015/QH13": {
+"name": "Bộ luật Tố tụng dân sự",
+"n": 517,
+"vbhn": "99/VBHN-VPQH",
+"date": "2025-06-25"
+},
+"58/2020/QH14": {
+"name": "Luật Hòa giải, đối thoại tại Tòa án",
+"n": 42,
+"vbhn": "122/VBHN-VPQH",
+"date": "2025-09-11"
+},
+"27/2023/QH15": {
+"name": "Luật Nhà ở",
+"n": 198,
+"vbhn": "79/VBHN-VPQH",
+"date": "2025-09-12"
+},
+"32/2024/QH15": {
+"name": "Luật Các tổ chức tín dụng",
+"n": 213,
+"vbhn": "100/VBHN-VPQH",
+"date": "2026-01-01"
+},
+"50/2005/QH11": {
+"name": "Luật Sở hữu trí tuệ",
+"n": 240,
+"vbhn": "67/VBHN-VPQH",
+"date": "2026-01-01"
+},
+"41/2024/QH15": {
+"name": "Luật Bảo hiểm xã hội",
+"n": 141,
+"vbhn": "19/VBHN-VPQH",
+"date": "2026-01-01"
+},
+"45/2019/QH14": {
+"name": "Bộ luật Lao động",
+"n": 220,
+"vbhn": "18/VBHN-VPQH",
+"date": "2026-02-12"
+},
+"31/2024/QH15": {
+"name": "Luật Đất đai",
+"n": 260,
+"vbhn": "44/VBHN-VPQH",
+"date": "2026-03-16"
+},
+"29/2023/QH15": {
+"name": "Luật Kinh doanh bất động sản",
+"n": 83,
+"vbhn": "06/VBHN-VPQH",
+"date": "2025-03-16"
+},
+"72/2020/QH14": {
+"name": "Luật Bảo vệ môi trường",
+"n": 171,
+"vbhn": "98/VBHN-VPQH",
+"date": "2026-01-01"
+},
+"20/2023/QH15": {
+"name": "Luật Giao dịch điện tử",
+"n": 53,
+"vbhn": "42/VBHN-VPQH",
+"date": "2025-03-19"
+},
+"25/2008/QH12": {
+"name": "Luật Bảo hiểm y tế",
+"n": 57,
+"vbhn": "40/VBHN-VPQH",
+"date": "2026-01-01"
+},
+"16/2023/QH15": {
+"name": "Luật Giá",
+"n": 75,
+"vbhn": "36/VBHN-VPQH",
+"date": "2025-03-01"
+},
+"54/2010/QH12": {
+"name": "Luật Trọng tài thương mại",
+"n": 82,
+"vbhn": "60/VBHN-VPQH",
+"date": "2025-08-15"
+},
+"84/2015/QH13": {
+"name": "Luật An toàn, vệ sinh lao động",
+"n": 93,
+"vbhn": "14/VBHN-VPQH",
+"date": "2024-01-01"
+},
+"48/2024/QH15": {
+"name": "Luật Thuế giá trị gia tăng",
+"n": 18,
+"vbhn": "12/VBHN-VPQH",
+"date": "2026-01-01"
+},
+"04/2007/QH12": {
+"name": "Luật Thuế thu nhập cá nhân",
+"n": 35,
+"vbhn": "103/VBHN-VPQH",
+"date": "2025-08"
+},
+"08/2022/QH15": {
+"name": "Luật Kinh doanh bảo hiểm",
+"n": 157,
+"vbhn": "31/VBHN-VPQH",
+"date": "2026-01-01"
+},
+"67/2025/QH15": {
+"name": "Luật Thuế thu nhập doanh nghiệp",
+"n": 20,
+"vbhn": "61/VBHN-VPQH",
+"date": "2026-01-01"
+},
+"01/2016/QH14": {
+"name": "Luật Đấu giá tài sản",
+"n": 83,
+"vbhn": "23/VBHN-VPQH",
+"date": "2024-01-01"
+},
+"80/2025/QH15": {
+"name": "Luật Cán bộ, công chức",
+"n": 45,
+"vbhn": "Luật gốc 2025",
+"date": "2025-07-01"
+},
+"129/2025/QH15": {
+"name": "Luật Viên chức",
+"n": 43,
+"vbhn": "Luật gốc 2025",
+"date": "2025-07-01"
+},
+"72/2025/QH15": {
+"name": "Luật Tổ chức chính quyền địa phương",
+"n": 54,
+"vbhn": "Luật gốc 2025",
+"date": "2025-06-16"
+},
+"106/2025/QH15": {
+"name": "Luật Thi hành án dân sự",
+"n": 116,
+"vbhn": "Luật gốc 2025",
+"date": "2025-07-01"
+},
+"84/2025/QH15": {
+"name": "Luật Thanh tra",
+"n": 64,
+"vbhn": "Luật gốc 2025",
+"date": "2025-07-01"
+},
+"73/2025/QH15": {
+"name": "Luật Nhà giáo",
+"n": 42,
+"vbhn": "Luật gốc 2025",
+"date": "2025-07-01"
+},
+"63/2025/QH15": {
+"name": "Luật Tổ chức Chính phủ",
+"n": 32,
+"vbhn": "Luật gốc 2025",
+"date": "2025-02-18"
+},
+"91/2025/QH15": {
+"name": "Luật Bảo vệ dữ liệu cá nhân",
+"n": 39,
+"vbhn": "Luật gốc 2025",
+"date": "2025-07-01"
+},
+"124/2025/QH15": {
+"name": "Luật Giáo dục nghề nghiệp",
+"n": 45,
+"vbhn": "Luật gốc 2025",
+"date": "2025-07-01"
+},
+"64/2025/QH15": {
+"name": "Luật Ban hành văn bản quy phạm pháp luật",
+"n": 72,
+"vbhn": "Luật gốc 2025",
+"date": "2025-04-01"
+},
+"74/2025/QH15": {
+"name": "Luật Việc làm",
+"n": 55,
+"vbhn": "Luật gốc",
+"date": "2025-07-01"
+},
+"93/2025/QH15": {
+"name": "Luật Khoa học, công nghệ và đổi mới sáng tạo",
+"n": 73,
+"vbhn": "Luật gốc",
+"date": "2025-10-01"
+},
+"55/2024/QH15": {
+"name": "Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ",
+"n": 55,
+"vbhn": "Luật gốc",
+"date": "2025-07-01"
+},
+"45/2024/QH15": {
+"name": "Luật Di sản văn hóa",
+"n": 95,
+"vbhn": "Luật gốc",
+"date": "2025-07-01"
+},
+"61/2024/QH15": {
+"name": "Luật Điện lực",
+"n": 81,
+"vbhn": "Luật gốc",
+"date": "2025-02-01"
+},
+"36/2024/QH15": {
+"name": "Luật Trật tự, an toàn giao thông đường bộ",
+"n": 89,
+"vbhn": "Luật gốc",
+"date": "2025-01-01"
+},
+"26/2023/QH15": {
+"name": "Luật Căn cước",
+"n": 46,
+"vbhn": "Luật gốc",
+"date": "2024-07-01"
+},
+"60/2024/QH15": {
+"name": "Luật Dữ liệu",
+"n": 46,
+"vbhn": "Luật gốc",
+"date": "2025-07-01"
+},
+"71/2025/QH15": {
+"name": "Luật Công nghiệp công nghệ số",
+"n": 51,
+"vbhn": "Luật gốc",
+"date": "2026-01-01"
+},
+"24/2023/QH15": {
+"name": "Luật Viễn thông",
+"n": 73,
+"vbhn": "Luật gốc",
+"date": "2024-07-01"
+},
+"54/2024/QH15": {
+"name": "Luật Địa chất và khoáng sản",
+"n": 111,
+"vbhn": "Luật gốc",
+"date": "2025-07-01"
+},
+"14/2022/QH15": {
+"name": "Luật Phòng, chống rửa tiền",
+"n": 66,
+"vbhn": "Luật gốc",
+"date": "2023-03-01"
+},
+"33/2024/QH15": {
+"name": "Luật Lưu trữ",
+"n": 65,
+"vbhn": "Luật gốc",
+"date": "2025-07-01"
+},
+"35/2024/QH15": {
+"name": "Luật Đường bộ",
+"n": 86,
+"vbhn": "Luật gốc",
+"date": "2025-01-01"
+},
+"34/2024/QH15": {
+"name": "Luật Tổ chức Tòa án nhân dân",
+"n": 152,
+"vbhn": "Luật gốc",
+"date": "2025-01-01"
+},
+"59/2024/QH15": {
+"name": "Luật Tư pháp người chưa thành niên",
+"n": 179,
+"vbhn": "Luật gốc",
+"date": "2026-01-01"
+},
+"68/2020/QH14": {
+"name": "Luật Cư trú",
+"n": 38,
+"vbhn": "Luật gốc",
+"date": "2021-07-01"
+},
+"36/2018/QH14": {
+"name": "Luật Phòng, chống tham nhũng",
+"n": 96,
+"vbhn": "118/VBHN-VPQH",
+"date": "2019-07-01"
+},
+"107/2016/QH13": {
+"name": "Luật Thuế xuất khẩu, thuế nhập khẩu",
+"n": 22,
+"vbhn": "94/VBHN-VPQH",
+"date": "2016-09-01"
+},
+"05/2017/QH14": {
+"name": "Luật Quản lý ngoại thương",
+"n": 113,
+"vbhn": "Luật gốc",
+"date": "2018-01-01"
+},
+"05/2022/QH15": {
+"name": "Luật Điện ảnh",
+"n": 50,
+"vbhn": "Luật gốc",
+"date": "2023-01-01"
+},
+"102/2016/QH13": {
+"name": "Luật Trẻ em",
+"n": 106,
+"vbhn": "32/VBHN-VPQH",
+"date": "2017-06-01"
+},
+"02/2011/QH13": {
+"name": "Luật Khiếu nại",
+"n": 70,
+"vbhn": "120/VBHN-VPQH",
+"date": "2012-07-01"
+},
+"25/2018/QH14": {
+"name": "Luật Tố cáo",
+"n": 67,
+"vbhn": "112/VBHN-VPQH",
+"date": "2019-01-01"
+},
+"47/2014/QH13": {
+"name": "Luật Nhập cảnh, xuất cảnh, quá cảnh, cư trú của người nước ngoài tại Việt Nam",
+"n": 59,
+"vbhn": "30/VBHN-VPQH",
+"date": "2015-01-01"
+},
+"19/2023/QH15": {
+"name": "Luật Bảo vệ quyền lợi người tiêu dùng",
+"n": 80,
+"vbhn": "Luật gốc",
+"date": "2024-07-01"
+},
+"50/2024/QH15": {
+"name": "Luật Công đoàn",
+"n": 37,
+"vbhn": "90/VBHN-VPQH",
+"date": "2025-07-01"
+},
+"49/2019/QH14": {
+"name": "Luật Xuất cảnh, nhập cảnh của công dân Việt Nam",
+"n": 53,
+"vbhn": "29/VBHN-VPQH",
+"date": "2020-07-01"
+},
+"63/2014/QH13": {
+"name": "Luật Tổ chức Viện kiểm sát nhân dân",
+"n": 102,
+"vbhn": "110/VBHN-VPQH",
+"date": "2015-06-01"
+},
+"105/2016/QH13": {
+"name": "Luật Dược",
+"n": 119,
+"vbhn": "76/VBHN-VPQH",
+"date": "2017-01-01"
+},
+"120/2025/QH15": {
+"name": "Luật Phòng, chống ma túy",
+"n": 56,
+"vbhn": "Luật gốc",
+"date": "2026-01-01"
+},
+"43/2019/QH14": {
+"name": "Luật Giáo dục",
+"n": 115,
+"vbhn": "Luật gốc",
+"date": "2020-07-01"
+},
+"15/2023/QH15": {
+"name": "Luật Khám bệnh, chữa bệnh",
+"n": 121,
+"vbhn": "26/VBHN-VPQH",
+"date": "2024-01-01"
+},
+"16/2017/QH14": {
+"name": "Luật Lâm nghiệp",
+"n": 108,
+"vbhn": "Luật gốc",
+"date": "2019-01-01"
+},
+"18/2017/QH14": {
+"name": "Luật Thủy sản",
+"n": 105,
+"vbhn": "Luật gốc",
+"date": "2019-01-01"
+},
+"09/2017/QH14": {
+"name": "Luật Du lịch",
+"n": 78,
+"vbhn": "Luật gốc",
+"date": "2018-01-01"
+},
+"40/2019/QH14": {
+"name": "Luật Kiến trúc",
+"n": 41,
+"vbhn": "Luật gốc",
+"date": "2020-07-01"
+},
+"32/2018/QH14": {
+"name": "Luật Chăn nuôi",
+"n": 83,
+"vbhn": "Luật gốc",
+"date": "2020-01-01"
+},
+"31/2018/QH14": {
+"name": "Luật Trồng trọt",
+"n": 85,
+"vbhn": "Luật gốc",
+"date": "2020-01-01"
+},
+"42/2024/QH15": {
+"name": "Luật Quản lý, sử dụng vũ khí, vật liệu nổ và công cụ hỗ trợ",
+"n": 75,
+"vbhn": "78/VBHN-VPQH",
+"date": "2025-01-01"
+},
+"24/2018/QH14": {
+"name": "Luật An ninh mạng",
+"n": 43,
+"vbhn": "Luật gốc",
+"date": "2019-01-01"
+},
+"22/2018/QH14": {
+"name": "Luật Quốc phòng",
+"n": 40,
+"vbhn": "19/VBHN-VPQH",
+"date": "2019-01-01"
+},
+"95/2025/QH15": {
+"name": "Luật Đường sắt",
+"n": 59,
+"vbhn": "Luật gốc",
+"date": "2026-01-01"
+},
+"37/2018/QH14": {
+"name": "Luật Công an nhân dân",
+"n": 46,
+"vbhn": "38/VBHN-VPQH",
+"date": "2019-07-01"
+},
+"33/2013/QH13": {
+"name": "Luật Phòng, chống thiên tai",
+"n": 50,
+"vbhn": "04/VBHN-VPQH",
+"date": "2014-05-01"
+},
+"78/2015/QH13": {
+"name": "Luật Nghĩa vụ quân sự",
+"n": 62,
+"vbhn": "80/VBHN-VPQH",
+"date": "2016-01-01"
+},
+"47/2024/QH15": {
+"name": "Luật Quy hoạch đô thị và nông thôn",
+"n": 59,
+"vbhn": "Luật gốc",
+"date": "2025-07-01"
+},
+"29/2018/QH14": {
+"name": "Luật Bảo vệ bí mật nhà nước",
+"n": 28,
+"vbhn": "Luật gốc",
+"date": "2020-07-01"
+},
+"32/2004/QH11": {
+"name": "Luật An ninh quốc gia",
+"n": 36,
+"vbhn": "49/VBHN-VPQH",
+"date": "2005-07-01"
+},
+"52/2014/QH13": {
+"name": "Luật Hôn nhân và gia đình",
+"n": 133,
+"vbhn": "121/VBHN-VPQH",
+"date": "2015-01-01"
+},
+"24/2008/QH12": {
+"name": "Luật Quốc tịch Việt Nam",
+"n": 44,
+"vbhn": "53/VBHN-VPQH",
+"date": "2009-07-01"
+},
+"11/2017/QH14": {
+"name": "Luật Trợ giúp pháp lý",
+"n": 48,
+"vbhn": "05/VBHN-VPQH",
+"date": "2018-01-01"
+},
+"18/2012/QH13": {
+"name": "Luật Biển Việt Nam",
+"n": 55,
+"vbhn": "47/VBHN-VPQH",
+"date": "2013-01-01"
+},
+"27/2018/QH14": {
+"name": "Luật Đo đạc và bản đồ",
+"n": 61,
+"vbhn": "Luật gốc",
+"date": "2019-01-01"
+},
+"68/2025/QH15": {
+"name": "Luật Quản lý và đầu tư vốn nhà nước tại doanh nghiệp",
+"n": 59,
+"vbhn": "Luật gốc",
+"date": "2025-08-01"
+},
+"130/2025/QH15": {
+"name": "Luật Hàng không dân dụng Việt Nam",
+"n": 107,
+"vbhn": "Luật gốc",
+"date": "2026-01-01"
+},
+"95/2015/QH13": {
+"name": "Bộ luật Hàng hải Việt Nam",
+"n": 342,
+"vbhn": "101/VBHN-VPQH",
+"date": "2017-07-01"
+},
+"69/2020/QH14": {
+"name": "Luật Người lao động Việt Nam đi làm việc ở nước ngoài theo hợp đồng",
+"n": 74,
+"vbhn": "Luật gốc",
+"date": "2022-01-01"
+},
+"20/2017/QH14": {
+"name": "Luật Quản lý nợ công",
+"n": 63,
+"vbhn": "Luật gốc",
+"date": "2018-07-01"
+},
+"17/2023/QH15": {
+"name": "Luật Hợp tác xã",
+"n": 115,
+"vbhn": "Luật gốc",
+"date": "2024-07-01"
+},
+"51/2010/QH12": {
+"name": "Luật Người khuyết tật",
+"n": 53,
+"vbhn": "24/VBHN-VPQH",
+"date": "2026-01-01"
+},
+"23/2004/QH11": {
+"name": "Luật Giao thông đường thủy nội địa",
+"n": 112,
+"vbhn": "16/VBHN-VPQH",
+"date": "2005-01-01"
+},
+"41/2019/QH14": {
+"name": "Luật Thi hành án hình sự",
+"n": 207,
+"vbhn": "Luật gốc",
+"date": "2020-01-01"
+},
+"39/2024/QH15": {
+"name": "Luật Thủ đô",
+"n": 54,
+"vbhn": "Luật gốc",
+"date": "2025-01-01"
+},
+"04/2022/QH15": {
+"name": "Luật Cảnh sát cơ động",
+"n": 33,
+"vbhn": "Luật gốc",
+"date": "2022-08-01"
+},
+"30/2023/QH15": {
+"name": "Luật Lực lượng tham gia bảo vệ an ninh, trật tự ở cơ sở",
+"n": 33,
+"vbhn": "Luật gốc",
+"date": "2024-07-01"
+},
+"38/2024/QH15": {
+"name": "Luật Công nghiệp quốc phòng, an ninh và động viên công nghiệp",
+"n": 86,
+"vbhn": "Luật gốc",
+"date": "2025-07-01"
+},
+"46/2019/QH14": {
+"name": "Luật Thư viện",
+"n": 52,
+"vbhn": "Luật gốc",
+"date": "2020-07-01"
+},
+"53/2019/QH14": {
+"name": "Luật Lực lượng dự bị động viên",
+"n": 41,
+"vbhn": "Luật gốc",
+"date": "2020-07-01"
+},
+"25/2023/QH15": {
+"name": "Luật Quản lý, bảo vệ công trình quốc phòng và khu quân sự",
+"n": 34,
+"vbhn": "Luật gốc",
+"date": "2025-01-01"
+},
+"06/2022/QH15": {
+"name": "Luật Thi đua, khen thưởng",
+"n": 96,
+"vbhn": "Luật gốc",
+"date": "2024-01-01"
+},
+"108/2016/QH13": {
+"name": "Luật Điều ước quốc tế",
+"n": 86,
+"vbhn": "10/VBHN-VPQH",
+"date": "2016-07-01"
+},
+"23/2018/QH14": {
+"name": "Luật Cạnh tranh",
+"n": 118,
+"vbhn": "Luật gốc",
+"date": "2019-07-01"
+},
+"30/2018/QH14": {
+"name": "Luật Đặc xá",
+"n": 39,
+"vbhn": "Luật gốc",
+"date": "2019-07-01"
+},
+"28/2023/QH15": {
+"name": "Luật Tài nguyên nước",
+"n": 86,
+"vbhn": "Luật gốc",
+"date": "2024-07-01"
+},
+"18/2023/QH15": {
+"name": "Luật Phòng thủ dân sự",
+"n": 55,
+"vbhn": "Luật gốc",
+"date": "2024-07-01"
+},
+"42/2009/QH12": {
+"name": "Luật Tần số vô tuyến điện",
+"n": 52,
+"vbhn": "62/VBHN-VPQH",
+"date": "2010-07-01"
+},
+"90/2015/QH13": {
+"name": "Luật Khí tượng thủy văn",
+"n": 57,
+"vbhn": "21/VBHN-VPQH",
+"date": "2016-07-01"
+},
+"82/2015/QH13": {
+"name": "Luật Tài nguyên, môi trường biển và hải đảo",
+"n": 81,
+"vbhn": "22/VBHN-VPQH",
+"date": "2016-07-01"
+},
+"94/2025/QH15": {
+"name": "Luật Năng lượng nguyên tử",
+"n": 73,
+"vbhn": "Luật gốc",
+"date": "2026-01-01"
+},
+"49/2024/QH15": {
+"name": "Luật Phòng không nhân dân",
+"n": 47,
+"vbhn": "Luật gốc",
+"date": "2025-07-01"
+},
+"53/2024/QH15": {
+"name": "Luật Phòng, chống mua bán người",
+"n": 63,
+"vbhn": "Luật gốc",
+"date": "2025-07-01"
+},
+"77/2006/QH11": {
+"name": "Luật Thể dục, thể thao",
+"n": 81,
+"vbhn": "64/VBHN-VPQH",
+"date": "2007-07-01"
+},
+"89/2025/QH15": {
+"name": "Luật Ngân sách nhà nước",
+"n": 79,
+"vbhn": "Luật gốc",
+"date": "2026-01-01"
+},
+"143/2025/QH15": {
+"name": "Luật Đầu tư (bản 2025)",
+"n": 52,
+"vbhn": "Luật gốc 2025",
+"date": "2026-01-01"
+},
+"108/2025/QH15": {
+"name": "Luật Quản lý thuế (bản 2025)",
+"n": 53,
+"vbhn": "Luật gốc 2025",
+"date": "2026-01-01"
+},
+"112/2025/QH15": {
+"name": "Luật Quy hoạch (bản 2025)",
+"n": 58,
+"vbhn": "Luật gốc 2025",
+"date": "2026-01-01"
+},
+"103/2025/QH15": {
+"name": "Luật Tương trợ tư pháp về hình sự",
+"n": 42,
+"vbhn": "Luật gốc",
+"date": "2026-01-01"
+},
+"100/2025/QH15": {
+"name": "Luật Tương trợ tư pháp về dân sự",
+"n": 45,
+"vbhn": "Luật gốc",
+"date": "2026-01-01"
+},
+"101/2025/QH15": {
+"name": "Luật Dẫn độ",
+"n": 48,
+"vbhn": "Luật gốc",
+"date": "2026-01-01"
+},
+"102/2025/QH15": {
+"name": "Luật Chuyển giao người đang chấp hành án phạt tù",
+"n": 38,
+"vbhn": "Luật gốc",
+"date": "2026-01-01"
+},
+"10/2017/QH14": {
+"name": "Luật Trách nhiệm bồi thường của Nhà nước",
+"n": 78,
+"vbhn": "98/VBHN-VPQH",
+"date": "2018-07-01"
+},
+"42/2013/QH13": {
+"name": "Luật Tiếp công dân",
+"n": 37,
+"vbhn": "30/VBHN-VPQH",
+"date": "2014-07-01"
+}
+}

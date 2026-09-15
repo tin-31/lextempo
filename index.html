@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LexTempo — Tra cứu căn cứ pháp lý theo thời gian</title>
+<meta name="description" content="Tra toàn văn 137 luật hợp nhất + rà trích dẫn theo thời gian (phủ 143 luật). Ảnh chụp VBHN chưa đối chiếu — chưa xác minh KHÔNG có nghĩa an toàn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --paper:#FAF8F3; --surface:#FFFFFF; --surface-2:#F4EFE7;
+    --ink:#241C1A; --muted:#6B5F5A; --faint:#9A8E86;
+    --hairline:#E7DED3; --hairline-strong:#D8CCBE;
+    --accent:#9A2B24; --accent-soft:#B9564C;
+    --t1:#9A2B24; --t2:#A9761A; --t3:#5E6672; --ok:#2E6B4F; --warn:#A9761A;
+    --shadow:0 1px 2px rgba(40,26,20,.05), 0 8px 30px rgba(40,26,20,.06);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#15110E; --surface:#1E1813; --surface-2:#241D17;
+      --ink:#F1E8E0; --muted:#AC9F95; --faint:#7C7167;
+      --hairline:#332A21; --hairline-strong:#413628;
+      --accent:#DE7C71; --accent-soft:#C96256;
+      --t1:#DE7C71; --t2:#D6A24A; --t3:#97A0AD; --ok:#6EB994; --warn:#D6A24A;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.36);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#15110E; --surface:#1E1813; --surface-2:#241D17;
+    --ink:#F1E8E0; --muted:#AC9F95; --faint:#7C7167;
+    --hairline:#332A21; --hairline-strong:#413628;
+    --accent:#DE7C71; --accent-soft:#C96256;
+    --t1:#DE7C71; --t2:#D6A24A; --t3:#97A0AD; --ok:#6EB994; --warn:#D6A24A;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.36);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Noto Sans","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  .wrap{max-width:860px;margin:0 auto;padding:0 22px 100px}
+  a{color:var(--accent)}
+  h1,h2,h3{font-family:"Noto Serif",Georgia,serif;text-wrap:balance}
+  .mono{font-family:"IBM Plex Mono",monospace}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 90%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--hairline)}
+  .nav-in{max-width:860px;margin:0 auto;padding:11px 22px;display:flex;align-items:center;gap:16px}
+  .brand{font-family:"Noto Serif",serif;font-weight:700;font-size:18px;letter-spacing:-.01em}
+  .brand .dot{color:var(--accent)}
+  .nav-links{display:flex;gap:16px;margin-left:auto;font-size:14px}
+  .nav-links a{color:var(--muted);text-decoration:none}
+  .nav-links a:hover{color:var(--accent)}
+  .toggle{background:var(--surface);border:1px solid var(--hairline);color:var(--muted);
+    border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:15px}
+
+  header.hero{padding:52px 0 12px}
+  .kick{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 16px;font-weight:500}
+  h1.title{font-size:40px;line-height:1.12;letter-spacing:-.015em;margin:0 0 16px;font-weight:700}
+  h1.title .l{color:var(--muted);font-weight:400;font-style:italic}
+  .lede{font-family:"Noto Serif",serif;font-size:19px;line-height:1.5;max-width:60ch;margin:0 0 24px}
+
+  /* coverage banner — prominent */
+  .banner{background:var(--surface-2);border:1px solid var(--hairline-strong);border-left:4px solid var(--warn);
+    border-radius:12px;padding:16px 18px;margin:6px 0 8px;display:flex;gap:13px;align-items:flex-start}
+  .banner .ic{color:var(--warn);font-size:20px;line-height:1.2;flex:none}
+  .banner p{margin:0;font-size:14.5px;line-height:1.55}
+  .banner b{color:var(--ink)}
+
+  .stakes{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 8px}
+  .stat{background:var(--surface);border:1px solid var(--hairline);border-radius:10px;padding:11px 14px;
+    box-shadow:var(--shadow);flex:1 1 130px}
+  .stat b{display:block;font-family:"Noto Serif",serif;font-size:22px;font-weight:700;line-height:1.1;
+    font-variant-numeric:tabular-nums}
+  .stat.crit b{color:var(--t1)} .stat.ok b{color:var(--ok)}
+  .stat span{font-size:12.5px;color:var(--muted);display:block;margin-top:2px;line-height:1.35}
+
+  section{padding:44px 0 6px;border-top:1px solid var(--hairline);margin-top:34px}
+  section.first{border-top:0;margin-top:8px}
+  h2{font-size:27px;line-height:1.2;margin:0 0 6px;font-weight:600}
+  .sub{color:var(--muted);font-size:15px;margin:0 0 20px;max-width:62ch}
+
+  /* lookup tool */
+  .tool{background:var(--surface);border:1px solid var(--hairline-strong);border-radius:14px;
+    padding:22px;box-shadow:var(--shadow)}
+  .grid{display:grid;gap:12px;grid-template-columns:1fr;margin-bottom:14px}
+  @media(min-width:620px){.grid{grid-template-columns:2fr 1fr 1fr 1fr}}
+  .fld{display:flex;flex-direction:column;gap:5px}
+  .fld label{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.02em}
+  .fld input,.fld select{font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--hairline-strong);
+    border-radius:8px;background:var(--paper);color:var(--ink)}
+  .fld input:focus,.fld select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+  .btn{font:inherit;font-weight:600;font-size:15px;padding:11px 20px;border:0;border-radius:9px;
+    background:var(--accent);color:#fff;cursor:pointer}
+  .btn:hover{background:var(--accent-soft)}
+  .btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .hint{font-size:12.5px;color:var(--faint);margin:10px 2px 0}
+
+  .verdict{margin-top:16px;border-radius:11px;padding:16px 18px;border:1px solid var(--hairline);
+    background:var(--surface-2);display:none}
+  .verdict.show{display:block}
+  .verdict .vh{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    margin:0 0 8px;font-weight:500}
+  .verdict.repealed{border-left:4px solid var(--t1)} .verdict.repealed .vh{color:var(--t1)}
+  .verdict.unknown{border-left:4px solid var(--warn)} .verdict.unknown .vh{color:var(--warn)}
+  .verdict.notcovered{border-left:4px solid var(--t3)} .verdict.notcovered .vh{color:var(--t3)}
+  .verdict p{margin:0 0 8px;font-size:15px;line-height:1.55}
+  .verdict p:last-child{margin-bottom:0}
+  .verdict .src{font-family:"IBM Plex Mono",monospace;font-size:12.5px;background:var(--paper);
+    border:1px solid var(--hairline);border-radius:7px;padding:9px 11px;color:var(--muted);margin-top:6px}
+  .verdict .self{font-size:13px;color:var(--muted);border-top:1px dashed var(--hairline-strong);padding-top:9px;margin-top:10px}
+
+  /* orphan list */
+  .orphans{display:grid;gap:11px}
+  .orphan{background:var(--surface);border:1px solid var(--hairline);border-left:3px solid var(--t1);
+    border-radius:10px;padding:14px 16px}
+  .orphan .top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;margin-bottom:5px}
+  .orphan .loc{font-family:"Noto Serif",serif;font-weight:600;font-size:16px}
+  .orphan .tgt{font-size:13px;color:var(--muted)}
+  .orphan .meta{font-size:13.5px;color:var(--muted);line-height:1.5}
+  .orphan .meta b{color:var(--ink)}
+  .chip{font-family:"IBM Plex Mono",monospace;font-size:11px;padding:2px 7px;border-radius:5px;
+    background:var(--surface-2);border:1px solid var(--hairline);color:var(--muted)}
+
+  /* tier ladder */
+  .tiertabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+  .ttab{font:inherit;font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:9px;cursor:pointer;
+    background:var(--surface);border:1px solid var(--hairline-strong);color:var(--muted);display:flex;gap:8px;align-items:center}
+  .ttab .cnt{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;padding:1px 7px;border-radius:20px;
+    background:var(--surface-2);color:var(--ink)}
+  .ttab.on{color:#fff}
+  .ttab[data-t="T0"].on{background:#5a1410;border-color:#5a1410}
+  .ttab[data-t="T1"].on{background:var(--t1);border-color:var(--t1)}
+  .ttab[data-t="T2"].on{background:var(--t2);border-color:var(--t2)}
+  .ttab[data-t="T3"].on{background:var(--t3);border-color:var(--t3)}
+  .ttab.on .cnt{background:rgba(255,255,255,.25);color:#fff}
+  .tdesc{font-size:14px;color:var(--muted);margin:0 0 14px;padding:11px 14px;border-radius:9px;
+    background:var(--surface-2);border-left:3px solid var(--hairline-strong);line-height:1.55}
+  .tdesc.T0{border-left-color:#8a1f18} .tdesc.T1{border-left-color:var(--t1)}
+  .tdesc.T2{border-left-color:var(--t2)} .tdesc.T3{border-left-color:var(--t3)}
+  .tdesc b{color:var(--ink)}
+  .tfind{display:grid;gap:9px}
+  .tf{background:var(--surface);border:1px solid var(--hairline);border-left:3px solid var(--hairline-strong);
+    border-radius:9px;padding:12px 15px}
+  .tf.T0{border-left-color:#8a1f18} .tf.T1{border-left-color:var(--t1)}
+  .tf.T2{border-left-color:var(--t2)} .tf.T3{border-left-color:var(--t3)}
+  .tf .top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;margin-bottom:4px}
+  .tf .loc{font-family:"Noto Serif",serif;font-weight:600;font-size:15.5px}
+  .tf .tgt{font-size:12.5px;color:var(--muted)}
+  .tf .meta{font-size:13px;color:var(--muted);line-height:1.5}
+  .tf .meta b{color:var(--ink)}
+  .tf .simbar{display:inline-flex;align-items:center;gap:7px;margin-left:auto}
+  .tf .simtrack{width:64px;height:6px;background:var(--surface-2);border-radius:4px;overflow:hidden}
+  .tf .simfill{height:100%;background:var(--t2);border-radius:4px}
+  .tf .simval{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+  /* version traps */
+  .traps{display:grid;gap:9px}
+  .trap{background:var(--surface);border:1px solid var(--hairline);border-left:3px solid var(--warn);
+    border-radius:9px;padding:12px 15px;font-size:14px;line-height:1.55}
+  .trap b{color:var(--ink)}
+  .trap .pair{font-family:"IBM Plex Mono",monospace;font-size:13px;margin:2px 0 4px}
+  .trap .pair .old{color:var(--t1);text-decoration:line-through}
+  .trap .pair .new{color:var(--ok);font-weight:600}
+  .trap .note{font-size:12px;color:var(--faint);margin-top:3px}
+  .row.t .tag{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+  .row.t{border-left-color:var(--warn)}
+
+  /* coverage */
+  .cov-laws{display:flex;flex-wrap:wrap;gap:7px;margin:6px 0 20px}
+  .lawchip{font-size:13px;padding:5px 11px;border-radius:20px;background:var(--surface);
+    border:1px solid var(--hairline);color:var(--ink)}
+  .lawchip .n{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--faint);margin-left:5px}
+  .plbar{display:grid;gap:10px;margin:8px 0}
+  .pl{background:var(--surface);border:1px solid var(--hairline);border-radius:10px;padding:14px 16px}
+  .pl .plh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+  .pl .plh b{font-family:"Noto Serif",serif;font-size:16px;font-weight:600}
+  .pl .plh .num{font-family:"IBM Plex Mono",monospace;font-weight:500;color:var(--accent);font-variant-numeric:tabular-nums}
+  .pl .track{height:8px;background:var(--surface-2);border-radius:5px;overflow:hidden}
+  .pl .fill{height:100%;background:var(--accent);border-radius:5px}
+  .pl small{color:var(--muted);font-size:12.5px;display:block;margin-top:7px}
+  .limits{list-style:none;padding:0;margin:16px 0 6px;display:grid;gap:9px}
+  .limits li{position:relative;padding-left:22px;font-size:14.5px;line-height:1.55;max-width:64ch}
+  .limits li::before{content:"";position:absolute;left:3px;top:9px;width:6px;height:6px;background:var(--warn);border-radius:50%}
+  .limits li b{color:var(--ink)}
+
+  /* checker */
+  .cgrid{display:grid;gap:12px;grid-template-columns:1fr}
+  @media(min-width:620px){.cgrid{grid-template-columns:1fr 1fr}}
+  textarea#c-text{font:inherit;font-size:14.5px;line-height:1.55;padding:11px 12px;width:100%;
+    border:1px solid var(--hairline-strong);border-radius:8px;background:var(--paper);color:var(--ink);resize:vertical}
+  textarea#c-text:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+  .cbtns{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0 0;align-items:center}
+  .btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--hairline-strong)}
+  .btn.ghost:hover{background:var(--surface-2);color:var(--accent)}
+  .btn.file{display:inline-flex;align-items:center;cursor:pointer}
+  .csum{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0 4px}
+  .csum .c{border-radius:9px;padding:9px 13px;border:1px solid var(--hairline);background:var(--surface-2);
+    font-size:13.5px;display:flex;gap:8px;align-items:baseline}
+  .csum .c b{font-family:"Noto Serif",serif;font-size:19px;font-variant-numeric:tabular-nums}
+  .csum .c.r{border-left:3px solid var(--t1)} .csum .c.r b{color:var(--t1)}
+  .csum .c.u{border-left:3px solid var(--warn)} .csum .c.u b{color:var(--warn)}
+  .csum .c.o{border-left:3px solid var(--t3)} .csum .c.o b{color:var(--t3)}
+  .csum .c.t{border-left:3px solid var(--warn)} .csum .c.t b{color:var(--warn)}
+  .cres{display:grid;gap:9px;margin:10px 0 2px}
+  .row{background:var(--surface);border:1px solid var(--hairline);border-radius:9px;padding:11px 14px;
+    border-left:3px solid var(--hairline-strong)}
+  .row.r{border-left-color:var(--t1)} .row.u{border-left-color:var(--warn)} .row.o{border-left-color:var(--t3)}
+  .row .rl{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+  .row .loc{font-family:"Noto Serif",serif;font-weight:600;font-size:15px}
+  .row .law{font-size:13px;color:var(--muted)}
+  .row .tag{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+    padding:2px 7px;border-radius:5px;margin-left:auto;font-weight:500}
+  .row.r .tag{background:color-mix(in srgb,var(--t1) 15%,transparent);color:var(--t1)}
+  .row.u .tag{background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--warn)}
+  .row.o .tag{background:var(--surface-2);color:var(--t3)}
+  .row .det{font-size:13px;color:var(--muted);margin:6px 0 0;line-height:1.5}
+  .row .det b{color:var(--ink)}
+  .row .src{font-family:"IBM Plex Mono",monospace;font-size:11.5px;background:var(--paper);
+    border:1px solid var(--hairline);border-radius:6px;padding:6px 9px;color:var(--muted);margin-top:6px}
+  .row .from{font-size:11.5px;color:var(--faint);margin-top:5px}
+  .cexport{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0 0;align-items:center;
+    border-top:1px dashed var(--hairline-strong);padding-top:14px}
+  .permamsg{font-size:12.5px;color:var(--ok)}
+  .cempty{color:var(--muted);font-size:14px;padding:6px 2px}
+  @media print{
+    nav,footer,header.hero,#tra-cuu,#phat-hien,#do-phu,.cbtns,.cexport,#c-csvhint,.toggle,
+    #checker>.sub,#checker>h2,#checker .cgrid,#checker #c-text,#checker .fld{display:none!important}
+    body{background:#fff;color:#000;font-size:12px}
+    .wrap{max-width:100%;padding:0}
+    section#checker{border:0;padding:0;margin:0}
+    .tool{border:0;box-shadow:none;padding:0}
+    .csum{gap:6px}.csum .c{border:1px solid #ccc;background:#fff}
+    .row{break-inside:avoid;border:1px solid #ccc;border-left-width:3px}
+    .row .src{background:#fafafa}
+    #print-head{display:block!important;margin-bottom:10px}
+  }
+  #print-head{display:none}
+
+  /* tra cứu toàn văn */
+  .artmeta{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);margin:0 0 8px}
+  .arttext{white-space:pre-wrap;font-family:"Noto Serif",Georgia,serif;font-size:14.5px;line-height:1.62;
+    margin:0;max-height:460px;overflow:auto;background:var(--paper);border:1px solid var(--hairline);
+    border-radius:8px;padding:12px 14px}
+
+  footer{margin-top:40px;padding-top:24px;border-top:1px solid var(--hairline);color:var(--faint);
+    font-size:13px;line-height:1.6}
+  footer b{color:var(--muted)}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <span class="brand">Lex<span class="dot">Tempo</span></span>
+    <div class="nav-links">
+      <a href="#tra-cuu">Tra cứu</a>
+      <a href="#toan-van">Toàn văn</a>
+      <a href="#checker">Dán văn bản</a>
+      <a href="#phat-hien">Phát hiện</a>
+      <a href="#do-phu">Độ phủ</a>
+    </div>
+    <button class="toggle" id="tg" aria-label="Đổi nền sáng/tối">◐</button>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="kick">Rà soát chéo · point-in-time</p>
+    <h1 class="title">Điều luật này <span class="l">còn hiệu lực không?</span></h1>
+    <p class="lede">Tra một quy định xem đã bị bãi bỏ tại một mốc thời gian chưa — tất định, tự kiểm được từ chính câu "Bãi bỏ…" của luật sửa đổi. Không phán "đúng/sai", chỉ nêu sự kiện còn/mất.</p>
+
+    <div class="banner">
+      <span class="ic" aria-hidden="true">⚠</span>
+      <p><b>Phủ theo tầng — đọc trước khi dùng.</b> Rà trích dẫn phủ <b id="b-laws">143</b> luật (8 đồ-thị đầy đủ có time-travel + phần lớn là <b>ảnh chụp VBHN hiện hành</b>, chưa đối chiếu eval) và <b>137 luật toàn văn</b> tra nguyên văn. Ngoài phạm vi, máy trả "chưa xác minh" — <b>"chưa xác minh" KHÔNG có nghĩa là an toàn</b>. Bản thử, không phải kết luận pháp lý; luôn đối chiếu văn bản gốc.</p>
+    </div>
+
+    <div class="stakes" id="stakes"></div>
+  </header>
+
+  <section class="first" id="tra-cuu">
+    <h2>Tra cứu một điều luật</h2>
+    <p class="sub">Chọn luật đã phủ, nhập Điều (và khoản/điểm nếu có). Máy đối chiếu với chỉ mục bãi bỏ và trả kết quả tự-kiểm-được.</p>
+    <div class="tool">
+      <div class="grid">
+        <div class="fld"><label for="f-law">Luật (đã phủ)</label><select id="f-law"></select></div>
+        <div class="fld"><label for="f-art">Điều</label><input id="f-art" inputmode="numeric" placeholder="vd 16"></div>
+        <div class="fld"><label for="f-cl">Khoản</label><input id="f-cl" inputmode="numeric" placeholder="vd 6"></div>
+        <div class="fld"><label for="f-pt">Điểm</label><input id="f-pt" placeholder="vd h"></div>
+      </div>
+      <button class="btn" id="f-go">Kiểm tra</button>
+      <p class="hint">Chỉ mục ghi các quy định ĐÃ BỊ BÃI BỎ. Điều còn hiệu lực sẽ không xuất hiện — và máy KHÔNG kết luận "an toàn", chỉ nói "không thấy trong danh mục bãi bỏ".</p>
+      <div class="verdict" id="verdict" role="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="checker">
+    <div id="print-head"></div>
+    <h2>Dán văn bản của bạn — rà trích dẫn</h2>
+    <p class="sub">Dán nguyên văn một nghị định / thông tư (hoặc phần trích). Máy tự bóc các trích dẫn "Điều… khoản… điểm… Luật…", đối chiếu chỉ mục bãi bỏ và đánh dấu căn cứ đã mất. Kết quả <b>sơ bộ</b> — bộ bóc client gọn hơn bản engine, luôn đối chiếu văn bản gốc.</p>
+    <div class="tool">
+      <div class="cgrid">
+        <div class="fld"><label for="c-agency">Cơ quan / đơn vị rà (cho báo cáo)</label><input id="c-agency" placeholder="vd Vụ Pháp chế — Bộ …"></div>
+        <div class="fld"><label for="c-docname">Tên văn bản được rà (tuỳ chọn)</label><input id="c-docname" placeholder="vd Dự thảo Thông tư …"></div>
+      </div>
+      <div class="fld" style="margin-top:12px">
+        <label for="c-text">Nội dung văn bản / các trích dẫn</label>
+        <textarea id="c-text" rows="7" placeholder="Dán văn bản vào đây. Ví dụ: … thực hiện theo quy định tại khoản 3 Điều 75 Luật Quản lý thuế số 38/2019/QH14 và điểm h khoản 6 Điều 16 Luật Đấu thầu 22/2023/QH15 …"></textarea>
+      </div>
+      <div class="cbtns">
+        <button class="btn" id="c-go">Rà trích dẫn</button>
+        <button class="btn ghost" id="c-sample">Dùng ví dụ mẫu</button>
+        <label class="btn ghost file" for="c-csv">Tải hàng loạt (CSV)</label>
+        <input id="c-csv" type="file" accept=".csv,text/csv" hidden>
+        <button class="btn ghost" id="c-clear">Xoá</button>
+      </div>
+      <p class="hint" id="c-csvhint">CSV: một dòng tiêu đề rồi mỗi dòng một mục. Nhận cột <span class="mono">văn bản, luật, điều, khoản, điểm</span> (tra có cấu trúc) hoặc một cột <span class="mono">nội dung</span> (máy tự bóc). "luật" điền số hiệu (22/2023/QH15) hoặc tên ("Luật Đấu thầu"). <a href="#" id="c-csvtmpl">Tải mẫu CSV</a>.</p>
+
+      <div class="csum" id="c-sum" hidden></div>
+      <div class="cres" id="c-res"></div>
+
+      <div class="cexport" id="c-export" hidden>
+        <button class="btn ghost" id="c-perma">🔗 Permalink chia sẻ kết quả</button>
+        <button class="btn ghost" id="c-report">📄 Xuất báo cáo rà (cơ quan)</button>
+        <button class="btn ghost" id="c-dlcsv">⭳ Tải kết quả (CSV)</button>
+        <span class="permamsg" id="c-permamsg" role="status" aria-live="polite"></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="toan-van">
+    <h2>Tra cứu toàn văn — <span id="lib-n">13</span> luật hợp nhất</h2>
+    <p class="sub">Nhập luật + Điều để đọc <b>nguyên văn hợp nhất</b> mới nhất — lấy từ <b>Văn bản hợp nhất (VBHN-VPQH)</b> chính thức của Văn phòng Quốc hội, đã <b>xác minh số hiệu</b>. Bản tra cứu tham khảo; dùng chính thức phải đối chiếu văn bản gốc.</p>
+    <div class="tool">
+      <div class="grid">
+        <div class="fld"><label for="l-law">Luật (đã hợp nhất)</label><select id="l-law"></select></div>
+        <div class="fld"><label for="l-art">Điều</label><input id="l-art" inputmode="numeric" placeholder="vd 16"></div>
+        <div class="fld" style="align-self:end"><button class="btn" id="l-go">Đọc toàn văn</button></div>
+      </div>
+      <p class="hint" id="l-meta"></p>
+      <div class="verdict" id="l-out" role="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="phat-hien">
+    <h2>Phát hiện theo bậc rủi ro</h2>
+    <p class="sub">Trên corpus <b id="s-docs">429</b> văn bản QPPL thật (Công báo 2019–2026). Bốn bậc, chi phí sai khác nhau — từ <b>T0 chết-khi-sinh</b> (nặng nhất) đến <b>T3 cần người xem</b>. Mỗi ca tự kiểm được; <b>0 báo động giả</b>.</p>
+    <div class="tiertabs" id="tiertabs" role="tablist"></div>
+    <div class="tierpanel" id="tierpanel"></div>
+
+    <h3 style="font-size:17px;margin:30px 0 4px">Bẫy phiên bản — số hiệu luật đã bị thay</h3>
+    <p class="sub" style="margin-bottom:12px">Một số luật được thay bằng luật <b>số hiệu mới</b> (không chỉ sửa đổi). Dẫn số hiệu cũ là "bẫy phiên bản": nội dung có thể vẫn đúng nhưng căn cứ trỏ sai bản. Bảng chỉ ghi cặp <b>đã xác minh nguồn</b> — máy "Dán văn bản" tự cảnh báo khi gặp số hiệu cũ.</p>
+    <div class="traps" id="traps"></div>
+  </section>
+
+  <section id="do-phu">
+    <h2>Độ phủ & ranh giới</h2>
+    <p class="sub">Máy phủ theo phần đầu phân phối, tại đúng nơi trách nhiệm tụ về — không chạy theo "phủ hết". Đây là con số thật, kèm giới hạn nói thẳng.</p>
+    <h3 style="font-size:16px;margin:0 0 4px">14 luật đích · <span id="b-idx">103</span> mục (chỉ mục bãi bỏ — bắt T1)</h3>
+    <div class="cov-laws" id="cov-laws"></div>
+    <h3 style="font-size:16px;margin:14px 0 4px">Danh mục 508 văn bản khẩn (CV 721/TTg-PL)</h3>
+    <div class="plbar" id="plbar"></div>
+    <ul class="limits">
+      <li><b>~60% lĩnh vực chờ luật sửa đổi tương lai</b> (2026–2027, chưa ban hành) — máy phát hiện qua câu "Bãi bỏ" của luật sửa đổi, nên luật chưa ra thì chưa phủ được.</li>
+      <li><b>14 luật đích có chỉ mục bãi bỏ</b> (bắt T1). Bậc sâu hơn — T2 (nội dung đổi) / T3 (đánh số lại) — cần <b>bundle layered đầy đủ</b> (time-travel): hiện 8 luật (Đầu tư, Doanh nghiệp, Quản lý thuế…). Ngoài ra <b>137 luật toàn văn</b> tra được nguyên văn hợp nhất (ảnh chụp VBHN, chưa đối chiếu eval).</li>
+      <li><b>Không kết luận "trái luật".</b> Một văn bản dẫn điều cũ vẫn có thể đúng nội dung — phán đoán pháp lý là việc của con người.</li>
+      <li><b>Nền tảng tự lớn dần:</b> mỗi luật sửa đổi omnibus ban hành sẽ được nạp thêm — như kho tra cứu mở rộng theo thời gian, không phải "xong 100%".</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p class="mono">LexTempo · engine <span id="f-hash">957103a7</span> · 0 dương-tính-giả / <span id="f-cites">48.043</span> trích dẫn</p>
+    <p>Công cụ tra soát mang tính tham khảo, <b>không phải tư vấn pháp lý</b> và không kết luận văn bản đúng/sai/trái luật. Mọi kết quả cần đối chiếu văn bản gốc chính thức. Dữ liệu tính trên corpus thật đã đối chiếu; phần ngoài độ phủ nêu thẳng là "chưa xác minh".</p>
+  </footer>
+</div>
+
+<script id="lexdata" type="application/json">{"generated":"2026-09-12","engine":"957103a7b989f995","stats":{"docs":437,"citations":49874,"T0":3,"T1":19,"T2":68,"T3":85,"distinct":5,"false_positives":0,"index_entries":103,"laws":143,"amending":6,"graph_full":8,"snapshot":123,"t1_targets":14,"library":137,"out_of_graph":18021,"out_covered_by_index":21},"orphans":[{"citing":"126/2020/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Quản lý thuế","location":"khoản 3 Điều 75","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":"56/2024/QH15","on":"2025-01-01","count":1},{"citing":"24/2024/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà thầu","location":"điểm k khoản 6 Điều 16","target":"22/2023/QH15","target_title":"Luật Đấu thầu","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"24/2024/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà thầu","location":"điểm h khoản 6 Điều 16","target":"22/2023/QH15","target_title":"Luật Đấu thầu","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"24/2024/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà thầu","location":"điểm k khoản 6 Điều 16","target":"22/2023/QH15","target_title":"Luật Đấu thầu","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"85/2025/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư công (58/2024)","location":"khoản 4 Điều 24","target":"58/2024/QH15","target_title":"Luật Đầu tư công","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"115/2024/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà đầu tư có sử dụng đất","location":"điểm c khoản 2 Điều 11","target":"22/2023/QH15","target_title":"Luật Đấu thầu","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"23/2024/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà đầu tư (ngành, lĩnh vực)","location":"điểm c khoản 2 Điều 11","target":"22/2023/QH15","target_title":"Luật Đấu thầu","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"171/2024/NĐ-CP","citing_title":"Sửa đổi, bổ sung một số điều của Nghị định số 166/2017/NĐ-CP","location":"khoản 4 Điều 26","target":"15/2017/QH14","target_title":"Luật Quản lý, sử dụng tài sản công","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"171/2024/NĐ-CP","citing_title":"Sửa đổi, bổ sung một số điều của Nghị định số 166/2017/NĐ-CP","location":"khoản 5 Điều 26","target":"15/2017/QH14","target_title":"Luật Quản lý, sử dụng tài sản công","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"171/2024/NĐ-CP","citing_title":"Sửa đổi, bổ sung một số điều của Nghị định số 166/2017/NĐ-CP","location":"khoản 4 Điều 26","target":"15/2017/QH14","target_title":"Luật Quản lý, sử dụng tài sản công","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"171/2024/NĐ-CP","citing_title":"Sửa đổi, bổ sung một số điều của Nghị định số 166/2017/NĐ-CP","location":"khoản 5 Điều 26","target":"15/2017/QH14","target_title":"Luật Quản lý, sử dụng tài sản công","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"171/2024/NĐ-CP","citing_title":"Sửa đổi, bổ sung một số điều của Nghị định số 166/2017/NĐ-CP","location":"khoản 2 Điều 17","target":"15/2017/QH14","target_title":"Luật Quản lý, sử dụng tài sản công","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"151/2017/NĐ-CP","citing_title":"Nghị định quy định chi tiết Luật Quản lý, sử dụng tài sản công","location":"điểm a khoản 2 Điều 57","target":"15/2017/QH14","target_title":"Luật Quản lý, sử dụng tài sản công","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"151/2017/NĐ-CP","citing_title":"Nghị định quy định chi tiết Luật Quản lý, sử dụng tài sản công","location":"khoản 2 Điều 57","target":"15/2017/QH14","target_title":"Luật Quản lý, sử dụng tài sản công","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"37/2019/NĐ-CP","citing_title":"Nghị định quy định chi tiết Luật Quy hoạch","location":"khoản 1 Điều 31","target":"21/2017/QH14","target_title":"Luật Quy hoạch","by":"57/2024/QH15","on":"2025-01-15","count":1},{"citing":"114/2024/NĐ-CP","citing_title":"Nghị định sửa đổi Nghị định 151/2017 (tài sản công)","location":"khoản 3 Điều 29","target":"15/2017/QH14","target_title":"Luật Quản lý, sử dụng tài sản công","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"114/2024/NĐ-CP","citing_title":"Nghị định sửa đổi Nghị định 151/2017 (tài sản công)","location":"khoản 3 Điều 29","target":"15/2017/QH14","target_title":"Luật Quản lý, sử dụng tài sản công","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"114/2024/NĐ-CP","citing_title":"Nghị định sửa đổi Nghị định 151/2017 (tài sản công)","location":"khoản 2 Điều 57","target":"15/2017/QH14","target_title":"Luật Quản lý, sử dụng tài sản công","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"114/2024/NĐ-CP","citing_title":"Nghị định sửa đổi Nghị định 151/2017 (tài sản công)","location":"khoản 2 Điều 57","target":"15/2017/QH14","target_title":"Luật Quản lý, sử dụng tài sản công","by":"90/2025/QH15","on":"2025-07-01","count":1}],"repeals":[{"law":"54/2019/QH14","art":"48","cl":"3","pt":null,"by":"56/2024/QH15","on":"2025-01-01","name":"Luật Chứng khoán"},{"law":"54/2019/QH14","art":"135","cl":"4","pt":null,"by":"56/2024/QH15","on":"2025-01-01","name":"Luật Chứng khoán"},{"law":"54/2019/QH14","art":"135","cl":"5","pt":null,"by":"56/2024/QH15","on":"2025-01-01","name":"Luật Chứng khoán"},{"law":"54/2019/QH14","art":"23","cl":null,"pt":null,"by":"56/2024/QH15","on":"2025-01-01","name":"Luật Chứng khoán"},{"law":"88/2015/QH13","art":"16","cl":"1","pt":"d","by":"56/2024/QH15","on":"2025-01-01","name":"Luật Kế toán"},{"law":"38/2019/QH14","art":"47","cl":"2","pt":null,"by":"56/2024/QH15","on":"2025-01-01","name":"Luật Quản lý thuế"},{"law":"38/2019/QH14","art":"47","cl":"3","pt":null,"by":"56/2024/QH15","on":"2025-01-01","name":"Luật Quản lý thuế"},{"law":"38/2019/QH14","art":"75","cl":"3","pt":null,"by":"56/2024/QH15","on":"2025-01-01","name":"Luật Quản lý thuế"},{"law":"38/2019/QH14","art":"124","cl":"7","pt":null,"by":"56/2024/QH15","on":"2025-01-01","name":"Luật Quản lý thuế"},{"law":"22/2012/QH13","art":"12","cl":"2","pt":"b","by":"56/2024/QH15","on":"2025-01-01","name":"Luật Dự trữ quốc gia"},{"law":"22/2023/QH15","art":"2","cl":"2","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đấu thầu"},{"law":"22/2023/QH15","art":"11","cl":"2","pt":"c","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đấu thầu"},{"law":"22/2023/QH15","art":"14","cl":"10","pt":"c","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đấu thầu"},{"law":"22/2023/QH15","art":"16","cl":"6","pt":"h","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đấu thầu"},{"law":"22/2023/QH15","art":"16","cl":"6","pt":"k","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đấu thầu"},{"law":"22/2023/QH15","art":"17","cl":"4","pt":"d","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đấu thầu"},{"law":"22/2023/QH15","art":"17","cl":"4","pt":"t","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đấu thầu"},{"law":"22/2023/QH15","art":"17","cl":"4","pt":"i","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đấu thầu"},{"law":"22/2023/QH15","art":"40","cl":"3","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đấu thầu"},{"law":"22/2023/QH15","art":"41","cl":"3","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đấu thầu"},{"law":"22/2023/QH15","art":"79","cl":"1","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đấu thầu"},{"law":"61/2020/QH14","art":"30","cl":"1","pt":"a","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư"},{"law":"61/2020/QH14","art":"31","cl":"1","pt":"a","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư"},{"law":"61/2020/QH14","art":"31","cl":"1","pt":"b","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư"},{"law":"61/2020/QH14","art":"31","cl":"1","pt":"c","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư"},{"law":"61/2020/QH14","art":"31","cl":"1","pt":"d","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư"},{"law":"61/2020/QH14","art":"31","cl":"1","pt":"đ","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư"},{"law":"61/2020/QH14","art":"31","cl":"1","pt":"g","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư"},{"law":"61/2020/QH14","art":"31","cl":"3","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư"},{"law":"58/2024/QH15","art":"18","cl":"6","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"38","cl":"1","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"59","cl":"1","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"59","cl":"3","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"59","cl":"5","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"71","cl":"4","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"83","cl":"8","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"84","cl":"4","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"84","cl":"5","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"89","cl":"4","pt":"b","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"89","cl":"5","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"64","cl":"2","pt":"c","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"64","cl":"7","pt":"b","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"66","cl":"1","pt":"a","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"4","cl":"17","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"60","cl":"1","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"60","cl":"2","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"60","cl":"3","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"82","cl":"3","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"82","cl":"4","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"82","cl":"5","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"24","cl":null,"pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"63","cl":null,"pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"86","cl":null,"pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"58/2024/QH15","art":"93","cl":null,"pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Đầu tư công"},{"law":"15/2017/QH14","art":"65","cl":"1","pt":"đ","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"65","cl":"2","pt":"e","by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"13","cl":"4","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"17","cl":"2","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"26","cl":"4","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"26","cl":"5","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"26","cl":"6","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"26","cl":"7","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"29","cl":"3","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"29","cl":"4","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"55","cl":"4","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"56","cl":"2","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"57","cl":"2","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"57","cl":"3","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"58","cl":"2","pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"105","cl":null,"pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"15/2017/QH14","art":"118","cl":null,"pt":null,"by":"90/2025/QH15","on":"2025-07-01","name":"Luật Quản lý, sử dụng tài sản công"},{"law":"21/2017/QH14","art":"16","cl":"1","pt":"đ","by":"57/2024/QH15","on":"2025-01-15","name":"Luật Quy hoạch"},{"law":"21/2017/QH14","art":"16","cl":"3","pt":"đ","by":"57/2024/QH15","on":"2025-01-15","name":"Luật Quy hoạch"},{"law":"21/2017/QH14","art":"27","cl":"2","pt":"m","by":"57/2024/QH15","on":"2025-01-15","name":"Luật Quy hoạch"},{"law":"21/2017/QH14","art":"5","cl":"5","pt":null,"by":"57/2024/QH15","on":"2025-01-15","name":"Luật Quy hoạch"},{"law":"21/2017/QH14","art":"47","cl":"3","pt":null,"by":"57/2024/QH15","on":"2025-01-15","name":"Luật Quy hoạch"},{"law":"21/2017/QH14","art":"28","cl":null,"pt":null,"by":"57/2024/QH15","on":"2025-01-15","name":"Luật Quy hoạch"},{"law":"21/2017/QH14","art":"52","cl":null,"pt":null,"by":"57/2024/QH15","on":"2025-01-15","name":"Luật Quy hoạch"},{"law":"21/2017/QH14","art":"31","cl":null,"pt":null,"by":"57/2024/QH15","on":"2025-01-15","name":"Luật Quy hoạch"},{"law":"64/2020/QH14","art":"13","cl":"2","pt":"d","by":"57/2024/QH15","on":"2025-01-15","name":"Luật Đầu tư theo phương thức đối tác công tư"},{"law":"64/2020/QH14","art":"13","cl":"2","pt":"đ","by":"57/2024/QH15","on":"2025-01-15","name":"Luật Đầu tư theo phương thức đối tác công tư"},{"law":"64/2020/QH14","art":"13","cl":"3","pt":"c","by":"57/2024/QH15","on":"2025-01-15","name":"Luật Đầu tư theo phương thức đối tác công tư"},{"law":"64/2020/QH14","art":"13","cl":"4","pt":"c","by":"57/2024/QH15","on":"2025-01-15","name":"Luật Đầu tư theo phương thức đối tác công tư"},{"law":"64/2020/QH14","art":"101","cl":"5","pt":"d","by":"57/2024/QH15","on":"2025-01-15","name":"Luật Đầu tư theo phương thức đối tác công tư"},{"law":"22/2023/QH15","art":"79","cl":"1","pt":"b","by":"57/2024/QH15","on":"2025-01-15","name":"Luật Đấu thầu"},{"law":"92/2015/QH13","art":"194","cl":"7","pt":null,"by":"85/2025/QH15","on":"2025-07-01","name":"Bộ luật Tố tụng dân sự"},{"law":"92/2015/QH13","art":"34","cl":"4","pt":null,"by":"85/2025/QH15","on":"2025-07-01","name":"Bộ luật Tố tụng dân sự"},{"law":"58/2020/QH14","art":"7","cl":"2","pt":"a","by":"85/2025/QH15","on":"2025-07-01","name":"Luật Hòa giải, đối thoại tại Tòa án"},{"law":"58/2020/QH14","art":"7","cl":"2","pt":"d","by":"85/2025/QH15","on":"2025-07-01","name":"Luật Hòa giải, đối thoại tại Tòa án"},{"law":"58/2020/QH14","art":"7","cl":"2","pt":"đ","by":"85/2025/QH15","on":"2025-07-01","name":"Luật Hòa giải, đối thoại tại Tòa án"},{"law":"10/2022/QH15","art":"51","cl":"4","pt":"b","by":"97/2025/QH15","on":"2025-07-01","name":"Luật Thực hiện dân chủ ở cơ sở"},{"law":"10/2022/QH15","art":"51","cl":"4","pt":"h","by":"97/2025/QH15","on":"2025-07-01","name":"Luật Thực hiện dân chủ ở cơ sở"},{"law":"10/2022/QH15","art":"55","cl":"2","pt":null,"by":"97/2025/QH15","on":"2025-07-01","name":"Luật Thực hiện dân chủ ở cơ sở"},{"law":"10/2022/QH15","art":"63","cl":"2","pt":null,"by":"97/2025/QH15","on":"2025-07-01","name":"Luật Thực hiện dân chủ ở cơ sở"},{"law":"10/2022/QH15","art":"83","cl":"3","pt":null,"by":"97/2025/QH15","on":"2025-07-01","name":"Luật Thực hiện dân chủ ở cơ sở"},{"law":"10/2022/QH15","art":"86","cl":"3","pt":null,"by":"97/2025/QH15","on":"2025-07-01","name":"Luật Thực hiện dân chủ ở cơ sở"},{"law":"10/2022/QH15","art":"86","cl":"4","pt":null,"by":"97/2025/QH15","on":"2025-07-01","name":"Luật Thực hiện dân chủ ở cơ sở"},{"law":"50/2014/QH13","art":"3","cl":"29","pt":null,"by":"62/2020/QH14","on":"2021-01-01","name":"Luật Xây dựng"},{"law":"50/2014/QH13","art":"72","cl":"2","pt":"d","by":"62/2020/QH14","on":"2021-01-01","name":"Luật Xây dựng"},{"law":"50/2014/QH13","art":"2","cl":"1","pt":null,"by":"62/2020/QH14","on":"2021-01-01","name":"Luật Xây dựng"},{"law":"50/2014/QH13","art":"140","cl":"3","pt":"h","by":"62/2020/QH14","on":"2021-01-01","name":"Luật Xây dựng"},{"law":"50/2014/QH13","art":"48","cl":"2","pt":null,"by":"62/2020/QH14","on":"2021-01-01","name":"Luật Xây dựng"},{"law":"50/2014/QH13","art":"63","cl":"1","pt":null,"by":"62/2020/QH14","on":"2021-01-01","name":"Luật Xây dựng"}],"laws":[{"id":"10/2022/QH15","name":"Luật Thực hiện dân chủ ở cơ sở"},{"id":"15/2017/QH14","name":"Luật Quản lý, sử dụng tài sản công"},{"id":"21/2017/QH14","name":"Luật Quy hoạch (2017 — xem bản 2025 §112)"},{"id":"22/2012/QH13","name":"Luật Dự trữ quốc gia"},{"id":"22/2023/QH15","name":"Luật Đấu thầu"},{"id":"38/2019/QH14","name":"Luật Quản lý thuế (2019 — xem bản 2025 §108)"},{"id":"50/2014/QH13","name":"Luật Xây dựng"},{"id":"54/2019/QH14","name":"Luật Chứng khoán"},{"id":"58/2020/QH14","name":"Luật Hòa giải, đối thoại tại Tòa án"},{"id":"58/2024/QH15","name":"Luật Đầu tư công"},{"id":"61/2020/QH14","name":"Luật Đầu tư (2020 — xem bản 2025 §143)"},{"id":"64/2020/QH14","name":"Luật Đầu tư theo phương thức đối tác công tư"},{"id":"88/2015/QH13","name":"Luật Kế toán"},{"id":"92/2015/QH13","name":"Bộ luật Tố tụng dân sự"}],"t0":[{"citing":"365/2025/NĐ-CP","citing_title":"Về giám sát, kiểm tra, đánh giá, xếp loại, báo cáo và công khai","location":"khoản 4 Điều 55","target":"15/2017/QH14","target_title":"Luật Quản lý, sử dụng tài sản công","by":"90/2025/QH15","on":"2025-07-01","count":1},{"citing":"145/2025/NĐ-CP","citing_title":"Quy định về phân định thẩm quyền của chính quyền địa phương 02 cấp,","location":"khoản 4 Điều 52","target":"21/2017/QH14","target_title":"Luật Quy hoạch","by":"57/2024/QH15","on":"2025-01-15","count":1},{"citing":"145/2025/NĐ-CP","citing_title":"Quy định về phân định thẩm quyền của chính quyền địa phương 02 cấp,","location":"khoản 4 Điều 28","target":"21/2017/QH14","target_title":"Luật Quy hoạch","by":"57/2024/QH15","on":"2025-01-15","count":1}],"t2":[{"citing":"126/2020/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Quản lý thuế","location":"Điều 59","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"126/2020/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Quản lý thuế","location":"Điều 72","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"126/2020/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Quản lý thuế","location":"Điều 76","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"126/2020/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Quản lý thuế","location":"Điều 124","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"126/2020/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Quản lý thuế","location":"Điều 61","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"126/2020/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Quản lý thuế","location":"Điều 47","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"126/2020/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Quản lý thuế","location":"Điều 47","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"126/2020/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Quản lý thuế","location":"Điều 42","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"126/2020/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Quản lý thuế","location":"khoản 2 Điều 61","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"80/2021/TT-BTC","citing_title":"Thông tư hướng dẫn Luật QLT và NĐ 126/2020","location":"Điều 42","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"80/2021/TT-BTC","citing_title":"Thông tư hướng dẫn Luật QLT và NĐ 126/2020","location":"Điều 59","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"80/2021/TT-BTC","citing_title":"Thông tư hướng dẫn Luật QLT và NĐ 126/2020","location":"Điều 72","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"80/2021/TT-BTC","citing_title":"Thông tư hướng dẫn Luật QLT và NĐ 126/2020","location":"Điều 76","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"80/2021/TT-BTC","citing_title":"Thông tư hướng dẫn Luật QLT và NĐ 126/2020","location":"Điều 124","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"80/2021/TT-BTC","citing_title":"Thông tư hướng dẫn Luật QLT và NĐ 126/2020","location":"Điều 59","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"80/2021/TT-BTC","citing_title":"Thông tư hướng dẫn Luật QLT và NĐ 126/2020","location":"Điều 124","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"80/2021/TT-BTC","citing_title":"Thông tư hướng dẫn Luật QLT và NĐ 126/2020","location":"Điều 59","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"80/2021/TT-BTC","citing_title":"Thông tư hướng dẫn Luật QLT và NĐ 126/2020","location":"Điều 47","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"80/2021/TT-BTC","citing_title":"Thông tư hướng dẫn Luật QLT và NĐ 126/2020","location":"Điều 59","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"80/2021/TT-BTC","citing_title":"Thông tư hướng dẫn Luật QLT và NĐ 126/2020","location":"Điều 47","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"80/2021/TT-BTC","citing_title":"Thông tư hướng dẫn Luật QLT và NĐ 126/2020","location":"Điều 59","target":"38/2019/QH14","target_title":"Luật Quản lý thuế","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 6","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 6","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 16","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 2 Điều 44","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 2 Điều 44","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 2 Điều 44","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 30","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 31","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 32","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 30","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 31","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 32","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 3 Điều 29","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 31","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 32","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 3 Điều 29","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 6","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 3 Điều 29","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 3 Điều 29","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 22","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 22","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 20","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 30","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 31","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 32","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 30","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 31","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 32","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 31","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 31","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 30","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 31","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 30","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"Điều 31","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"168/2025/NĐ-CP","citing_title":"Về đăng ký doanh nghiệp","location":"Điều 20","target":"59/2020/QH14","target_title":"Luật Doanh nghiệp","by":null,"on":null,"count":1},{"citing":"168/2025/NĐ-CP","citing_title":"Về đăng ký doanh nghiệp","location":"Điều 21","target":"59/2020/QH14","target_title":"Luật Doanh nghiệp","by":null,"on":null,"count":1},{"citing":"168/2025/NĐ-CP","citing_title":"Về đăng ký doanh nghiệp","location":"khoản 3 Điều 21","target":"59/2020/QH14","target_title":"Luật Doanh nghiệp","by":null,"on":null,"count":1},{"citing":"168/2025/NĐ-CP","citing_title":"Về đăng ký doanh nghiệp","location":"Điều 22","target":"59/2020/QH14","target_title":"Luật Doanh nghiệp","by":null,"on":null,"count":1},{"citing":"168/2025/NĐ-CP","citing_title":"Về đăng ký doanh nghiệp","location":"Điều 25","target":"59/2020/QH14","target_title":"Luật Doanh nghiệp","by":null,"on":null,"count":1},{"citing":"168/2025/NĐ-CP","citing_title":"Về đăng ký doanh nghiệp","location":"khoản 3 Điều 176","target":"59/2020/QH14","target_title":"Luật Doanh nghiệp","by":null,"on":null,"count":1},{"citing":"114/2021/NĐ-CP","citing_title":"Về quản lý và sử dụng vốn hỗ trợ phát triển chính thức (ODA)","location":"Điều 30","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"114/2021/NĐ-CP","citing_title":"Về quản lý và sử dụng vốn hỗ trợ phát triển chính thức (ODA)","location":"Điều 31","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"114/2021/NĐ-CP","citing_title":"Về quản lý và sử dụng vốn hỗ trợ phát triển chính thức (ODA)","location":"Điều 32","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"114/2021/NĐ-CP","citing_title":"Về quản lý và sử dụng vốn hỗ trợ phát triển chính thức (ODA)","location":"Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"114/2021/NĐ-CP","citing_title":"Về quản lý và sử dụng vốn hỗ trợ phát triển chính thức (ODA)","location":"Điều 34","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"114/2021/NĐ-CP","citing_title":"Về quản lý và sử dụng vốn hỗ trợ phát triển chính thức (ODA)","location":"Điều 35","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1},{"citing":"114/2021/NĐ-CP","citing_title":"Về quản lý và sử dụng vốn hỗ trợ phát triển chính thức (ODA)","location":"Điều 36","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":null,"on":null,"count":1}],"t3":[{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 3 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 2 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 2 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 2 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 2 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 2 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 3 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 3 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 2 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 2 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 2 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 4 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"31/2021/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đầu tư","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"115/2024/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà đầu tư có sử dụng đất","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"115/2024/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà đầu tư có sử dụng đất","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"115/2024/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà đầu tư có sử dụng đất","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"115/2024/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà đầu tư có sử dụng đất","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"115/2024/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà đầu tư có sử dụng đất","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"115/2024/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà đầu tư có sử dụng đất","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"23/2024/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà đầu tư (ngành, lĩnh vực)","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"23/2024/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà đầu tư (ngành, lĩnh vực)","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1},{"citing":"23/2024/NĐ-CP","citing_title":"Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà đầu tư (ngành, lĩnh vực)","location":"khoản 1 Điều 33","target":"61/2020/QH14-full","target_title":"Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)","by":"33/2024/QH15","on":"2025-07-01","count":1}],"library_laws":[{"id":"61/2020/QH14","name":"Luật Đầu tư (2020 — xem bản 2025 §143)","vbhn":"134/VBHN-VPQH","n":79},{"id":"22/2012/QH13","name":"Luật Dự trữ quốc gia","vbhn":"30/VBHN-VPQH","n":66},{"id":"88/2015/QH13","name":"Luật Kế toán","vbhn":"25/VBHN-VPQH","n":75},{"id":"15/2012/QH13","name":"Luật Xử lý vi phạm hành chính","vbhn":"63/VBHN-VPQH","n":148},{"id":"38/2019/QH14","name":"Luật Quản lý thuế (2019 — xem bản 2025 §108)","vbhn":"29/VBHN-VPQH","n":152},{"id":"10/2022/QH15","name":"Luật Thực hiện dân chủ ở cơ sở","vbhn":"87/VBHN-VPQH","n":91},{"id":"54/2014/QH13","name":"Luật Hải quan","vbhn":"54/VBHN-VPQH","n":105},{"id":"15/2017/QH14","name":"Luật Quản lý, sử dụng tài sản công","vbhn":"97/VBHN-VPQH","n":136},{"id":"58/2024/QH15","name":"Luật Đầu tư công","vbhn":"03/VBHN-VPQH","n":105},{"id":"54/2019/QH14","name":"Luật Chứng khoán","vbhn":"24/VBHN-VPQH","n":138},{"id":"21/2017/QH14","name":"Luật Quy hoạch (2017 — xem bản 2025 §112)","vbhn":"131/VBHN-VPQH","n":60},{"id":"64/2020/QH14","name":"Luật Đầu tư theo phương thức đối tác công tư","vbhn":"08/VBHN-VPQH","n":101},{"id":"22/2023/QH15","name":"Luật Đấu thầu","vbhn":"126/VBHN-VPQH","n":99},{"id":"59/2020/QH14","name":"Luật Doanh nghiệp","vbhn":"67/VBHN-VPQH","n":218},{"id":"92/2015/QH13","name":"Bộ luật Tố tụng dân sự","vbhn":"99/VBHN-VPQH","n":517},{"id":"58/2020/QH14","name":"Luật Hòa giải, đối thoại tại Tòa án","vbhn":"122/VBHN-VPQH","n":42},{"id":"27/2023/QH15","name":"Luật Nhà ở","vbhn":"79/VBHN-VPQH","n":198},{"id":"32/2024/QH15","name":"Luật Các tổ chức tín dụng","vbhn":"100/VBHN-VPQH","n":213},{"id":"50/2005/QH11","name":"Luật Sở hữu trí tuệ","vbhn":"67/VBHN-VPQH","n":240},{"id":"41/2024/QH15","name":"Luật Bảo hiểm xã hội","vbhn":"19/VBHN-VPQH","n":141},{"id":"45/2019/QH14","name":"Bộ luật Lao động","vbhn":"18/VBHN-VPQH","n":220},{"id":"31/2024/QH15","name":"Luật Đất đai","vbhn":"44/VBHN-VPQH","n":260},{"id":"29/2023/QH15","name":"Luật Kinh doanh bất động sản","vbhn":"06/VBHN-VPQH","n":83},{"id":"72/2020/QH14","name":"Luật Bảo vệ môi trường","vbhn":"98/VBHN-VPQH","n":171},{"id":"20/2023/QH15","name":"Luật Giao dịch điện tử","vbhn":"42/VBHN-VPQH","n":53},{"id":"25/2008/QH12","name":"Luật Bảo hiểm y tế","vbhn":"40/VBHN-VPQH","n":57},{"id":"16/2023/QH15","name":"Luật Giá","vbhn":"36/VBHN-VPQH","n":75},{"id":"54/2010/QH12","name":"Luật Trọng tài thương mại","vbhn":"60/VBHN-VPQH","n":82},{"id":"84/2015/QH13","name":"Luật An toàn, vệ sinh lao động","vbhn":"14/VBHN-VPQH","n":93},{"id":"48/2024/QH15","name":"Luật Thuế giá trị gia tăng","vbhn":"12/VBHN-VPQH","n":18},{"id":"04/2007/QH12","name":"Luật Thuế thu nhập cá nhân","vbhn":"103/VBHN-VPQH","n":35},{"id":"08/2022/QH15","name":"Luật Kinh doanh bảo hiểm","vbhn":"31/VBHN-VPQH","n":157},{"id":"67/2025/QH15","name":"Luật Thuế thu nhập doanh nghiệp","vbhn":"61/VBHN-VPQH","n":20},{"id":"01/2016/QH14","name":"Luật Đấu giá tài sản","vbhn":"23/VBHN-VPQH","n":83},{"id":"80/2025/QH15","name":"Luật Cán bộ, công chức","vbhn":"Luật gốc 2025","n":45},{"id":"129/2025/QH15","name":"Luật Viên chức","vbhn":"Luật gốc 2025","n":43},{"id":"72/2025/QH15","name":"Luật Tổ chức chính quyền địa phương","vbhn":"Luật gốc 2025","n":54},{"id":"106/2025/QH15","name":"Luật Thi hành án dân sự","vbhn":"Luật gốc 2025","n":116},{"id":"84/2025/QH15","name":"Luật Thanh tra","vbhn":"Luật gốc 2025","n":64},{"id":"73/2025/QH15","name":"Luật Nhà giáo","vbhn":"Luật gốc 2025","n":42},{"id":"63/2025/QH15","name":"Luật Tổ chức Chính phủ","vbhn":"Luật gốc 2025","n":32},{"id":"91/2025/QH15","name":"Luật Bảo vệ dữ liệu cá nhân","vbhn":"Luật gốc 2025","n":39},{"id":"124/2025/QH15","name":"Luật Giáo dục nghề nghiệp","vbhn":"Luật gốc 2025","n":45},{"id":"64/2025/QH15","name":"Luật Ban hành văn bản quy phạm pháp luật","vbhn":"Luật gốc 2025","n":72},{"id":"74/2025/QH15","name":"Luật Việc làm","vbhn":"Luật gốc","n":55},{"id":"93/2025/QH15","name":"Luật Khoa học, công nghệ và đổi mới sáng tạo","vbhn":"Luật gốc","n":73},{"id":"55/2024/QH15","name":"Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ","vbhn":"Luật gốc","n":55},{"id":"45/2024/QH15","name":"Luật Di sản văn hóa","vbhn":"Luật gốc","n":95},{"id":"61/2024/QH15","name":"Luật Điện lực","vbhn":"Luật gốc","n":81},{"id":"36/2024/QH15","name":"Luật Trật tự, an toàn giao thông đường bộ","vbhn":"Luật gốc","n":89},{"id":"26/2023/QH15","name":"Luật Căn cước","vbhn":"Luật gốc","n":46},{"id":"60/2024/QH15","name":"Luật Dữ liệu","vbhn":"Luật gốc","n":46},{"id":"71/2025/QH15","name":"Luật Công nghiệp công nghệ số","vbhn":"Luật gốc","n":51},{"id":"24/2023/QH15","name":"Luật Viễn thông","vbhn":"Luật gốc","n":73},{"id":"54/2024/QH15","name":"Luật Địa chất và khoáng sản","vbhn":"Luật gốc","n":111},{"id":"14/2022/QH15","name":"Luật Phòng, chống rửa tiền","vbhn":"Luật gốc","n":66},{"id":"33/2024/QH15","name":"Luật Lưu trữ","vbhn":"Luật gốc","n":65},{"id":"35/2024/QH15","name":"Luật Đường bộ","vbhn":"Luật gốc","n":86},{"id":"34/2024/QH15","name":"Luật Tổ chức Tòa án nhân dân","vbhn":"Luật gốc","n":152},{"id":"59/2024/QH15","name":"Luật Tư pháp người chưa thành niên","vbhn":"Luật gốc","n":179},{"id":"68/2020/QH14","name":"Luật Cư trú","vbhn":"Luật gốc","n":38},{"id":"36/2018/QH14","name":"Luật Phòng, chống tham nhũng","vbhn":"118/VBHN-VPQH","n":96},{"id":"107/2016/QH13","name":"Luật Thuế xuất khẩu, thuế nhập khẩu","vbhn":"94/VBHN-VPQH","n":22},{"id":"05/2017/QH14","name":"Luật Quản lý ngoại thương","vbhn":"Luật gốc","n":113},{"id":"05/2022/QH15","name":"Luật Điện ảnh","vbhn":"Luật gốc","n":50},{"id":"102/2016/QH13","name":"Luật Trẻ em","vbhn":"32/VBHN-VPQH","n":106},{"id":"02/2011/QH13","name":"Luật Khiếu nại","vbhn":"120/VBHN-VPQH","n":70},{"id":"25/2018/QH14","name":"Luật Tố cáo","vbhn":"112/VBHN-VPQH","n":67},{"id":"47/2014/QH13","name":"Luật Nhập cảnh, xuất cảnh, quá cảnh, cư trú của người nước ngoài tại Việt Nam","vbhn":"30/VBHN-VPQH","n":59},{"id":"19/2023/QH15","name":"Luật Bảo vệ quyền lợi người tiêu dùng","vbhn":"Luật gốc","n":80},{"id":"50/2024/QH15","name":"Luật Công đoàn","vbhn":"90/VBHN-VPQH","n":37},{"id":"49/2019/QH14","name":"Luật Xuất cảnh, nhập cảnh của công dân Việt Nam","vbhn":"29/VBHN-VPQH","n":53},{"id":"63/2014/QH13","name":"Luật Tổ chức Viện kiểm sát nhân dân","vbhn":"110/VBHN-VPQH","n":102},{"id":"105/2016/QH13","name":"Luật Dược","vbhn":"76/VBHN-VPQH","n":119},{"id":"120/2025/QH15","name":"Luật Phòng, chống ma túy","vbhn":"Luật gốc","n":56},{"id":"43/2019/QH14","name":"Luật Giáo dục","vbhn":"Luật gốc","n":115},{"id":"15/2023/QH15","name":"Luật Khám bệnh, chữa bệnh","vbhn":"26/VBHN-VPQH","n":121},{"id":"16/2017/QH14","name":"Luật Lâm nghiệp","vbhn":"Luật gốc","n":108},{"id":"18/2017/QH14","name":"Luật Thủy sản","vbhn":"Luật gốc","n":105},{"id":"09/2017/QH14","name":"Luật Du lịch","vbhn":"Luật gốc","n":78},{"id":"40/2019/QH14","name":"Luật Kiến trúc","vbhn":"Luật gốc","n":41},{"id":"32/2018/QH14","name":"Luật Chăn nuôi","vbhn":"Luật gốc","n":83},{"id":"31/2018/QH14","name":"Luật Trồng trọt","vbhn":"Luật gốc","n":85},{"id":"42/2024/QH15","name":"Luật Quản lý, sử dụng vũ khí, vật liệu nổ và công cụ hỗ trợ","vbhn":"78/VBHN-VPQH","n":75},{"id":"24/2018/QH14","name":"Luật An ninh mạng","vbhn":"Luật gốc","n":43},{"id":"22/2018/QH14","name":"Luật Quốc phòng","vbhn":"19/VBHN-VPQH","n":40},{"id":"95/2025/QH15","name":"Luật Đường sắt","vbhn":"Luật gốc","n":59},{"id":"37/2018/QH14","name":"Luật Công an nhân dân","vbhn":"38/VBHN-VPQH","n":46},{"id":"33/2013/QH13","name":"Luật Phòng, chống thiên tai","vbhn":"04/VBHN-VPQH","n":50},{"id":"78/2015/QH13","name":"Luật Nghĩa vụ quân sự","vbhn":"80/VBHN-VPQH","n":62},{"id":"47/2024/QH15","name":"Luật Quy hoạch đô thị và nông thôn","vbhn":"Luật gốc","n":59},{"id":"29/2018/QH14","name":"Luật Bảo vệ bí mật nhà nước","vbhn":"Luật gốc","n":28},{"id":"32/2004/QH11","name":"Luật An ninh quốc gia","vbhn":"49/VBHN-VPQH","n":36},{"id":"52/2014/QH13","name":"Luật Hôn nhân và gia đình","vbhn":"121/VBHN-VPQH","n":133},{"id":"24/2008/QH12","name":"Luật Quốc tịch Việt Nam","vbhn":"53/VBHN-VPQH","n":44},{"id":"11/2017/QH14","name":"Luật Trợ giúp pháp lý","vbhn":"05/VBHN-VPQH","n":48},{"id":"18/2012/QH13","name":"Luật Biển Việt Nam","vbhn":"47/VBHN-VPQH","n":55},{"id":"27/2018/QH14","name":"Luật Đo đạc và bản đồ","vbhn":"Luật gốc","n":61},{"id":"68/2025/QH15","name":"Luật Quản lý và đầu tư vốn nhà nước tại doanh nghiệp","vbhn":"Luật gốc","n":59},{"id":"130/2025/QH15","name":"Luật Hàng không dân dụng Việt Nam","vbhn":"Luật gốc","n":107},{"id":"95/2015/QH13","name":"Bộ luật Hàng hải Việt Nam","vbhn":"101/VBHN-VPQH","n":342},{"id":"69/2020/QH14","name":"Luật Người lao động Việt Nam đi làm việc ở nước ngoài theo hợp đồng","vbhn":"Luật gốc","n":74},{"id":"20/2017/QH14","name":"Luật Quản lý nợ công","vbhn":"Luật gốc","n":63},{"id":"17/2023/QH15","name":"Luật Hợp tác xã","vbhn":"Luật gốc","n":115},{"id":"51/2010/QH12","name":"Luật Người khuyết tật","vbhn":"24/VBHN-VPQH","n":53},{"id":"23/2004/QH11","name":"Luật Giao thông đường thủy nội địa","vbhn":"16/VBHN-VPQH","n":112},{"id":"41/2019/QH14","name":"Luật Thi hành án hình sự","vbhn":"Luật gốc","n":207},{"id":"39/2024/QH15","name":"Luật Thủ đô","vbhn":"Luật gốc","n":54},{"id":"04/2022/QH15","name":"Luật Cảnh sát cơ động","vbhn":"Luật gốc","n":33},{"id":"30/2023/QH15","name":"Luật Lực lượng tham gia bảo vệ an ninh, trật tự ở cơ sở","vbhn":"Luật gốc","n":33},{"id":"38/2024/QH15","name":"Luật Công nghiệp quốc phòng, an ninh và động viên công nghiệp","vbhn":"Luật gốc","n":86},{"id":"46/2019/QH14","name":"Luật Thư viện","vbhn":"Luật gốc","n":52},{"id":"53/2019/QH14","name":"Luật Lực lượng dự bị động viên","vbhn":"Luật gốc","n":41},{"id":"25/2023/QH15","name":"Luật Quản lý, bảo vệ công trình quốc phòng và khu quân sự","vbhn":"Luật gốc","n":34},{"id":"06/2022/QH15","name":"Luật Thi đua, khen thưởng","vbhn":"Luật gốc","n":96},{"id":"108/2016/QH13","name":"Luật Điều ước quốc tế","vbhn":"10/VBHN-VPQH","n":86},{"id":"23/2018/QH14","name":"Luật Cạnh tranh","vbhn":"Luật gốc","n":118},{"id":"30/2018/QH14","name":"Luật Đặc xá","vbhn":"Luật gốc","n":39},{"id":"28/2023/QH15","name":"Luật Tài nguyên nước","vbhn":"Luật gốc","n":86},{"id":"18/2023/QH15","name":"Luật Phòng thủ dân sự","vbhn":"Luật gốc","n":55},{"id":"42/2009/QH12","name":"Luật Tần số vô tuyến điện","vbhn":"62/VBHN-VPQH","n":52},{"id":"90/2015/QH13","name":"Luật Khí tượng thủy văn","vbhn":"21/VBHN-VPQH","n":57},{"id":"82/2015/QH13","name":"Luật Tài nguyên, môi trường biển và hải đảo","vbhn":"22/VBHN-VPQH","n":81},{"id":"94/2025/QH15","name":"Luật Năng lượng nguyên tử","vbhn":"Luật gốc","n":73},{"id":"49/2024/QH15","name":"Luật Phòng không nhân dân","vbhn":"Luật gốc","n":47},{"id":"53/2024/QH15","name":"Luật Phòng, chống mua bán người","vbhn":"Luật gốc","n":63},{"id":"77/2006/QH11","name":"Luật Thể dục, thể thao","vbhn":"64/VBHN-VPQH","n":81},{"id":"89/2025/QH15","name":"Luật Ngân sách nhà nước","vbhn":"Luật gốc","n":79},{"id":"143/2025/QH15","name":"Luật Đầu tư (bản 2025)","vbhn":"Luật gốc 2025","n":52},{"id":"108/2025/QH15","name":"Luật Quản lý thuế (bản 2025)","vbhn":"Luật gốc 2025","n":53},{"id":"112/2025/QH15","name":"Luật Quy hoạch (bản 2025)","vbhn":"Luật gốc 2025","n":58},{"id":"103/2025/QH15","name":"Luật Tương trợ tư pháp về hình sự","vbhn":"Luật gốc","n":42},{"id":"100/2025/QH15","name":"Luật Tương trợ tư pháp về dân sự","vbhn":"Luật gốc","n":45},{"id":"101/2025/QH15","name":"Luật Dẫn độ","vbhn":"Luật gốc","n":48},{"id":"102/2025/QH15","name":"Luật Chuyển giao người đang chấp hành án phạt tù","vbhn":"Luật gốc","n":38},{"id":"10/2017/QH14","name":"Luật Trách nhiệm bồi thường của Nhà nước","vbhn":"98/VBHN-VPQH","n":78},{"id":"42/2013/QH13","name":"Luật Tiếp công dân","vbhn":"30/VBHN-VPQH","n":37}],"coverage_note":"Phủ theo TẦNG: 8 luật đồ-thị-đầy-đủ (time-travel) + 123 ảnh-chụp-VBHN (hiện hành, chưa đối chiếu eval) + 14 luật đích chỉ-mục-bãi-bỏ. Thư viện toàn văn 137 luật."}</script>
+<script>
+(function(){
+  var LEX=JSON.parse(document.getElementById('lexdata').textContent);
+  var $=function(s){return document.querySelector(s)};
+  // theme toggle
+  $('#tg').addEventListener('click',function(){var r=document.documentElement,d=r.getAttribute('data-theme');
+    if(!d)d=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+    r.setAttribute('data-theme',d==='dark'?'light':'dark');});
+
+  // stats
+  var st=LEX.stats;
+  $('#b-laws').textContent=st.laws; $('#s-docs').textContent=st.docs.toLocaleString('vi');
+  if($('#b-idx'))$('#b-idx').textContent=st.index_entries;
+  $('#f-hash').textContent=LEX.engine.slice(0,8); $('#f-cites').textContent=st.citations.toLocaleString('vi');
+  $('#stakes').innerHTML=[
+    ['',st.docs.toLocaleString('vi'),'văn bản thật đã rà'],
+    ['',st.citations.toLocaleString('vi'),'trích dẫn đối chiếu'],
+    ['crit',st.distinct,'mồ côi tự-kiểm-được'],
+    ['ok','0','báo động giả']
+  ].map(function(s){return '<div class="stat '+s[0]+'"><b>'+s[1]+'</b><span>'+s[2]+'</span></div>'}).join('');
+
+  // law dropdown
+  var sel=$('#f-law');
+  sel.innerHTML=LEX.laws.map(function(l){return '<option value="'+l.id+'">'+l.name+' ('+l.id+')</option>'}).join('');
+
+  // lookup
+  function esc(s){return String(s==null?'':s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+  function lookup(law,art,cl,pt){
+    // entry kinds: point (pt set) > clause (cl set) > article (both null)
+    var hits=LEX.repeals.filter(function(e){return e.law===law && String(e.art)===String(art)});
+    if(!hits.length) return null;
+    // article-level delete matches any citation to that article
+    var artDel=hits.find(function(e){return e.cl==null&&e.pt==null});
+    if(artDel) return artDel;
+    if(cl){
+      var ptDel=hits.find(function(e){return e.pt&&String(e.cl)===String(cl)&&pt&&String(e.pt).toLowerCase()===String(pt).toLowerCase()});
+      if(ptDel) return ptDel;
+      var clDel=hits.find(function(e){return e.cl!=null&&e.pt==null&&String(e.cl)===String(cl)});
+      if(clDel) return clDel;
+    }
+    return null;
+  }
+  function render(law,lawName,art,cl,pt){
+    var v=$('#verdict'); v.className='verdict show';
+    if(!art){v.className='verdict show unknown';
+      v.innerHTML='<p class="vh">Thiếu dữ liệu</p><p>Vui lòng nhập số Điều để tra.</p>';return;}
+    var loc=(pt?'điểm '+pt+' ':'')+(cl?'khoản '+cl+' ':'')+'Điều '+art;
+    var e=lookup(law,art,cl,pt);
+    if(e){
+      v.className='verdict show repealed';
+      v.innerHTML='<p class="vh">⚠ Đã bị bãi bỏ (T1 · chắc chắn)</p>'+
+        '<p><b>'+esc(loc)+' '+esc(lawName)+'</b> — quy định này <b>KHÔNG CÒN TỒN TẠI</b>: bị <b>'+esc(e.by)+'</b> bãi bỏ ngày <b>'+esc(e.on)+'</b>. Văn bản nào đang dẫn điều này cần rà lại căn cứ.</p>'+
+        (e.src?'<div class="src">Tự kiểm: “'+esc(e.src)+'” — mở luật '+esc(e.by)+' là thấy.</div>':'')+
+        '<p class="self">Máy chỉ nêu sự kiện (mất + ngày + văn bản gây ra), không kết luận trái/đúng.</p>';
+    } else {
+      v.className='verdict show unknown';
+      v.innerHTML='<p class="vh">Không thấy trong danh mục bãi bỏ</p>'+
+        '<p><b>'+esc(loc)+' '+esc(lawName)+'</b> — không khớp mục bãi bỏ nào trong chỉ mục của luật đã nạp.</p>'+
+        '<p class="self">Chỉ mục ghi các quy định ĐÃ BỊ BÃI BỎ. Không thấy ở đây nghĩa là chưa ghi nhận bãi bỏ — <b>KHÔNG phải kết luận điều này an toàn/còn nguyên nội dung</b>. Nội dung có thể đã đổi (T2) hoặc đánh số lại (T3); hãy đối chiếu văn bản hợp nhất gốc.</p>';
+    }
+  }
+  $('#f-go').addEventListener('click',function(){
+    render(sel.value, sel.options[sel.selectedIndex].text, $('#f-art').value.trim(),
+           $('#f-cl').value.trim(), $('#f-pt').value.trim());
+  });
+  // preset an example that resolves (first orphan's target if in covered laws)
+  (function(){var o=LEX.orphans[0]; if(o){var m=o.location.match(/Điều\s+(\d+)/),mc=o.location.match(/khoản\s+(\d+)/),mp=o.location.match(/điểm\s+([a-zđ])/);
+    if([].some.call(sel.options,function(op){return op.value===o.target})){sel.value=o.target;}
+    if(m)$('#f-art').value=m[1]; if(mc)$('#f-cl').value=mc[1]; if(mp)$('#f-pt').value=mp[1];}})();
+
+  // tier ladder
+  var TIERS={
+    T0:{label:'T0 chết-khi-sinh',cls:'T0',data:LEX.t0||[],
+      desc:'<b>Chết-khi-sinh (nặng nhất).</b> Văn bản DẪN một quy định đã bị bãi bỏ <b>TRƯỚC</b> ngày chính nó ban hành — căn cứ không tồn tại ngay từ khi soạn thảo.'},
+    T1:{label:'T1 đã bãi bỏ',cls:'T1',data:LEX.orphans||[],
+      desc:'<b>Chắc chắn không còn tồn tại.</b> Trích dẫn trỏ tới quy định đã bị bãi bỏ. Cần rà ngay căn cứ.'},
+    T2:{label:'T2 nội dung đổi',cls:'T2',data:LEX.t2||[],
+      desc:'<b>Vẫn còn nhưng NỘI DUNG đã đổi</b> sau ngày rà gần nhất (kèm điểm tương đồng). Cần đối chiếu nguyên văn — KHÔNG kết luận sai.'},
+    T3:{label:'T3 đánh số lại',cls:'T3',data:LEX.t3||[],
+      desc:'<b>Điều được dẫn đã được thay / đánh số lại.</b> Cần người xem đối chiếu — KHÔNG báo động.'}
+  };
+  function tierRow(t,x){
+    if(t==='T0')return '<div class="tf T0"><div class="top"><span class="loc">'+esc(x.location)+'</span>'+
+      '<span class="tgt">'+esc(x.target_title||x.target)+' ('+esc(x.target)+')</span></div>'+
+      '<p class="meta">Văn bản dẫn: <b>'+esc(x.citing)+'</b>'+(x.citing_title?' — '+esc(x.citing_title):'')+
+      '<br>Ban hành <b>'+esc(x.issued)+'</b> · căn cứ bị <b>'+esc(x.by)+'</b> bãi bỏ <b>'+esc(x.on)+'</b> — trước ngày ban hành.</p></div>';
+    if(t==='T1')return '<div class="tf T1"><div class="top"><span class="loc">'+esc(x.location)+'</span>'+
+      '<span class="tgt">'+esc(x.target_title||x.target)+' ('+esc(x.target)+')</span>'+
+      (x.count>1?'<span class="chip">'+x.count+' lần dẫn</span>':'')+'</div>'+
+      '<p class="meta">Văn bản dẫn: <b>'+esc(x.citing)+'</b>'+(x.citing_title?' — '+esc(x.citing_title):'')+
+      '<br>Bị <b>'+esc(x.by)+'</b> bãi bỏ'+(x.on?' ngày <b>'+esc(x.on)+'</b>':'')+'</p></div>';
+    if(t==='T2'){var pc=Math.round((x.sim||0)*100);
+      return '<div class="tf T2"><div class="top"><span class="loc">'+esc(x.loc)+'</span>'+
+      '<span class="tgt">'+esc(x.tt||x.target)+' ('+esc(x.target)+')</span>'+
+      '<span class="simbar"><span class="simtrack"><span class="simfill" style="width:'+pc+'%"></span></span>'+
+      '<span class="simval">'+pc+'% giống</span></span></div>'+
+      '<p class="meta">Văn bản dẫn: <b>'+esc(x.citing)+'</b> — nội dung điều đã đổi sau ngày rà; đối chiếu nguyên văn.</p></div>';}
+    return '<div class="tf T3"><div class="top"><span class="loc">'+esc(x.loc)+'</span>'+
+      '<span class="tgt">'+esc(x.tt||x.target)+' ('+esc(x.target)+')</span></div>'+
+      '<p class="meta">Văn bản dẫn: <b>'+esc(x.citing)+'</b> — điều được thay/đánh số lại'+(x.by?' bởi <b>'+esc(x.by)+'</b>':'')+'. Cần người xem.</p></div>';
+  }
+  function showTier(t){
+    ['T0','T1','T2','T3'].forEach(function(k){
+      var b=document.querySelector('.ttab[data-t="'+k+'"]'); if(b)b.classList.toggle('on',k===t);});
+    var T=TIERS[t],fs=T.data;
+    var html='<div class="tdesc '+T.cls+'">'+T.desc+'</div>';
+    html+= fs.length?('<div class="tfind">'+fs.map(function(x){return tierRow(t,x);}).join('')+'</div>')
+                    :'<p class="cempty">(không có mục nào ở bậc này)</p>';
+    $('#tierpanel').innerHTML=html;
+  }
+  $('#tiertabs').innerHTML=['T0','T1','T2','T3'].map(function(k){
+    return '<button class="ttab" data-t="'+k+'" role="tab">'+esc(TIERS[k].label)+
+      '<span class="cnt">'+TIERS[k].data.length+'</span></button>';}).join('');
+  [].forEach.call(document.querySelectorAll('.ttab'),function(b){
+    b.addEventListener('click',function(){showTier(b.getAttribute('data-t'));});});
+  showTier('T0');
+
+  // version traps
+  $('#traps').innerHTML=(LEX.superseded||[]).map(function(s){
+    return '<div class="trap"><b>Bẫy phiên bản</b><div class="pair"><span class="old">'+esc(s.old)+
+      '</span> &nbsp;→&nbsp; <span class="new">'+esc(s.new)+'</span></div>'+
+      'Dẫn số hiệu <b>'+esc(s.old)+'</b> là trỏ vào bản đã bị thay'+(s.on?' (hiệu lực <b>'+esc(s.on)+'</b>)':'')+'. Đối chiếu bản mới <b>'+esc(s.new)+'</b>.'+
+      (s.note?'<div class="note">Nguồn: '+esc(s.note)+'</div>':'')+'</div>';
+  }).join('')||'<p class="cempty">(chưa có cặp phiên bản nào được xác minh nguồn)</p>';
+
+  // covered laws
+  $('#cov-laws').innerHTML=LEX.laws.map(function(l){
+    return '<span class="lawchip">'+esc(l.name)+'<span class="n">'+esc(l.id)+'</span></span>';}).join('');
+
+  // 508 map
+  var mp=LEX.map508, pl=mp.phu_luc, total=mp.tong||508;
+  var rows=[['Phụ lục I — Luật, pháp lệnh',pl.I.tong,pl.I.loai],
+            ['Phụ lục II — Nghị định, QĐ Thủ tướng',pl.II.tong,pl.II.loai],
+            ['Phụ lục III — Thông tư, QĐ Bộ trưởng',pl.III.tong,pl.III.loai]];
+  $('#plbar').innerHTML=rows.map(function(r){var pct=Math.round(r[1]/total*100);
+    return '<div class="pl"><div class="plh"><b>'+esc(r[0])+'</b><span class="num">'+r[1]+' / '+total+'</span></div>'+
+      '<div class="track"><div class="fill" style="width:'+pct+'%"></div></div>'+
+      '<small>'+esc(r[2])+'</small></div>';}).join('');
+
+  /* ============================ CHECKER ============================ *
+   * Bóc tách trích dẫn client-side (sơ bộ) + đối chiếu chỉ mục bãi bỏ.
+   * KHÔNG kết luận "trái luật/sai" — chỉ nêu sự kiện còn/mất, fail-closed:
+   * ngoài độ phủ = "chưa xác minh", KHÔNG suy ra an toàn. */
+  function noAccent(s){return String(s==null?'':s).normalize('NFD')
+    .replace(/[̀-ͯ]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D');}
+  var LAW_BY_ID={}; LEX.laws.forEach(function(l){LAW_BY_ID[l.id]=l.name;});
+  var SUPOLD={}; (LEX.superseded||[]).forEach(function(s){SUPOLD[s.old]={nw:s.new,on:s.on||''};});
+  // Tên luật xếp DÀI→NGẮN để khớp dài nhất trước ("Đầu tư công" thắng "Đầu tư").
+  var LAW_NAMES=LEX.laws.map(function(l){return {id:l.id,name:l.name,na:noAccent(l.name).toLowerCase()};})
+    .sort(function(a,b){return b.na.length-a.na.length;});
+  var SOHIEU=/\d{1,3}\/\d{4}\/QH\d{1,2}/g;
+
+  function resolveLaw(win){                    // win: đoạn text quanh trích dẫn
+    var na=noAccent(win).toLowerCase();
+    var sh=win.match(SOHIEU);                   // số hiệu ưu tiên (đã ghi rõ)
+    if(sh){for(var i=0;i<sh.length;i++){if(LAW_BY_ID[sh[i]])return {id:sh[i],resolved:true};}
+           return {id:sh[0],resolved:true,uncovered:true};}
+    for(var j=0;j<LAW_NAMES.length;j++){        // tên: khớp dài nhất
+      if(na.indexOf(LAW_NAMES[j].na)>=0)return {id:LAW_NAMES[j].id,resolved:true};}
+    return {id:null,resolved:false};
+  }
+  var LOC=/(?:điểm\s+([a-zđ]\d?)\s+)?(?:khoản\s+(\d+)\s+)?Điều\s+(\d+[a-zđ]?)/gi;
+  function extract(text){
+    var out=[],m; LOC.lastIndex=0;
+    while((m=LOC.exec(text))){
+      if(!m[3])continue;
+      var end=LOC.lastIndex, pos=m.index;
+      var win=text.slice(end,end+72)+' '+text.slice(Math.max(0,pos-96),pos);
+      var law=resolveLaw(win);
+      out.push({raw:m[0].replace(/\s+/g,' ').trim(),law:law.id,resolved:law.resolved,
+                uncovered:law.uncovered,art:m[3],cl:m[2]||'',pt:(m[1]||'').toLowerCase(),pos:pos});
+    }
+    return out;
+  }
+  function classify(c){
+    // Verdict CHÍNH theo chỉ mục bãi bỏ (r/u/o) — chạy trước.
+    if(!c.law){c.kind='o';c.reason='Không xác định được luật đích (tên/số hiệu không rõ, hoặc ngoài phạm vi đã phủ).';}
+    else if(!LAW_BY_ID[c.law]){c.kind='o';c.reason='Luật '+c.law+' NGOÀI độ phủ — chưa nạp chỉ mục bãi bỏ. "Chưa xác minh" KHÔNG có nghĩa an toàn.';}
+    else {var e=lookup(c.law,c.art,c.cl,c.pt); if(e){c.kind='r';c.entry=e;} else {c.kind='u';}}
+    // Cờ BẪY PHIÊN BẢN — SONG SONG, không đè verdict chính: cả luật bị thay
+    // số hiệu VÀ điều bị bãi bỏ đều đáng biết. Kèm mốc hiệu lực nếu có.
+    if(SUPOLD[c.law]) c.trap=SUPOLD[c.law];
+    return c;
+  }
+  function locStr(c){return (c.pt?'điểm '+c.pt+' ':'')+(c.cl?'khoản '+c.cl+' ':'')+'Điều '+c.art;}
+  var LAST=[];                                  // kết quả gần nhất (cho xuất/permalink)
+
+  function renderRows(list){
+    var res=$('#c-res'),sum=$('#c-sum'),exp=$('#c-export');
+    if(!list.length){res.innerHTML='<p class="cempty">Không bóc được trích dẫn "Điều… Luật…" nào. Kiểm tra định dạng, hoặc dùng ô Tra cứu một điều ở trên.</p>';
+      sum.hidden=true;exp.hidden=true;return;}
+    var nr=0,nu=0,no=0,nt=0;
+    var html=list.map(function(c){
+      var tag,det;
+      if(c.kind==='r'){nr++;tag='Đã bãi bỏ · T1';
+        det='<b>'+esc(locStr(c))+' '+esc(LAW_BY_ID[c.law]||c.law)+'</b> — quy định này <b>KHÔNG CÒN TỒN TẠI</b>: bị <b>'+esc(c.entry.by)+'</b> bãi bỏ ngày <b>'+esc(c.entry.on)+'</b>.'
+            +(c.entry.src?'<div class="src">Tự kiểm: “'+esc(c.entry.src)+'”</div>':'');
+      } else if(c.kind==='u'){nu++;tag='Không thấy trong DM bãi bỏ';
+        det='<b>'+esc(locStr(c))+' '+esc(LAW_BY_ID[c.law]||c.law)+'</b> — không khớp mục bãi bỏ nào. <b>KHÔNG</b> kết luận an toàn: nội dung có thể đã đổi (T2) hoặc đánh số lại (T3) — đối chiếu bản hợp nhất gốc.';
+      } else {no++;tag='Ngoài độ phủ';det=esc(c.reason);}
+      var trapNote='';
+      if(c.trap){nt++;
+        trapNote='<div class="src" style="border-left:2px solid var(--warn)">⚠ <b>Bẫy phiên bản:</b> luật <b>'+esc(c.law)+'</b> đã được thay bởi <b>'+esc(c.trap.nw)+'</b>'
+          +(c.trap.on?' (hiệu lực từ '+esc(c.trap.on)+')':'')+' — nếu văn bản của bạn ban hành từ mốc đó, số hiệu/điều có thể đã đổi, đối chiếu bản mới.</div>';}
+      return '<div class="row '+c.kind+'"><div class="rl"><span class="loc">'+esc(locStr(c))+'</span>'
+        +'<span class="law">'+esc(c.law?(LAW_BY_ID[c.law]||c.law):'luật ?')+'</span>'
+        +'<span class="tag">'+esc(tag)+'</span>'
+        +(c.trap?'<span class="tag" style="margin-left:6px;background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)">⚠ phiên bản</span>':'')+'</div>'
+        +'<p class="det">'+det+'</p>'+trapNote
+        +(c.from?'<p class="from">Nguồn: '+esc(c.from)+'</p>':'')+'</div>';
+    }).join('');
+    res.innerHTML=html;
+    sum.hidden=false;
+    sum.innerHTML='<div class="c r"><b>'+nr+'</b> căn cứ đã bãi bỏ (T1)</div>'
+      +(nt?'<div class="c t"><b>'+nt+'</b> bẫy phiên bản</div>':'')
+      +'<div class="c u"><b>'+nu+'</b> không thấy trong danh mục</div>'
+      +'<div class="c o"><b>'+no+'</b> ngoài độ phủ</div>'
+      +'<div class="c"><b>'+list.length+'</b> trích dẫn bóc được</div>';
+    exp.hidden=false;
+    LAST=list;
+  }
+
+  function runText(text){renderRows(extract(text).map(classify));}
+
+  // ---- ví dụ mẫu + nút cơ bản ----
+  var SAMPLE='Việc gia hạn thực hiện theo khoản 3 Điều 75 Luật Quản lý thuế số 38/2019/QH14. '
+    +'Trình tự lựa chọn nhà thầu áp dụng điểm h khoản 6 Điều 16 Luật Đấu thầu 22/2023/QH15 và điểm c khoản 2 Điều 11 cùng Luật. '
+    +'Thẩm quyền quyết định đầu tư theo Điều 33 Luật Đầu tư 61/2020/QH14. '
+    +'Quy hoạch tỉnh lập theo khoản 4 Điều 28 Luật Quy hoạch 21/2017/QH14.';
+  $('#c-go').addEventListener('click',function(){runText($('#c-text').value);});
+  $('#c-sample').addEventListener('click',function(){$('#c-text').value=SAMPLE;runText(SAMPLE);});
+  $('#c-clear').addEventListener('click',function(){$('#c-text').value='';$('#c-res').innerHTML='';
+    $('#c-sum').hidden=true;$('#c-export').hidden=true;LAST=[];});
+
+  // ---- CSV: tải hàng loạt ----
+  function parseCSV(txt){
+    var rows=[],row=[],f='',q=false,i,ch;
+    for(i=0;i<txt.length;i++){ch=txt[i];
+      if(q){if(ch==='"'){if(txt[i+1]==='"'){f+='"';i++;}else q=false;}else f+=ch;}
+      else{if(ch==='"')q=true;
+        else if(ch===','){row.push(f);f='';}
+        else if(ch==='\n'||ch==='\r'){if(ch==='\r'&&txt[i+1]==='\n')i++;row.push(f);rows.push(row);row=[];f='';}
+        else f+=ch;}}
+    if(f.length||row.length){row.push(f);rows.push(row);}
+    return rows.filter(function(r){return r.some(function(x){return x.trim()!=='';});});
+  }
+  function colIndex(head,names){for(var i=0;i<head.length;i++){var h=noAccent(head[i]).toLowerCase().trim();
+    for(var j=0;j<names.length;j++)if(h===names[j]||h.indexOf(names[j])>=0)return i;}return -1;}
+  function runCSV(txt){
+    var rows=parseCSV(txt); if(rows.length<2){alert('CSV cần dòng tiêu đề + ít nhất một dòng dữ liệu.');return;}
+    var head=rows[0],body=rows.slice(1);
+    var iVb=colIndex(head,['van ban','vb','id','so hieu']),iLuat=colIndex(head,['luat']),
+        iD=colIndex(head,['dieu']),iK=colIndex(head,['khoan']),iP=colIndex(head,['diem']),
+        iTxt=colIndex(head,['noi dung','trich dan','text','noidung']);
+    var list=[];
+    body.forEach(function(r,ri){
+      var from=(iVb>=0?r[iVb]:'')||('dòng '+(ri+2));
+      if(iD>=0){                                 // có cấu trúc
+        var luat=iLuat>=0?r[iLuat]:'', law=resolveLaw(luat+' '+luat);
+        if(!r[iD])return;
+        list.push(classify({raw:r[iD],law:law.id,resolved:law.resolved,
+          art:String(r[iD]).trim(),cl:iK>=0?String(r[iK]||'').trim():'',
+          pt:iP>=0?String(r[iP]||'').trim().toLowerCase():'',from:from}));
+      } else {                                    // tự bóc từ cột văn bản
+        var col=iTxt>=0?iTxt:r.reduce(function(bi,_,k){return (r[k]||'').length>(r[bi]||'').length?k:bi;},0);
+        extract(r[col]||'').map(classify).forEach(function(c){c.from=from;list.push(c);});
+      }
+    });
+    renderRows(list);
+    document.getElementById('checker').scrollIntoView({behavior:'smooth'});
+  }
+  $('#c-csv').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;
+    var rd=new FileReader();rd.onload=function(){runCSV(String(rd.result));};rd.readAsText(f,'utf-8');
+    e.target.value='';});
+  $('#c-csvtmpl').addEventListener('click',function(e){e.preventDefault();
+    download('mau-ra-soat.csv','văn bản,luật,điều,khoản,điểm\n'
+      +'"NĐ 24/2024","22/2023/QH15","16","6","h"\n'
+      +'"Dự thảo TT","Luật Quản lý thuế","75","3",""\n','text/csv');});
+
+  // ---- Permalink ----
+  function download(name,text,mime){
+    var b=new Blob([text],{type:(mime||'text/plain')+';charset=utf-8'});
+    var u=URL.createObjectURL(b),a=document.createElement('a');
+    a.href=u;a.download=name;document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(u);a.remove();},800);
+  }
+  function b64e(s){return btoa(unescape(encodeURIComponent(s)));}
+  function b64d(s){return decodeURIComponent(escape(atob(s)));}
+  $('#c-perma').addEventListener('click',function(){
+    var st={t:$('#c-text').value,a:$('#c-agency').value,d:$('#c-docname').value};
+    var url=location.origin+location.pathname+'#q='+b64e(JSON.stringify(st));
+    var msg=$('#c-permamsg');
+    if(url.length>8000){msg.style.color='var(--warn)';msg.textContent='Link dài ('+url.length+' ký tự) — có thể vượt giới hạn vài trình duyệt.';}
+    else msg.style.color='var(--ok)';
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){msg.textContent='Đã chép link vào clipboard — dán để chia sẻ.';},
+        function(){location.hash='q='+b64e(JSON.stringify(st));msg.textContent='Link đã ở thanh địa chỉ — sao chép để chia sẻ.';});
+    } else {location.hash='q='+b64e(JSON.stringify(st));msg.textContent='Link đã ở thanh địa chỉ — sao chép để chia sẻ.';}
+  });
+  function loadFromHash(){var h=location.hash.match(/q=([^&]+)/);if(!h)return;
+    try{var st=JSON.parse(b64d(h[1]));$('#c-text').value=st.t||'';$('#c-agency').value=st.a||'';
+      $('#c-docname').value=st.d||'';if(st.t){runText(st.t);
+        setTimeout(function(){document.getElementById('checker').scrollIntoView();},60);}}catch(e){}}
+  loadFromHash();
+
+  // ---- Xuất báo cáo rà (cơ quan) + CSV ----
+  function today(){var d=new Date();return d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();}
+  $('#c-report').addEventListener('click',function(){
+    if(!LAST.length){alert('Chưa có kết quả để xuất — hãy rà văn bản trước.');return;}
+    var nr=LAST.filter(function(c){return c.kind==='r';}).length,
+        nu=LAST.filter(function(c){return c.kind==='u';}).length,
+        no=LAST.filter(function(c){return c.kind==='o';}).length,
+        nt=LAST.filter(function(c){return c.trap;}).length;
+    var ag=$('#c-agency').value.trim(),dn=$('#c-docname').value.trim();
+    $('#print-head').innerHTML='<div style="text-align:center;margin-bottom:10px">'
+      +'<div style="font-weight:700;font-size:15px">BÁO CÁO RÀ SOÁT CHÉO CĂN CỨ PHÁP LÝ</div>'
+      +(ag?'<div>'+esc(ag)+'</div>':'')+'</div>'
+      +'<table style="width:100%;font-size:12px;border-collapse:collapse;margin-bottom:8px"><tbody>'
+      +(dn?'<tr><td style="padding:2px 6px;color:#555">Văn bản được rà</td><td style="padding:2px 6px"><b>'+esc(dn)+'</b></td></tr>':'')
+      +'<tr><td style="padding:2px 6px;color:#555">Ngày rà</td><td style="padding:2px 6px">'+today()+'</td></tr>'
+      +'<tr><td style="padding:2px 6px;color:#555">Công cụ</td><td style="padding:2px 6px">LexTempo · engine '+esc(LEX.engine.slice(0,8))+' · chỉ mục bãi bỏ '+LEX.stats.index_entries+' mục / '+LEX.stats.laws+' luật</td></tr>'
+      +'<tr><td style="padding:2px 6px;color:#555">Kết quả</td><td style="padding:2px 6px"><b>'+nr+'</b> căn cứ đã bãi bỏ'+(nt?' · <b>'+nt+'</b> bẫy phiên bản':'')+' · '+nu+' không thấy trong danh mục · '+no+' ngoài độ phủ · tổng '+LAST.length+' trích dẫn</td></tr>'
+      +'</tbody></table>'
+      +'<p style="font-size:11px;color:#555;margin:0 0 10px">Kết quả sơ bộ, mang tính tham khảo, KHÔNG phải kết luận pháp lý và không kết luận văn bản đúng/sai/trái luật. Mục "ngoài độ phủ"/"không thấy" KHÔNG đồng nghĩa an toàn — luôn đối chiếu văn bản gốc chính thức.</p>';
+    window.print();
+  });
+  $('#c-dlcsv').addEventListener('click',function(){
+    if(!LAST.length){alert('Chưa có kết quả để tải.');return;}
+    var q=function(s){return '"'+String(s==null?'':s).replace(/"/g,'""')+'"';};
+    var head='bậc,vị trí,luật,điều,khoản,điểm,sự kiện,ngày bãi bỏ,bởi,nguồn\n';
+    var body=LAST.map(function(c){
+      var ev=(c.kind==='r'?'đã bãi bỏ':c.kind==='u'?'không thấy trong danh mục bãi bỏ':'ngoài độ phủ')
+              +(c.trap?' | BẪY PHIÊN BẢN: '+c.law+' → '+c.trap.nw+(c.trap.on?' (từ '+c.trap.on+')':''):'');
+      var bac=(c.kind==='r'?'T1':'—')+(c.trap?'+BẪY':'');
+      return [bac,locStr(c),c.law?(LAW_BY_ID[c.law]||c.law):'',c.art,c.cl,c.pt,ev,
+              c.entry?c.entry.on:'',c.entry?c.entry.by:(c.trap?c.trap.nw:''),c.from||''].map(q).join(',');
+    }).join('\n');
+    download('ket-qua-ra-soat.csv',head+body+'\n','text/csv');
+  });
+
+  /* ===================== TRA CỨU TOÀN VĂN (thư viện VBHN) ===================== *
+   * Danh sách luật nạp sẵn (nhẹ); toàn văn library.json tải THEO YÊU CẦU lần đầu
+   * dùng (~14,6MB) — chỉ chạy khi phục vụ trên máy chủ/Vercel, không phải mở file. */
+  var LIB=null, LIB_LOADING=false;
+  var lsel=$('#l-law');
+  if(lsel && LEX.library_laws){
+    lsel.innerHTML=LEX.library_laws.map(function(l){return '<option value="'+esc(l.id)+'">'+esc(l.name)+' ('+esc(l.id)+')</option>';}).join('');
+    if($('#lib-n'))$('#lib-n').textContent=LEX.library_laws.length;
+  }
+  function libMeta(){var id=lsel.value,l=(LEX.library_laws||[]).filter(function(x){return x.id===id;})[0];
+    if(l && $('#l-meta'))$('#l-meta').innerHTML='Nguồn: <b>'+esc(l.vbhn)+'</b> · '+l.n+' điều · toàn văn hợp nhất chính thức (đã xác minh số hiệu).';}
+  if(lsel){lsel.addEventListener('change',libMeta); libMeta();}
+  function libRender(){
+    var id=lsel.value, art=$('#l-art').value.trim(), out=$('#l-out');
+    out.className='verdict show';
+    if(!LIB || !LIB[id]){out.innerHTML='<p>Chưa tải được dữ liệu.</p>';return;}
+    var a=LIB[id].articles[art];
+    if(!a){out.className='verdict show unknown';
+      out.innerHTML='<p class="vh">Không thấy Điều '+esc(art)+'</p><p>Bản hợp nhất của luật này không có Điều '+esc(art)+' (nhập sai số, hoặc điều đã bị bãi bỏ nên không còn trong bản hợp nhất).</p>';return;}
+    out.className='verdict show';
+    out.innerHTML='<div class="artmeta">'+esc(LIB[id].name)+' · '+esc(LIB[id].vbhn)+' · toàn văn hợp nhất</div><pre class="arttext">'+esc(a)+'</pre>'
+      +'<p class="self">Nguyên văn từ VBHN chính thức. Tham khảo — đối chiếu văn bản gốc khi dùng chính thức.</p>';
+  }
+  function libLookup(){
+    if(!$('#l-art').value.trim()){$('#l-out').className='verdict show unknown';$('#l-out').innerHTML='<p>Nhập số Điều để tra.</p>';return;}
+    if(LIB){libRender();return;}
+    if(LIB_LOADING)return; LIB_LOADING=true;
+    var out=$('#l-out'); out.className='verdict show'; out.innerHTML='<p>Đang tải thư viện toàn văn (lần đầu, ~2MB)…</p>';
+    fetch('library.json').then(function(r){return r.json();}).then(function(j){LIB=j;LIB_LOADING=false;libRender();})
+      .catch(function(){LIB_LOADING=false;out.className='verdict show unknown';
+        out.innerHTML='<p class="vh">Chưa tải được toàn văn</p><p>library.json chỉ tải khi trang chạy trên máy chủ/Vercel (không chạy khi mở file trực tiếp trong trình duyệt).</p>';});
+  }
+  if($('#l-go'))$('#l-go').addEventListener('click',libLookup);
+})();
+</script>
+</body>
+</html>

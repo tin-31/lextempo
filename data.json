@@ -10,9 +10,9 @@
   "T3": 85,
   "distinct": 5,
   "false_positives": 0,
-  "index_entries": 107,
+  "index_entries": 108,
   "laws": 164,
-  "amending": 7,
+  "amending": 8,
   "graph_full": 8,
   "snapshot": 144,
   "t1_targets": 14,
@@ -1175,6 +1175,15 @@
    "by": "35/2018/QH14",
    "on": "2019-01-01",
    "name": "Luật Xây dựng"
+  },
+  {
+   "law": "61/2020/QH14",
+   "art": "75",
+   "cl": "1",
+   "pt": "c",
+   "by": "03/2022/QH15",
+   "on": "2022-03-01",
+   "name": "Luật Đầu tư"
   }
  ],
  "laws": [

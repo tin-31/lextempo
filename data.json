@@ -10,14 +10,14 @@
   "T3": 85,
   "distinct": 5,
   "false_positives": 0,
-  "index_entries": 108,
+  "index_entries": 109,
   "laws": 164,
-  "amending": 8,
+  "amending": 9,
   "graph_full": 8,
-  "snapshot": 144,
-  "t1_targets": 14,
+  "snapshot": 143,
+  "t1_targets": 15,
   "library": 159,
-  "out_of_graph": 17850,
+  "out_of_graph": 17969,
   "out_covered_by_index": 21
  },
  "orphans": [
@@ -1184,12 +1184,25 @@
    "by": "03/2022/QH15",
    "on": "2022-03-01",
    "name": "Luật Đầu tư"
+  },
+  {
+   "law": "105/2016/QH13",
+   "art": "9",
+   "cl": null,
+   "pt": null,
+   "by": "28/2018/QH14",
+   "on": "2019-01-01",
+   "name": "Luật Dược"
   }
  ],
  "laws": [
   {
    "id": "10/2022/QH15",
    "name": "Luật Thực hiện dân chủ ở cơ sở"
+  },
+  {
+   "id": "105/2016/QH13",
+   "name": "Luật Dược"
   },
   {
    "id": "15/2017/QH14",
@@ -3774,5 +3787,5 @@
    "note": "Luật này có hiệu lực thi hành từ ngày 01/3/2026 (trừ vài điều 01/01/2026 và 01/7/2026); Luật Đầu tư 61/2020 hết hiệu lực kể từ ngày Luật này có hiệu lực, trừ Đi"
   }
  ],
- "coverage_note": "Phủ theo TẦNG: 8 luật đồ-thị-đầy-đủ (time-travel) + 144 ảnh-chụp-VBHN (hiện hành, chưa đối chiếu eval) + 14 luật đích chỉ-mục-bãi-bỏ. Thư viện toàn văn 159 luật."
+ "coverage_note": "Phủ theo TẦNG: 8 luật đồ-thị-đầy-đủ (time-travel) + 143 ảnh-chụp-VBHN (hiện hành, chưa đối chiếu eval) + 15 luật đích chỉ-mục-bãi-bỏ. Thư viện toàn văn 159 luật."
 }

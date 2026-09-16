@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LexTempo — Lưới an toàn căn cứ pháp lý</title>
+<meta name="description" content="Máy rà tất định: căn cứ pháp lý bạn đang trích đã bị bãi bỏ chưa — tại ngày nào, bởi luật nào, và chứng minh được.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --paper:#FAF8F3; --surface:#FFFFFF; --surface-2:#F4EFE7;
+    --ink:#241C1A; --muted:#6B5F5A; --faint:#9A8E86;
+    --hairline:#E7DED3; --hairline-strong:#D8CCBE;
+    --accent:#9A2B24; --accent-soft:#B9564C;
+    --t1:#9A2B24; --t2:#A9761A; --t3:#5E6672; --ok:#2E6B4F; --warn:#A9761A;
+    --shadow:0 1px 2px rgba(40,26,20,.05), 0 8px 30px rgba(40,26,20,.06);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#15110E; --surface:#1E1813; --surface-2:#241D17;
+      --ink:#F1E8E0; --muted:#AC9F95; --faint:#7C7167;
+      --hairline:#332A21; --hairline-strong:#413628;
+      --accent:#DE7C71; --accent-soft:#C96256;
+      --t1:#DE7C71; --t2:#D6A24A; --t3:#97A0AD; --ok:#6EB994; --warn:#D6A24A;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.36);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#15110E; --surface:#1E1813; --surface-2:#241D17;
+    --ink:#F1E8E0; --muted:#AC9F95; --faint:#7C7167;
+    --hairline:#332A21; --hairline-strong:#413628;
+    --accent:#DE7C71; --accent-soft:#C96256;
+    --t1:#DE7C71; --t2:#D6A24A; --t3:#97A0AD; --ok:#6EB994; --warn:#D6A24A;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.36);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Noto Sans",system-ui,-apple-system,sans-serif;line-height:1.6;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px 80px}
+  nav{border-bottom:1px solid var(--hairline);background:var(--paper);position:sticky;top:0;z-index:5}
+  .navin{max-width:820px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:14px}
+  .brand{font-family:"Noto Serif",serif;font-weight:700;font-size:18px;text-decoration:none;color:var(--ink)}
+  .brand span{color:var(--accent)}
+  .navin .sp{margin-left:auto}
+  .navin a.lnk{font-size:14px;color:var(--muted);text-decoration:none}
+  .navin a.lnk:hover{color:var(--accent)}
+  .btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;
+    font-weight:600;font-size:14px;padding:9px 16px;border-radius:9px;border:1px solid var(--accent)}
+  .btn:hover{background:var(--accent-soft)}
+  .btn.ghost{background:transparent;color:var(--accent)}
+  header{padding:54px 0 20px}
+  .kick{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+  h1{font-family:"Noto Serif",serif;font-weight:700;font-size:42px;line-height:1.1;
+    margin:0 0 16px;text-wrap:balance}
+  h1 .l{color:var(--muted)}
+  .lede{font-size:18px;color:var(--muted);max-width:60ch;margin:0 0 24px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .cta .btn{font-size:15px;padding:11px 20px}
+  h2{font-family:"Noto Serif",serif;font-weight:700;font-size:24px;margin:8px 0 12px;text-wrap:balance}
+  .band{border-top:1px solid var(--hairline);padding:36px 0 8px;margin-top:30px}
+  p{margin:0 0 14px;max-width:64ch}
+  b{color:var(--ink)}
+  .quote{font-family:"Noto Serif",serif;font-size:22px;line-height:1.4;font-style:italic;
+    color:var(--ink);border-left:4px solid var(--accent);padding:4px 0 4px 18px;margin:6px 0 18px;max-width:60ch}
+  .who{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+  .who .card{background:var(--surface);border:1px solid var(--hairline);border-radius:12px;
+    padding:14px 16px;box-shadow:var(--shadow)}
+  .who h3{font-family:"Noto Serif",serif;font-size:15px;margin:0 0 5px}
+  .who p{font-size:13.5px;color:var(--muted);margin:0;max-width:none}
+  .how{display:flex;flex-direction:column;gap:12px;margin:14px 0}
+  .how .row{display:flex;gap:14px;align-items:flex-start;background:var(--surface);
+    border:1px solid var(--hairline);border-radius:12px;padding:15px 17px;box-shadow:var(--shadow)}
+  .how .n{font-family:"Noto Serif",serif;font-weight:700;font-size:20px;color:var(--accent);
+    line-height:1.2;flex:none;width:26px}
+  .how b{display:block;margin-bottom:2px}
+  .how p{margin:0;font-size:14px;color:var(--muted);max-width:none}
+  .metrics{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 8px}
+  .metric{background:var(--surface-2);border:1px solid var(--hairline-strong);border-radius:12px;padding:16px 18px}
+  .metric .big{font-family:"Noto Serif",serif;font-weight:700;font-size:30px;line-height:1;
+    font-variant-numeric:tabular-nums}
+  .metric .lab{font-size:13px;color:var(--muted);margin-top:6px}
+  .metric .sub{font-size:12px;color:var(--faint);margin-top:3px;font-family:"IBM Plex Mono",monospace}
+  .note{font-size:13px;color:var(--faint);margin-top:6px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+  .card2{background:var(--surface);border:1px solid var(--hairline);border-radius:12px;
+    padding:14px 16px;box-shadow:var(--shadow)}
+  .card2.do{border-top:3px solid var(--ok)} .card2.dont{border-top:3px solid var(--accent)}
+  .card2 h3{margin:0 0 6px;font-family:"Noto Serif",serif;font-size:15px}
+  .card2.do h3{color:var(--ok)} .card2.dont h3{color:var(--accent)}
+  .card2 ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px}
+  .card2 li{font-size:13.5px;color:var(--muted)}
+  .surfaces{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+  .chip{font-size:13px;background:var(--surface);border:1px solid var(--hairline-strong);
+    border-radius:20px;padding:6px 14px;color:var(--ink)}
+  .hash{font-family:"IBM Plex Mono",monospace;background:var(--surface-2);border:1px solid var(--hairline);
+    border-radius:5px;padding:1px 6px;font-size:.85em}
+  .final{background:var(--surface-2);border:1px solid var(--hairline-strong);border-radius:14px;
+    padding:26px 22px;margin-top:34px;text-align:center}
+  .final h2{margin-top:0}
+  .foot{margin-top:34px;padding-top:18px;border-top:1px solid var(--hairline);font-size:13px;color:var(--faint)}
+  @media(max-width:640px){h1{font-size:32px}.who,.metrics,.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><div class="navin">
+  <a class="brand" href="/">Lex<span>Tempo</span></a>
+  <span class="sp"></span>
+  <a class="lnk" href="/method">Phương pháp</a>
+  <a class="btn" href="/#checker">Thử ngay</a>
+</div></nav>
+
+<div class="wrap">
+<header>
+  <p class="kick">Lưới an toàn căn cứ pháp lý · tất định</p>
+  <h1>Căn cứ bạn đang trích <span class="l">đã bị bãi bỏ chưa?</span></h1>
+  <p class="lede">LexTempo rà một văn bản và chỉ ra điều/khoản/điểm đã hết hiệu lực — <b>tại ngày nào, bởi luật nào</b> — và mỗi kết luận <b>tự kiểm được</b> từ chính câu "Bãi bỏ…" của luật sửa đổi. Không phải chatbot đoán; là engine tất định.</p>
+  <div class="cta">
+    <a class="btn" href="/#checker">Dán văn bản, rà thử →</a>
+    <a class="btn ghost" href="/method">Xem số held-out</a>
+  </div>
+</header>
+
+<section class="band">
+  <h2>Vấn đề</h2>
+  <p class="quote">Một nghị định dẫn "khoản 3 Điều 48 Luật Chứng khoán". Ba năm sau, một luật sửa đổi bãi bỏ đúng khoản đó. Câu chữ vẫn nằm nguyên trong văn bản — nhưng căn cứ đã chết.</p>
+  <p>Không ai thấy điều đó ngoài việc đọc tay từng luật sửa đổi. Ở quy mô hàng chục nghìn văn bản dẫn chiếu chồng chéo, rà tay vừa chậm vừa sót — và một căn cứ chết lọt lưới có thể làm hỏng cả một quyết định.</p>
+</section>
+
+<section class="band">
+  <h2>Ai cần</h2>
+  <div class="who">
+    <div class="card"><h3>Pháp chế cơ quan</h3><p>Rà tờ trình / dự thảo trước khi trình ký — bắt căn cứ chết mắt người bỏ sót.</p></div>
+    <div class="card"><h3>Văn phòng luật</h3><p>Soát hợp đồng, ý kiến pháp lý, bản kiến nghị dẫn hàng chục căn cứ.</p></div>
+    <div class="card"><h3>Tuân thủ doanh nghiệp</h3><p>Kiểm quy chế nội bộ còn dựa trên quy định đã hết hiệu lực hay không.</p></div>
+  </div>
+</section>
+
+<section class="band">
+  <h2>Cách giải — và vì sao tin được</h2>
+  <div class="how">
+    <div class="row"><div class="n">1</div><div><b>Point-in-time, không phán đúng-sai.</b><p>Hỏi "tại ngày X, quy định này còn hay đã mất" — một sự kiện tất định, không phải ý kiến.</p></div></div>
+    <div class="row"><div class="n">2</div><div><b>Tự kiểm được, không hộp đen.</b><p>Mỗi cờ "đã bãi bỏ" truy về đúng câu "Bãi bỏ khoản… Điều…" trong luật sửa đổi. Mở luật ra là thấy.</p></div></div>
+    <div class="row"><div class="n">3</div><div><b>Fail-closed (§0), không bịa.</b><p>Ngoài vùng phủ, hệ nói thẳng "chưa xác minh" — và không suy ra "an toàn". Đây là thứ một chatbot luật không cho được vì nó hay bịa.</p></div></div>
+  </div>
+</section>
+
+<section class="band">
+  <h2>Đo được, không tô hồng</h2>
+  <p>Hai vòng đánh giá <b>held-out liên tiếp</b>, cùng engine đóng băng <span class="hash">957103a7b989f995</span>, trên cơ quan chưa từng dùng, mỗi vòng chạy đúng một lần với mã băm ghi trước khi thu dữ liệu:</p>
+  <div class="metrics">
+    <div class="metric"><div class="big">100% · 95,8%</div><div class="lab">độ phủ phép sửa (2 vòng)</div><div class="sub">n = 12 · 14 điều</div></div>
+    <div class="metric"><div class="big">90,1% · 96,8%</div><div class="lab">gap đóng so với bản hợp nhất chính thức</div><div class="sub">cosine 0,89→0,99 · 0,81→0,99</div></div>
+  </div>
+  <p class="note">Mẫu còn nhỏ và số in-sample cao hơn <b>không</b> được trích. Chi tiết giao thức và giới hạn: <a href="/method" style="color:var(--accent)">trang Phương pháp</a>.</p>
+</section>
+
+<section class="band">
+  <h2>Ranh giới — sản phẩm biết mình là gì</h2>
+  <div class="grid2">
+    <div class="card2 do"><h3>✓ Làm được</h3><ul>
+      <li>Chỉ ra căn cứ đã bị bãi bỏ + luật nào, ngày nào</li>
+      <li>Tra một điều tại một mốc thời gian</li>
+      <li>Đọc toàn văn 159 luật, cảnh báo bẫy đổi số hiệu</li></ul></div>
+    <div class="card2 dont"><h3>✕ Không làm được</h3><ul>
+      <li>Không phán "đúng/sai/vi phạm"</li>
+      <li>Ngoài 164 luật phủ → "chưa xác minh", không phải "an toàn"</li>
+      <li>Không thay luật sư — đối chiếu văn bản gốc</li></ul></div>
+  </div>
+</section>
+
+<section class="band">
+  <h2>Một lõi, bốn cách dùng</h2>
+  <p>Cùng một engine đóng băng phục vụ qua bốn mặt tiền — cùng câu hỏi, cùng câu trả lời:</p>
+  <div class="surfaces">
+    <span class="chip">🌐 Web tra cứu</span>
+    <span class="chip">📝 Word add-in — rà ngay khi soạn</span>
+    <span class="chip">🔌 MCP server — cho trợ lý AI gọi</span>
+    <span class="chip">⚙ REST API — tích hợp hệ thống</span>
+  </div>
+</section>
+
+<div class="final">
+  <h2>Rà thử một đoạn văn bản của bạn</h2>
+  <p style="margin:0 auto 16px;color:var(--muted)">Dán một nghị định, hợp đồng, hay tờ trình — xem căn cứ nào đã chết trong vài giây.</p>
+  <a class="btn" href="/#checker" style="font-size:15px;padding:12px 24px">Mở công cụ →</a>
+</div>
+
+<div class="foot">
+  LexTempo · bản thử nghiệm nghiên cứu, không phải tư vấn pháp lý · luôn đối chiếu văn bản gốc · engine <span class="hash">957103a7b989f995</span>
+</div>
+</div>
+</body>
+</html>

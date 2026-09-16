@@ -87,7 +87,46 @@
   .framebar i{width:11px;height:11px;border-radius:50%;background:var(--hairline-strong);display:block}
   .framebar .url{margin-left:12px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--faint);
     background:var(--paper);border:1px solid var(--hairline);border-radius:6px;padding:3px 12px}
-  .frame video{display:block;width:100%;height:auto;background:#0b0b0b}
+  /* demo LexTempo (thay video — trung thực, đúng luồng sản phẩm) */
+  .frame .demo{background:var(--surface-2);padding:22px;display:flex;flex-direction:column;gap:15px}
+  .demo-doc{position:relative;background:var(--surface);border:1px solid var(--hairline);border-radius:12px;
+    padding:15px 17px;overflow:hidden}
+  .demo-doc-h{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--faint);margin-bottom:9px}
+  .demo-text{margin:0;font-size:clamp(13px,1.7vw,15.5px);line-height:2;color:var(--ink)}
+  .demo-text mark{background:transparent;color:var(--ink);border-bottom:2px solid var(--hairline-strong);
+    padding:1px 3px;border-radius:4px}
+  .demo-text .c1,.demo-text .c2{animation:flagDead 11s infinite both}
+  .demo-text .c3{animation:flagUnk 11s infinite both}
+  @keyframes flagDead{0%,28%{background:transparent;color:var(--ink);border-bottom-color:var(--hairline-strong)}
+    36%,90%{background:color-mix(in srgb,var(--accent) 15%,transparent);color:var(--accent);border-bottom-color:var(--accent)}
+    97%,100%{background:transparent;color:var(--ink);border-bottom-color:var(--hairline-strong)}}
+  @keyframes flagUnk{0%,28%{background:transparent;color:var(--ink);border-bottom-color:var(--hairline-strong)}
+    36%,90%{background:color-mix(in srgb,var(--amber) 18%,transparent);color:var(--amber);border-bottom-color:var(--amber)}
+    97%,100%{background:transparent;color:var(--ink);border-bottom-color:var(--hairline-strong)}}
+  .scanline{position:absolute;left:0;right:0;height:30px;top:-34px;pointer-events:none;
+    background:linear-gradient(color-mix(in srgb,var(--accent) 55%,transparent),transparent);
+    box-shadow:0 0 12px color-mix(in srgb,var(--accent) 40%,transparent);opacity:0;animation:scan 11s infinite}
+  @keyframes scan{0%,5%{top:-34px;opacity:0}9%{opacity:.9}27%{top:100%;opacity:.9}31%,100%{opacity:0;top:100%}}
+  .demo-res{display:flex;flex-direction:column;gap:8px}
+  .rescard{background:var(--surface);border:1px solid var(--hairline);border-left:3px solid var(--hairline);
+    border-radius:10px;padding:9px 13px;opacity:0;transform:translateY(9px);
+    animation:pop 11s infinite both;animation-delay:calc(var(--d) * .45s)}
+  .rescard.r-dead{border-left-color:var(--accent)} .rescard.r-unk{border-left-color:var(--amber)}
+  .rc-top{font-size:13.5px;display:flex;flex-wrap:wrap;align-items:center;gap:7px}
+  .rc-sub{font-size:12px;color:var(--muted);margin-top:3px;font-family:"IBM Plex Mono",monospace}
+  .badge{font-size:11px;font-weight:700;letter-spacing:.03em;padding:2px 8px;border-radius:20px;margin-left:auto}
+  .badge.dead{background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent)}
+  .badge.unk{background:color-mix(in srgb,var(--amber) 20%,transparent);color:var(--amber)}
+  .demo-sum{font-size:13px;color:var(--muted);text-align:center;padding-top:2px;
+    opacity:0;transform:translateY(9px);animation:pop 11s infinite both;animation-delay:calc(var(--d) * .45s)}
+  .demo-sum .acc{color:var(--accent)} .demo-sum .amb{color:var(--amber)} .demo-sum .ok{color:var(--ok)}
+  @keyframes pop{0%,31%{opacity:0;transform:translateY(9px)}40%,89%{opacity:1;transform:none}
+    97%,100%{opacity:0;transform:translateY(6px)}}
+  @media (prefers-reduced-motion:reduce){
+    .demo-text .c1,.demo-text .c2{background:color-mix(in srgb,var(--accent) 15%,transparent);color:var(--accent);border-bottom-color:var(--accent);animation:none}
+    .demo-text .c3{background:color-mix(in srgb,var(--amber) 18%,transparent);color:var(--amber);border-bottom-color:var(--amber);animation:none}
+    .scanline{display:none} .rescard,.demo-sum{opacity:1;transform:none;animation:none}
+  }
   /* sections */
   section{padding:56px 0}
   .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;
@@ -161,9 +200,28 @@
         <i></i><i></i><i></i>
         <span class="url">lextempo.vercel.app</span>
       </div>
-      <video autoplay muted loop playsinline preload="metadata" aria-label="Demo LexTempo rà căn cứ pháp lý">
-        <source src="/hero.mp4" type="video/mp4">
-      </video>
+      <div class="demo" role="img" aria-label="Minh họa: LexTempo rà một đoạn văn bản và đánh dấu căn cứ đã bị bãi bỏ, kèm luật và ngày bãi bỏ">
+        <div class="demo-doc">
+          <div class="demo-doc-h">📄 to-trinh-thu-hoi-von.docx</div>
+          <p class="demo-text">Căn cứ <mark class="c1">khoản 3 Điều 48 Luật Chứng khoán 54/2019/QH14</mark>; áp dụng <mark class="c2">Điều 23 Luật Chứng khoán 54/2019/QH14</mark> và <mark class="c3">Điều 12 Luật Xây dựng 50/2014/QH13</mark> để giải quyết hồ sơ.</p>
+          <div class="scanline" aria-hidden="true"></div>
+        </div>
+        <div class="demo-res">
+          <div class="rescard r-dead" style="--d:0">
+            <div class="rc-top"><b>khoản 3 Điều 48</b> · Luật Chứng khoán <span class="badge dead">ĐÃ BÃI BỎ · T1</span></div>
+            <div class="rc-sub">bởi 56/2024/QH15 · 01/01/2025 — tự kiểm được từ câu "Bãi bỏ…"</div>
+          </div>
+          <div class="rescard r-dead" style="--d:1">
+            <div class="rc-top"><b>Điều 23</b> · Luật Chứng khoán <span class="badge dead">ĐÃ BÃI BỎ · T1</span></div>
+            <div class="rc-sub">bởi 56/2024/QH15 · 01/01/2025 — tự kiểm được</div>
+          </div>
+          <div class="rescard r-unk" style="--d:2">
+            <div class="rc-top"><b>Điều 12</b> · Luật Xây dựng <span class="badge unk">CHƯA XÁC MINH</span></div>
+            <div class="rc-sub">KHÔNG kết luận "an toàn" — đối chiếu bản gốc</div>
+          </div>
+          <div class="demo-sum" style="--d:3"><b class="acc">2</b> đã bãi bỏ · <b class="amb">1</b> chưa xác minh · <b class="ok">0</b> báo động giả</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

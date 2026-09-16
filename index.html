@@ -80,6 +80,17 @@
   .stat.crit b{color:var(--t1)} .stat.ok b{color:var(--ok)}
   .stat span{font-size:12.5px;color:var(--muted);display:block;margin-top:2px;line-height:1.35}
 
+  .scope{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0 6px}
+  .scope-col{background:var(--surface);border:1px solid var(--hairline);border-radius:12px;
+    padding:14px 16px 12px;box-shadow:var(--shadow)}
+  .scope-do{border-top:3px solid var(--ok)} .scope-dont{border-top:3px solid var(--accent)}
+  .scope-h{font-family:"Noto Serif",serif;font-weight:700;font-size:15px;margin-bottom:8px}
+  .scope-do .scope-h{color:var(--ok)} .scope-dont .scope-h{color:var(--accent)}
+  .scope ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+  .scope li{font-size:13.5px;line-height:1.5;color:var(--muted)}
+  .scope li b{color:var(--ink)}
+  @media(max-width:640px){.scope{grid-template-columns:1fr}}
+
   section{padding:44px 0 6px;border-top:1px solid var(--hairline);margin-top:34px}
   section.first{border-top:0;margin-top:8px}
   h2{font-size:27px;line-height:1.2;margin:0 0 6px;font-weight:600}
@@ -276,7 +287,26 @@
 
     <div class="banner">
       <span class="ic" aria-hidden="true">⚠</span>
-      <p><b>Phủ theo tầng — đọc trước khi dùng.</b> Rà trích dẫn phủ <b id="b-laws">146</b> luật (8 đồ-thị đầy đủ có time-travel + phần lớn là <b>ảnh chụp VBHN hiện hành</b>, chưa đối chiếu eval) và <b>159 luật toàn văn</b> tra nguyên văn. Ngoài phạm vi, máy trả "chưa xác minh" — <b>"chưa xác minh" KHÔNG có nghĩa là an toàn</b>. Bản thử, không phải kết luận pháp lý; luôn đối chiếu văn bản gốc.</p>
+      <p><b>Phủ theo tầng — đọc trước khi dùng.</b> Rà trích dẫn phủ <b id="b-laws">164</b> luật (8 đồ-thị đầy đủ có time-travel + phần lớn là <b>ảnh chụp VBHN hiện hành</b>, chưa đối chiếu eval) và <b>159 luật toàn văn</b> tra nguyên văn. Ngoài phạm vi, máy trả "chưa xác minh" — <b>"chưa xác minh" KHÔNG có nghĩa là an toàn</b>. Bản thử, không phải kết luận pháp lý; luôn đối chiếu văn bản gốc.</p>
+    </div>
+
+    <div class="scope" aria-label="Ranh giới công cụ">
+      <div class="scope-col scope-do">
+        <div class="scope-h">✓ Làm được</div>
+        <ul>
+          <li>Rà một đoạn văn bản, chỉ ra điều/khoản/điểm đã <b>bị bãi bỏ</b> + căn cứ (luật nào, ngày nào)</li>
+          <li>Tra một điều luật <b>tại một mốc thời gian</b> — nó nói gì ở đúng ngày đó (point-in-time)</li>
+          <li>Đọc <b>toàn văn 159 luật</b>, cảnh báo bẫy "số hiệu luật đã bị thay bản khác"</li>
+        </ul>
+      </div>
+      <div class="scope-col scope-dont">
+        <div class="scope-h">✕ Không làm được</div>
+        <ul>
+          <li><b>Không phán "đúng/sai/vi phạm"</b> — chỉ nêu sự kiện còn/mất hiệu lực</li>
+          <li>Không phủ mọi văn bản: ngoài 164 luật → "chưa xác minh" (<b>không phải "an toàn"</b>)</li>
+          <li>Không thay luật sư — bản thử, luôn <b>đối chiếu văn bản gốc</b></li>
+        </ul>
+      </div>
     </div>
 
     <div class="stakes" id="stakes"></div>

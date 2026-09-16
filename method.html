@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LexTempo — Phương pháp & Kết quả</title>
+<meta name="description" content="Giao thức held-out, kết quả đo được và giới hạn trung thực của engine rà chéo trích dẫn luật LexTempo.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --paper:#FAF8F3; --surface:#FFFFFF; --surface-2:#F4EFE7;
+    --ink:#241C1A; --muted:#6B5F5A; --faint:#9A8E86;
+    --hairline:#E7DED3; --hairline-strong:#D8CCBE;
+    --accent:#9A2B24; --accent-soft:#B9564C;
+    --t1:#9A2B24; --t2:#A9761A; --t3:#5E6672; --ok:#2E6B4F; --warn:#A9761A;
+    --shadow:0 1px 2px rgba(40,26,20,.05), 0 8px 30px rgba(40,26,20,.06);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#15110E; --surface:#1E1813; --surface-2:#241D17;
+      --ink:#F1E8E0; --muted:#AC9F95; --faint:#7C7167;
+      --hairline:#332A21; --hairline-strong:#413628;
+      --accent:#DE7C71; --accent-soft:#C96256;
+      --t1:#DE7C71; --t2:#D6A24A; --t3:#97A0AD; --ok:#6EB994; --warn:#D6A24A;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.36);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#15110E; --surface:#1E1813; --surface-2:#241D17;
+    --ink:#F1E8E0; --muted:#AC9F95; --faint:#7C7167;
+    --hairline:#332A21; --hairline-strong:#413628;
+    --accent:#DE7C71; --accent-soft:#C96256;
+    --t1:#DE7C71; --t2:#D6A24A; --t3:#97A0AD; --ok:#6EB994; --warn:#D6A24A;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.36);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Noto Sans",system-ui,-apple-system,sans-serif;line-height:1.6;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px 80px}
+  nav{border-bottom:1px solid var(--hairline);background:var(--paper);position:sticky;top:0;z-index:5}
+  .navin{max-width:760px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px}
+  .brand{font-family:"Noto Serif",serif;font-weight:700;font-size:18px;text-decoration:none;color:var(--ink)}
+  .brand span{color:var(--accent)}
+  .navin a.back{margin-left:auto;font-size:14px;color:var(--muted);text-decoration:none}
+  .navin a.back:hover{color:var(--accent)}
+  header{padding:48px 0 8px}
+  .kick{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+  h1{font-family:"Noto Serif",serif;font-weight:700;font-size:38px;line-height:1.12;
+    margin:0 0 14px;text-wrap:balance}
+  .lede{font-size:17px;color:var(--muted);max-width:60ch;margin:0}
+  h2{font-family:"Noto Serif",serif;font-weight:700;font-size:23px;margin:44px 0 10px;
+    padding-top:26px;border-top:1px solid var(--hairline);text-wrap:balance}
+  h2:first-of-type{border-top:0}
+  h3{font-family:"Noto Serif",serif;font-weight:600;font-size:16px;margin:22px 0 6px}
+  p{margin:0 0 14px;max-width:64ch}
+  b{color:var(--ink)}
+  ul{margin:0 0 14px;padding-left:20px;display:flex;flex-direction:column;gap:7px}
+  li{max-width:62ch}
+  code,.mono{font-family:"IBM Plex Mono",monospace;font-size:.9em}
+  .hash{background:var(--surface-2);border:1px solid var(--hairline);border-radius:5px;
+    padding:1px 6px;font-size:.85em}
+  .tblwrap{overflow-x:auto;margin:16px 0 6px}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--hairline)}
+  th{font-size:12px;letter-spacing:.03em;text-transform:uppercase;color:var(--faint);font-weight:600}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr.tot td{font-weight:700;border-top:2px solid var(--hairline-strong);border-bottom:0}
+  .pass{color:var(--ok);font-weight:600}
+  .callout{background:var(--surface-2);border:1px solid var(--hairline-strong);
+    border-left:4px solid var(--warn);border-radius:10px;padding:14px 16px;margin:18px 0}
+  .callout p{margin:0}
+  .callout.crit{border-left-color:var(--accent)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+  .card{background:var(--surface);border:1px solid var(--hairline);border-radius:12px;
+    padding:14px 16px;box-shadow:var(--shadow)}
+  .card.do{border-top:3px solid var(--ok)} .card.dont{border-top:3px solid var(--accent)}
+  .card h3{margin-top:0}
+  .card.do h3{color:var(--ok)} .card.dont h3{color:var(--accent)}
+  .foot{margin-top:40px;padding-top:20px;border-top:1px solid var(--hairline);
+    font-size:13px;color:var(--faint)}
+  @media(max-width:600px){h1{font-size:30px}.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><div class="navin">
+  <a class="brand" href="/">Lex<span>Tempo</span></a>
+  <a class="back" href="/">← Về công cụ</a>
+</div></nav>
+
+<div class="wrap">
+<header>
+  <p class="kick">Phương pháp & Kết quả</p>
+  <h1>Đo được, tự kiểm được, không tô hồng</h1>
+  <p class="lede">LexTempo là engine <b>tất định</b> rà chéo trích dẫn căn cứ pháp lý theo thời gian. Trang này ghi lại giao thức đánh giá held-out, con số đo được, và — quan trọng ngang nhau — những gì hệ <b>không</b> tuyên bố.</p>
+</header>
+
+<h2>Bài toán</h2>
+<p>Một nghị định hay thông tư dẫn "khoản 3 Điều 48 Luật Chứng khoán". Vài năm sau, một luật sửa đổi bãi bỏ đúng khoản đó. Văn bản dẫn chiếu vẫn còn nguyên câu chữ, nhưng <b>căn cứ đã mất hiệu lực</b> — và không có cách nào thấy điều đó ngoài việc đọc thủ công từng luật sửa đổi. Ở quy mô hàng chục nghìn văn bản, rà tay là không khả thi.</p>
+
+<h2>Cách tiếp cận</h2>
+<ul>
+  <li><b>Point-in-time.</b> Không hỏi "điều này đúng hay sai", mà hỏi "tại ngày X, quy định này còn hay đã mất" — một sự kiện tất định.</li>
+  <li><b>Tự kiểm được.</b> Mỗi kết luận "đã bãi bỏ" truy được về đúng câu "Bãi bỏ khoản… Điều…" trong luật sửa đổi. Người dùng mở luật ra là thấy; hệ không phải "hộp đen".</li>
+  <li><b>Fail-closed (§0).</b> Ngoài vùng phủ, hệ trả "chưa xác minh" — và <b>"chưa xác minh" KHÔNG có nghĩa là còn hiệu lực</b>. Hệ không bao giờ phán "vi phạm/trái luật".</li>
+  <li><b>Engine đóng băng.</b> Lõi phân tích khóa ở một mã băm cố định; mọi thay đổi chỉ ở cấu hình và dữ liệu, không đụng lõi — nên kết quả tái lập được.</li>
+</ul>
+
+<h2>Giao thức held-out</h2>
+<p>Rủi ro lớn nhất của loại engine này là <b>quá khớp dữ liệu đã thấy</b> (in-sample). Để loại rủi ro đó, đánh giá theo giao thức cam-kết-trước:</p>
+<ul>
+  <li>Mã băm engine <span class="hash">957103a7b989f995</span> được <b>ghi lại TRƯỚC</b> khi thu dữ liệu vòng đánh giá.</li>
+  <li>Dữ liệu là văn bản của các <b>cơ quan chưa từng dùng</b> trong quá trình phát triển.</li>
+  <li>Mỗi vòng chạy <b>đúng một lần</b> — không tinh chỉnh rồi chạy lại để chọn số đẹp.</li>
+  <li>Ba tiêu chí phải đạt <b>đồng thời</b>: (1) độ phủ cú pháp phép sửa ≥90%; (2) gap đóng ≥90%; (3) no-harm 100% — không một điều nào bị làm tệ hơn cơ sở.</li>
+</ul>
+<p><b>Cơ sở (baseline)</b> = độ tương đồng cosine giữa văn bản gốc chưa áp phép sửa và bản hợp nhất chính thức (VBHN). <b>Engine</b> = độ tương đồng sau khi áp phép sửa. <b>Gap đóng</b> = phần khoảng cách tới 1,0 mà engine lấp được: (engine − cơ sở) / (1 − cơ sở).</p>
+
+<h2>Kết quả</h2>
+<p>Hai vòng held-out <b>liên tiếp</b>, cùng engine đóng băng, mỗi vòng đạt đồng thời cả ba tiêu chí:</p>
+<div class="tblwrap">
+<table>
+  <thead><tr>
+    <th>Vòng</th><th class="num">n điều</th><th class="num">Độ phủ</th>
+    <th class="num">Cơ sở</th><th class="num">Engine</th><th class="num">Gap đóng</th><th>3 tiêu chí</th>
+  </tr></thead>
+  <tbody>
+    <tr><td>Vòng 11 <span class="mono" style="color:var(--faint)">(trộn định dạng)</span></td>
+      <td class="num">12</td><td class="num">100%</td><td class="num">0,8865</td>
+      <td class="num">0,9888</td><td class="num">90,1%</td><td class="pass">3/3 ✓</td></tr>
+    <tr><td>Vòng 12 <span class="mono" style="color:var(--faint)">(hộ tịch + PCCC)</span></td>
+      <td class="num">14</td><td class="num">95,8%</td><td class="num">0,8085</td>
+      <td class="num">0,9938</td><td class="num">96,8%</td><td class="pass">3/3 ✓</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Hai vòng dùng cùng mã băm <span class="hash">957103a7b989f995</span>, trên 4 cơ quan chưa từng xuất hiện trong phát triển. Đây là số <b>được phép trích dẫn ngoài</b> cho dự án.</p>
+
+<h2>Đọc số cho đúng — giới hạn</h2>
+<div class="callout crit"><p>Con số in-sample cao hơn (≈0,9966 trên tập đã thấy) <b>không</b> là tuyên bố của dự án. Chỉ số held-out ở trên mới là thứ được trích. Trộn hai loại là tô hồng.</p></div>
+<ul>
+  <li><b>Mẫu nhỏ:</b> n = 12 và 14 điều. Đủ để chứng minh nguyên lý, chưa đủ để nói "ổn định thống kê".</li>
+  <li><b>Gap 90,1% sát ngưỡng:</b> không dư dả. Một họ văn bản nặng hơn trong trung bình là có thể trượt.</li>
+  <li><b>Vùng yếu:</b> văn bản soạn thảo kiểu cũ (thập niên 2000, câu dài, ít chia khoản) cho điểm thấp nhất — engine yếu ở đó.</li>
+  <li><b>Một lớp phép sửa chưa xử được:</b> "Bổ sung Mục… vào Chương" (chèn nguyên một container) — ghi nhận, chưa vá, tính vào phần chưa phủ.</li>
+</ul>
+
+<h2>Ranh giới sản phẩm</h2>
+<div class="grid2">
+  <div class="card do"><h3>✓ Làm được</h3>
+    <ul><li>Chỉ ra điều/khoản/điểm đã bị bãi bỏ + căn cứ (luật nào, ngày nào)</li>
+    <li>Tra một điều tại một mốc thời gian</li>
+    <li>Đọc toàn văn 159 luật, cảnh báo bẫy số hiệu đã bị thay</li></ul></div>
+  <div class="card dont"><h3>✕ Không làm được</h3>
+    <ul><li>Không phán "đúng/sai/vi phạm"</li>
+    <li>Ngoài 164 luật phủ → "chưa xác minh", không phải "an toàn"</li>
+    <li>Không thay luật sư — luôn đối chiếu văn bản gốc</li></ul></div>
+</div>
+
+<h2>Tái lập</h2>
+<p>Engine đóng băng ở <span class="hash">957103a7b989f995</span> (SHA-256, 16 ký tự đầu). Mọi phản hồi của công cụ và API đều kèm mã băm này để đối chiếu. Bốn mặt tiền — web, Word add-in, MCP server, REST API — gọi cùng một lõi, nên cùng một câu hỏi cho cùng một câu trả lời.</p>
+
+<div class="foot">
+  LexTempo · bản thử nghiệm nghiên cứu, không phải tư vấn pháp lý · luôn đối chiếu văn bản gốc.
+</div>
+</div>
+</body>
+</html>

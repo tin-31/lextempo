@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+           xsi:type="TaskPaneApp">
+  <Id>a3577e85-12e5-490c-bc29-81220728d116</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>LexTempo</ProviderName>
+  <DefaultLocale>vi-VN</DefaultLocale>
+  <DisplayName DefaultValue="LexTempo — Rà căn cứ"/>
+  <Description DefaultValue="Rà trích dẫn căn cứ pháp lý ngay trong văn bản Word: cảnh báo điều/khoản/điểm đã bị bãi bỏ, kèm căn cứ tự kiểm."/>
+  <IconUrl DefaultValue="https://lextempo-git-main-tin-31s-projects.vercel.app/addin/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://lextempo-git-main-tin-31s-projects.vercel.app/addin/icon-80.png"/>
+  <SupportUrl DefaultValue="https://lextempo-git-main-tin-31s-projects.vercel.app/addin/"/>
+  <AppDomains>
+    <AppDomain>https://lextempo-git-main-tin-31s-projects.vercel.app</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Document"/>
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://lextempo-git-main-tin-31s-projects.vercel.app/addin/taskpane"/>
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Document">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="app.title"/>
+            <Description resid="app.desc"/>
+          </GetStarted>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="lextempo.group">
+                <Label resid="group.label"/>
+                <Icon>
+                  <bt:Image size="16" resid="icon.16"/>
+                  <bt:Image size="32" resid="icon.32"/>
+                  <bt:Image size="80" resid="icon.80"/>
+                </Icon>
+                <Control xsi:type="Button" id="lextempo.open">
+                  <Label resid="btn.label"/>
+                  <Supertip>
+                    <Title resid="btn.label"/>
+                    <Description resid="btn.tip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="icon.16"/>
+                    <bt:Image size="32" resid="icon.32"/>
+                    <bt:Image size="80" resid="icon.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>lextempo.taskpane</TaskpaneId>
+                    <SourceLocation resid="taskpane.url"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="icon.16" DefaultValue="https://lextempo-git-main-tin-31s-projects.vercel.app/addin/icon-16.png"/>
+        <bt:Image id="icon.32" DefaultValue="https://lextempo-git-main-tin-31s-projects.vercel.app/addin/icon-32.png"/>
+        <bt:Image id="icon.80" DefaultValue="https://lextempo-git-main-tin-31s-projects.vercel.app/addin/icon-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="taskpane.url" DefaultValue="https://lextempo-git-main-tin-31s-projects.vercel.app/addin/taskpane"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="app.title" DefaultValue="LexTempo — Rà căn cứ"/>
+        <bt:String id="group.label" DefaultValue="LexTempo"/>
+        <bt:String id="btn.label" DefaultValue="Rà căn cứ"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="app.desc" DefaultValue="Rà trích dẫn căn cứ pháp lý trong văn bản; cảnh báo điều/khoản/điểm đã bị bãi bỏ."/>
+        <bt:String id="btn.tip" DefaultValue="Mở bảng rà: quét trích dẫn và đánh dấu căn cứ hết hiệu lực."/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>

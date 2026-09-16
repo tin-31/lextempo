@@ -10,14 +10,14 @@
   "T3": 85,
   "distinct": 5,
   "false_positives": 0,
-  "index_entries": 103,
+  "index_entries": 107,
   "laws": 164,
-  "amending": 6,
+  "amending": 7,
   "graph_full": 8,
   "snapshot": 144,
   "t1_targets": 14,
   "library": 159,
-  "out_of_graph": 18021,
+  "out_of_graph": 17850,
   "out_covered_by_index": 21
  },
  "orphans": [
@@ -299,6 +299,15 @@
    "art": "12",
    "cl": "2",
    "pt": "b",
+   "by": "56/2024/QH15",
+   "on": "2025-01-01",
+   "name": "Luật Dự trữ quốc gia"
+  },
+  {
+   "law": "22/2012/QH13",
+   "art": "13",
+   "cl": "1",
+   "pt": "d",
    "by": "56/2024/QH15",
    "on": "2025-01-01",
    "name": "Luật Dự trữ quốc gia"
@@ -1138,6 +1147,33 @@
    "pt": null,
    "by": "62/2020/QH14",
    "on": "2021-01-01",
+   "name": "Luật Xây dựng"
+  },
+  {
+   "law": "50/2014/QH13",
+   "art": "3",
+   "cl": "45",
+   "pt": null,
+   "by": "35/2018/QH14",
+   "on": "2019-01-01",
+   "name": "Luật Xây dựng"
+  },
+  {
+   "law": "50/2014/QH13",
+   "art": "41",
+   "cl": "5",
+   "pt": null,
+   "by": "35/2018/QH14",
+   "on": "2019-01-01",
+   "name": "Luật Xây dựng"
+  },
+  {
+   "law": "50/2014/QH13",
+   "art": "47",
+   "cl": null,
+   "pt": null,
+   "by": "35/2018/QH14",
+   "on": "2019-01-01",
    "name": "Luật Xây dựng"
   }
  ],
@@ -3721,7 +3757,6 @@
    "n": 36
   }
  ],
- "coverage_note": "Phủ theo TẦNG: 8 đồ-thị + 144 ảnh-chụp-VBHN + 14 T1-đích. Thư viện 159 luật.",
  "superseded": [
   {
    "old": "61/2020/QH14",
@@ -3729,5 +3764,6 @@
    "on": "2026-03-01",
    "note": "Luật này có hiệu lực thi hành từ ngày 01/3/2026 (trừ vài điều 01/01/2026 và 01/7/2026); Luật Đầu tư 61/2020 hết hiệu lực kể từ ngày Luật này có hiệu lực, trừ Đi"
   }
- ]
+ ],
+ "coverage_note": "Phủ theo TẦNG: 8 luật đồ-thị-đầy-đủ (time-travel) + 144 ảnh-chụp-VBHN (hiện hành, chưa đối chiếu eval) + 14 luật đích chỉ-mục-bãi-bỏ. Thư viện toàn văn 159 luật."
 }

@@ -5,12 +5,20 @@
   "docs": 437,
   "citations": 49874,
   "T0": 3,
-  "T1": 19,
+  "T1": 18,
   "T2": 68,
   "T3": 85,
-  "distinct": 5,
-  "false_positives": 0,
-  "index_entries": 109,
+  "distinct": 4,
+  "index_entries": 103,
+  "T1_live": 1,
+  "T1_decree_checked": 18,
+  "index_verified": {
+   "confirmed": 103,
+   "total": 103,
+   "removed": 6,
+   "known_fn": 5,
+   "on": "2026-10-06"
+  },
   "laws": 164,
   "amending": 9,
   "graph_full": 8,
@@ -18,7 +26,7 @@
   "t1_targets": 15,
   "library": 159,
   "out_of_graph": 17969,
-  "out_covered_by_index": 21
+  "out_covered_by_index": 20
  },
  "orphans": [
   {
@@ -29,7 +37,12 @@
    "target_title": "Luật Quản lý thuế",
    "by": "56/2024/QH15",
    "on": "2025-01-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "252/2026/NĐ-CP",
+    "on": "2026-07-01"
+   }
   },
   {
    "citing": "24/2024/NĐ-CP",
@@ -39,7 +52,12 @@
    "target_title": "Luật Đấu thầu",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "214/2025/NĐ-CP",
+    "on": "2025-08-04"
+   }
   },
   {
    "citing": "24/2024/NĐ-CP",
@@ -49,7 +67,12 @@
    "target_title": "Luật Đấu thầu",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "214/2025/NĐ-CP",
+    "on": "2025-08-04"
+   }
   },
   {
    "citing": "24/2024/NĐ-CP",
@@ -59,7 +82,12 @@
    "target_title": "Luật Đấu thầu",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "214/2025/NĐ-CP",
+    "on": "2025-08-04"
+   }
   },
   {
    "citing": "85/2025/NĐ-CP",
@@ -69,7 +97,12 @@
    "target_title": "Luật Đầu tư công",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "in_force",
+    "by": null,
+    "on": "2025-04-08"
+   }
   },
   {
    "citing": "115/2024/NĐ-CP",
@@ -79,7 +112,12 @@
    "target_title": "Luật Đấu thầu",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "274/2026/NĐ-CP",
+    "on": "2026-08-21"
+   }
   },
   {
    "citing": "23/2024/NĐ-CP",
@@ -89,7 +127,12 @@
    "target_title": "Luật Đấu thầu",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "274/2026/NĐ-CP",
+    "on": "2026-08-21"
+   }
   },
   {
    "citing": "171/2024/NĐ-CP",
@@ -99,7 +142,12 @@
    "target_title": "Luật Quản lý, sử dụng tài sản công",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "amended",
+    "by": "286/2025/NĐ-CP",
+    "on": "2025-11-03"
+   }
   },
   {
    "citing": "171/2024/NĐ-CP",
@@ -109,7 +157,12 @@
    "target_title": "Luật Quản lý, sử dụng tài sản công",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "amended",
+    "by": "286/2025/NĐ-CP",
+    "on": "2025-11-03"
+   }
   },
   {
    "citing": "171/2024/NĐ-CP",
@@ -119,7 +172,12 @@
    "target_title": "Luật Quản lý, sử dụng tài sản công",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "amended",
+    "by": "286/2025/NĐ-CP",
+    "on": "2025-11-03"
+   }
   },
   {
    "citing": "171/2024/NĐ-CP",
@@ -129,7 +187,12 @@
    "target_title": "Luật Quản lý, sử dụng tài sản công",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "amended",
+    "by": "286/2025/NĐ-CP",
+    "on": "2025-11-03"
+   }
   },
   {
    "citing": "171/2024/NĐ-CP",
@@ -139,7 +202,12 @@
    "target_title": "Luật Quản lý, sử dụng tài sản công",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "amended",
+    "by": "286/2025/NĐ-CP",
+    "on": "2025-11-03"
+   }
   },
   {
    "citing": "151/2017/NĐ-CP",
@@ -149,7 +217,12 @@
    "target_title": "Luật Quản lý, sử dụng tài sản công",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "186/2025/NĐ-CP",
+    "on": "2025-07-01"
+   }
   },
   {
    "citing": "151/2017/NĐ-CP",
@@ -159,17 +232,12 @@
    "target_title": "Luật Quản lý, sử dụng tài sản công",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
-  },
-  {
-   "citing": "37/2019/NĐ-CP",
-   "citing_title": "Nghị định quy định chi tiết Luật Quy hoạch",
-   "location": "khoản 1 Điều 31",
-   "target": "21/2017/QH14",
-   "target_title": "Luật Quy hoạch",
-   "by": "57/2024/QH15",
-   "on": "2025-01-15",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "186/2025/NĐ-CP",
+    "on": "2025-07-01"
+   }
   },
   {
    "citing": "114/2024/NĐ-CP",
@@ -179,7 +247,12 @@
    "target_title": "Luật Quản lý, sử dụng tài sản công",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "186/2025/NĐ-CP",
+    "on": "2025-07-01"
+   }
   },
   {
    "citing": "114/2024/NĐ-CP",
@@ -189,7 +262,12 @@
    "target_title": "Luật Quản lý, sử dụng tài sản công",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "186/2025/NĐ-CP",
+    "on": "2025-07-01"
+   }
   },
   {
    "citing": "114/2024/NĐ-CP",
@@ -199,7 +277,12 @@
    "target_title": "Luật Quản lý, sử dụng tài sản công",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "186/2025/NĐ-CP",
+    "on": "2025-07-01"
+   }
   },
   {
    "citing": "114/2024/NĐ-CP",
@@ -209,7 +292,12 @@
    "target_title": "Luật Quản lý, sử dụng tài sản công",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
-   "count": 1
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "186/2025/NĐ-CP",
+    "on": "2025-07-01"
+   }
   }
  ],
  "repeals": [
@@ -353,33 +441,6 @@
    "art": "16",
    "cl": "6",
    "pt": "k",
-   "by": "90/2025/QH15",
-   "on": "2025-07-01",
-   "name": "Luật Đấu thầu"
-  },
-  {
-   "law": "22/2023/QH15",
-   "art": "17",
-   "cl": "4",
-   "pt": "d",
-   "by": "90/2025/QH15",
-   "on": "2025-07-01",
-   "name": "Luật Đấu thầu"
-  },
-  {
-   "law": "22/2023/QH15",
-   "art": "17",
-   "cl": "4",
-   "pt": "t",
-   "by": "90/2025/QH15",
-   "on": "2025-07-01",
-   "name": "Luật Đấu thầu"
-  },
-  {
-   "law": "22/2023/QH15",
-   "art": "17",
-   "cl": "4",
-   "pt": "i",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
    "name": "Luật Đấu thầu"
@@ -560,15 +621,6 @@
    "art": "84",
    "cl": "5",
    "pt": null,
-   "by": "90/2025/QH15",
-   "on": "2025-07-01",
-   "name": "Luật Đầu tư công"
-  },
-  {
-   "law": "58/2024/QH15",
-   "art": "89",
-   "cl": "4",
-   "pt": "b",
    "by": "90/2025/QH15",
    "on": "2025-07-01",
    "name": "Luật Đầu tư công"
@@ -925,15 +977,6 @@
    "name": "Luật Quy hoạch"
   },
   {
-   "law": "21/2017/QH14",
-   "art": "31",
-   "cl": null,
-   "pt": null,
-   "by": "57/2024/QH15",
-   "on": "2025-01-15",
-   "name": "Luật Quy hoạch"
-  },
-  {
    "law": "64/2020/QH14",
    "art": "13",
    "cl": "2",
@@ -1109,15 +1152,6 @@
    "art": "72",
    "cl": "2",
    "pt": "d",
-   "by": "62/2020/QH14",
-   "on": "2021-01-01",
-   "name": "Luật Xây dựng"
-  },
-  {
-   "law": "50/2014/QH13",
-   "art": "2",
-   "cl": "1",
-   "pt": null,
    "by": "62/2020/QH14",
    "on": "2021-01-01",
    "name": "Luật Xây dựng"
@@ -3785,6 +3819,18 @@
    "new": "143/2025/QH15",
    "on": "2026-03-01",
    "note": "Luật này có hiệu lực thi hành từ ngày 01/3/2026 (trừ vài điều 01/01/2026 và 01/7/2026); Luật Đầu tư 61/2020 hết hiệu lực kể từ ngày Luật này có hiệu lực, trừ Đi"
+  },
+  {
+   "old": "38/2019/QH14",
+   "new": "108/2025/QH15",
+   "on": "2026-07-01",
+   "note": "108/2025 Điều 52 khoản 3: \"Luật Quản lý thuế số 38/2019/QH14 … hết hiệu lực thi hành kể từ ngày Luật này có hiệu lực thi hành [01/7/2026], trừ quy định tại khoả"
+  },
+  {
+   "old": "21/2017/QH14",
+   "new": "112/2025/QH15",
+   "on": "2026-03-01",
+   "note": "112/2025 Điều 57 khoản 6: \"Luật Quy hoạch số 21/2017/QH15 [sic — nguồn ghi QH15] hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành [01/3/2026], trừ các quy "
   }
  ],
  "coverage_note": "Phủ theo TẦNG: 8 luật đồ-thị-đầy-đủ (time-travel) + 143 ảnh-chụp-VBHN (hiện hành, chưa đối chiếu eval) + 15 luật đích chỉ-mục-bãi-bỏ. Thư viện toàn văn 159 luật."

@@ -25,7 +25,7 @@
   "snapshot": 143,
   "t1_targets": 15,
   "library": 159,
-  "out_of_graph": 17969,
+  "out_of_graph": 17989,
   "out_covered_by_index": 20
  },
  "orphans": [
@@ -3818,19 +3818,137 @@
    "old": "61/2020/QH14",
    "new": "143/2025/QH15",
    "on": "2026-03-01",
-   "note": "Luật này có hiệu lực thi hành từ ngày 01/3/2026 (trừ vài điều 01/01/2026 và 01/7/2026); Luật Đầu tư 61/2020 hết hiệu lực kể từ ngày Luật này có hiệu lực, trừ Đi"
+   "exc": null,
+   "kind": "law",
+   "note": "143/2025/QH15 Điều 51 khoản 4: “4. Luật Đầu tư số 61/2020/QH14 đã được sửa đổi, bổ sung một số điều theo Luật số 72/2020/QH14, Luật số 03/2022/QH15, Luật số 05/2022/QH15, Luật số 08/2022/QH15, Luật số 09/2022/QH15, Luật số 20/2023/QH15, Luật số 26/2023”"
   },
   {
    "old": "38/2019/QH14",
    "new": "108/2025/QH15",
    "on": "2026-07-01",
-   "note": "108/2025 Điều 52 khoản 3: \"Luật Quản lý thuế số 38/2019/QH14 … hết hiệu lực thi hành kể từ ngày Luật này có hiệu lực thi hành [01/7/2026], trừ quy định tại khoả"
+   "exc": null,
+   "kind": "law",
+   "note": "108/2025/QH15 Điều 52 khoản 3: “3. Luật Quản lý thuế số 38/2019/QH14 đã được sửa đổi, bổ sung một số điều theo Luật số 56/2024/QH15 (sau đây gọi là Luật Quản lý thuế số 38/2019/QH14) hết hiệu lực thi hành kể từ ngày Luật này có hiệu lực thi hành, trừ ”"
   },
   {
    "old": "21/2017/QH14",
    "new": "112/2025/QH15",
    "on": "2026-03-01",
-   "note": "112/2025 Điều 57 khoản 6: \"Luật Quy hoạch số 21/2017/QH15 [sic — nguồn ghi QH15] hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành [01/3/2026], trừ các quy "
+   "exc": null,
+   "kind": "law",
+   "note": "112/2025/QH15 Điều 57 khoản 6: “6. Luật Quy hoạch số 21/2017/QH15 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành, trừ các quy định có liên quan tại Điều 58 của Luật này.”"
+  },
+  {
+   "old": "69/2014/QH13",
+   "new": "68/2025/QH15",
+   "on": "2025-08-01",
+   "exc": "các trường hợp chuyển tiếp tại Điều 59 Luật 68/2025",
+   "kind": "law",
+   "note": "68/2025/QH15 Điều 58 khoản 3: “3. Luật Quản lý, sử dụng vốn nhà nước đầu tư vào sản xuất, kinh doanh tại doanh nghiệp số 69/2014/QH13 đã được sửa đổi, bổ sung một số điều theo Luật số 35/2018/QH14 (sau đây gọi là Luật số 69/2014/QH13) hết hiệu lực kể ”"
+  },
+  {
+   "old": "41/2009/QH12",
+   "new": "24/2023/QH15",
+   "on": "2024-07-01",
+   "exc": "khoản 4 Điều 73 Luật 24/2023",
+   "kind": "law",
+   "note": "24/2023/QH15 Điều 72 khoản 2: “2. Luật Viễn thông số 41/2009/QH12 đã được sửa đổi, bổ sung một số điều theo Luật số 21/2017/QH14 và Luật số 23/2018/QH14 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành, trừ trường hợp quy định tại khoản 4 Điều 73”"
+  },
+  {
+   "old": "40/2009/QH12",
+   "new": "15/2023/QH15",
+   "on": "2024-01-01",
+   "exc": null,
+   "kind": "law",
+   "note": "15/2023/QH15 Điều 120 khoản 2: “2. Luật Khám bệnh, chữa bệnh số 40/2009/QH12 đã được sửa đổi, bổ sung một số điều theo Luật số 21/2017/QH14 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành.”"
+  },
+  {
+   "old": "59/2014/QH13",
+   "new": "26/2023/QH15",
+   "on": "2024-07-01",
+   "exc": null,
+   "kind": "law",
+   "note": "26/2023/QH15 Điều 45 khoản 3: “3. Luật Căn cước công dân số 59/2014/QH13 đã được sửa đổi, bổ sung một số điều theo Luật số 68/2020/QH14 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành.”"
+  },
+  {
+   "old": "65/2014/QH13",
+   "new": "27/2023/QH15",
+   "on": "2024-08-01",
+   "exc": "điểm b k1; điểm a, c, đ, e, g k2; k3; điểm a–e k5 Điều 198 Luật 27/2023",
+   "kind": "law",
+   "note": "27/2023/QH15 Điều 197 khoản 2: “2. Luật Nhà ở số 65/2014/QH13 đã được sửa đổi, bổ sung một số điều theo Luật số 40/2019/QH14, Luật số 61/2020/QH14, Luật số 62/2020/QH14, Luật số 64/2020/QH14 và Luật số 03/2022/QH15 hết hiệu lực kể từ ngày Luật này có h”"
+  },
+  {
+   "old": "30/2009/QH12",
+   "new": "47/2024/QH15",
+   "on": "2025-07-01",
+   "exc": null,
+   "kind": "law",
+   "note": "47/2024/QH15 Điều 58 khoản 2: “2. Luật Quy hoạch đô thị số 30/2009/QH12 đã được sửa đổi, bổ sung một số điều theo Luật số 77/2015/QH13, Luật số 35/2018/QH14, Luật số 40/2019/QH14, Luật số 61/2020/QH14 và Điều 29 của Luật số 35/2018/QH14 hết hiệu lực k”"
+  },
+  {
+   "old": "76/2015/QH13",
+   "new": "63/2025/QH15",
+   "on": "2025-03-01",
+   "exc": null,
+   "kind": "law",
+   "note": "63/2025/QH15 Điều 31 khoản 2: “2. Luật Tổ chức Chính phủ số 76/2015/QH13 đã được sửa đổi, bổ sung một số điều theo Luật số 47/2019/QH14 và Luật số 20/2023/QH15 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành.”"
+  },
+  {
+   "old": "14/2008/QH12",
+   "new": "67/2025/QH15",
+   "on": "2025-10-01",
+   "exc": "áp dụng từ kỳ tính thuế năm 2025 (khoản 1 Điều 19)",
+   "kind": "law",
+   "note": "67/2025/QH15 Điều 19 khoản 2: “2. Luật Thuế thu nhập doanh nghiệp số 14/2008/QH12 đã được sửa đổi, bổ sung một số điều theo Luật số 32/2013/QH13, Luật số 71/2014/QH13, Luật số 61/2020/QH14, Luật số 12/2022/QH15 và Luật số 15/2023/QH15 hết hiệu lực kể ”"
+  },
+  {
+   "old": "38/2013/QH13",
+   "new": "74/2025/QH15",
+   "on": "2026-01-01",
+   "exc": "khoản 1, 2, 3 Điều 55 Luật 74/2025",
+   "kind": "law",
+   "note": "74/2025/QH15 Điều 54 khoản 2: “2. Luật Việc làm số 38/2013/QH13 đã được sửa đổi, bổ sung một số điều theo Luật số 41/2024/QH15 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành, trừ trường hợp quy định tại các khoản 1, 2 và 3 Điều 55 của Luật này.”"
+  },
+  {
+   "old": "06/2017/QH14",
+   "new": "95/2025/QH15",
+   "on": "2026-01-01",
+   "exc": "Điều 59 Luật 95/2025",
+   "kind": "law",
+   "note": "95/2025/QH15 Điều 58 khoản 3: “3. Luật Đường sắt số 06/2017/QH14 đã được sửa đổi, bổ sung một số điều theo Luật số 35/2018/QH14, Luật số 16/2023/QH15, Luật số 31/2024/QH15, Luật số 43/2024/QH15 và Luật số 47/2024/QH15 hết hiệu lực kể từ ngày Luật này ”"
+  },
+  {
+   "old": "120/2020/NĐ-CP",
+   "new": "299/2026/NĐ-CP",
+   "on": "2026-07-28",
+   "exc": "chuyển tiếp tại Điều 29 khoản 1 Nghị định 299/2026",
+   "kind": "decree",
+   "note": "299/2026/NĐ-CP Điều khoản thi hành: “Nghị định này thay thế Nghị định số 120/2020/NĐ-CP ngày 07 tháng 10 năm 2020 của Chính phủ quy định về thành lập, tổ chức lại, giải thể đơn vị sự nghiệp công lập và Nghị định số 283/2025/NĐ-CP ngày 31 tháng 10 năm 2025 s”"
+  },
+  {
+   "old": "283/2025/NĐ-CP",
+   "new": "299/2026/NĐ-CP",
+   "on": "2026-07-28",
+   "exc": null,
+   "kind": "decree",
+   "note": "299/2026/NĐ-CP Điều khoản thi hành: “Nghị định này thay thế Nghị định số 120/2020/NĐ-CP ngày 07 tháng 10 năm 2020 của Chính phủ quy định về thành lập, tổ chức lại, giải thể đơn vị sự nghiệp công lập và Nghị định số 283/2025/NĐ-CP ngày 31 tháng 10 năm 2025 s”"
+  },
+  {
+   "old": "85/2019/NĐ-CP",
+   "new": "336/2026/NĐ-CP",
+   "on": "2026-10-15",
+   "exc": null,
+   "kind": "decree",
+   "note": "336/2026/NĐ-CP Điều khoản thi hành: “Nghị định này thay thế Nghị định số 85/2019/NĐ-CP ngày 14 tháng 11 năm 2019 của Chính phủ quy định thực hiện thủ tục hành chính theo cơ chế một cửa quốc gia, cơ chế một cửa ASEAN và kiểm tra chuyên ngành đối với hàng hóa”"
+  },
+  {
+   "old": "11/2020/NĐ-CP",
+   "new": "347/2025/NĐ-CP",
+   "on": "2026-01-01",
+   "exc": "chuyển tiếp tại Điều 15 Nghị định 347/2025",
+   "kind": "decree",
+   "note": "347/2025/NĐ-CP Điều khoản thi hành: “Nghị định này thay thế Nghị định số 11/2020/NĐ-CP ngày 20 tháng 01 năm 2020 của Chính phủ quy định về thủ tục hành chính thuộc lĩnh vực Kho bạc Nhà nước.”"
   }
  ],
  "coverage_note": "Phủ theo TẦNG: 8 luật đồ-thị-đầy-đủ (time-travel) + 143 ảnh-chụp-VBHN (hiện hành, chưa đối chiếu eval) + 15 luật đích chỉ-mục-bãi-bỏ. Thư viện toàn văn 159 luật."

@@ -58,7 +58,19 @@
     return out;
   }
 
+  // văn bản bị THAY TOÀN BỘ (supersession.json, mỗi cặp có câu nguyên văn)
+  var TRAPS = {}; (D.traps || []).forEach(function (t) { TRAPS[t.old] = t; });
+  var TODAY = new Date().toISOString().slice(0, 10);
   function classify(c) {
+    var t = c.law && TRAPS[c.law];
+    if (t && t.on <= TODAY)
+      return { tier: "dead", msg: "LUẬT ĐÃ BỊ THAY TOÀN BỘ bởi " + t.new + " (từ " + t.on + ")" +
+        (t.exc ? ", trừ " + t.exc : "") + " — đối chiếu văn bản mới" };
+    var r = classify0(c);
+    if (t) r.msg += " · sẽ bị " + t.new + " thay toàn bộ từ " + t.on;
+    return r;
+  }
+  function classify0(c) {
     if (!c.law) return { tier: "unk", msg: "không xác định được luật đích (thiếu số hiệu/tên rõ)" };
     if (!COVERED[c.law]) return { tier: "unk", msg: "luật " + c.law + " NGOÀI phủ — chưa xác minh (không có nghĩa còn hiệu lực)" };
     var r = check(c.law, c.art, c.cl, c.pt);

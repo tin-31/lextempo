@@ -19,6 +19,9 @@
    "known_fn": 5,
    "on": "2026-10-06"
   },
+  "T1R_live": 3,
+  "T1R_unverified": 3,
+  "T1R_on": "2026-10-08",
   "laws": 164,
   "amending": 9,
   "graph_full": 8,
@@ -3949,6 +3952,99 @@
    "exc": "chuyển tiếp tại Điều 15 Nghị định 347/2025",
    "kind": "decree",
    "note": "347/2025/NĐ-CP Điều khoản thi hành: “Nghị định này thay thế Nghị định số 11/2020/NĐ-CP ngày 20 tháng 01 năm 2020 của Chính phủ quy định về thủ tục hành chính thuộc lĩnh vực Kho bạc Nhà nước.”"
+  }
+ ],
+ "replaced_refs": [
+  {
+   "doc": "125/2020/NĐ-CP",
+   "title": "Nghị định quy định xử phạt vi phạm hành chính về thuế, hóa đơn",
+   "old": "38/2019/QH14",
+   "dead": "2026-07-01",
+   "new": "108/2025/QH15",
+   "status": "in_force_amended",
+   "ends": null,
+   "refs": [
+    {
+     "at": "Điều 35 khoản 1",
+     "cites": "khoản 2 Điều 139",
+     "quote": "Thẩm quyền xử phạt vi phạm hành chính đối với các hành vi tại Điều 16, Điều 17, Điều 18 Nghị định này thực hiện theo khoản 2 Điều 139 Luật Quản lý thuế.",
+     "new_same_no": "không tồn tại (108/2025 có 53 điều)"
+    },
+    {
+     "at": "Điều 36",
+     "cites": "khoản 1 Điều 108",
+     "quote": "biên bản thanh tra, kiểm tra thuế được xác định là biên bản vi phạm hành chính theo quy định tại khoản 1 Điều 108 Luật Quản lý thuế",
+     "new_same_no": "không tồn tại"
+    },
+    {
+     "at": "Điều 9 khoản 4",
+     "cites": "Điều 51",
+     "quote": "hộ kinh doanh, cá nhân kinh doanh đã bị ấn định thuế theo quy định tại Điều 51 Luật Quản lý thuế",
+     "new_same_no": "Điều 51. Bổ sung Điều 70a vào sau Điều 70 của Luật Kế toán (chủ đề khác)"
+    }
+   ],
+   "days": 99,
+   "src": [
+    {
+     "what": "291/2026/NĐ-CP (21/7/2026, căn cứ Luật QLT 108/2025) sửa khoản 1 Điều 35 (chèn \"Điều 19a\") nhưng giữ \"khoản 2 Điều 139 Luật Quản lý thuế\"",
+     "url": "https://hcc.nghean.gov.vn/laws/detail/Nghi-dinh-so-291-2026-ND-CP-cua-Chinh-phu-Sua-doi-bo-sung-mot-so-dieu-cua-Nghi-dinh-so-125-2020-ND-ngay-19-thang-10-nam-2020-cua-Chinh-phu-quy-dinh-xu-phat-vi-pham-hanh-chinh-ve-thue-hoa-don-duoc-sua-doi-bo-sung-boi-Nghi-dinh-so-102-2021-ND-CP-2608/"
+    },
+    {
+     "what": "Văn bản hợp nhất 27/2026/VBHN-NĐ-BTC (27/8/2026) vẫn chứa cả 3 dẫn chiếu (tr.14, 35, 36)",
+     "url": "https://einvoice.vn/FileUpload/images/File/a1c6326c-8c76-43c1-8545-ce14af22cf7c.pdf"
+    }
+   ],
+   "caveat": "khoản 27 Điều 3 (Điều 43) và khoản 11 Điều 143 (Điều 13): 310/2025 đã viết lại trước khi luật cũ hết hiệu lực — không tính"
+  },
+  {
+   "doc": "129/2020/NĐ-CP",
+   "title": "Nghị định về chức năng, nhiệm vụ và cơ chế hoạt động của Công ty TNHH MTV Mua bán nợ Việt Nam (DATC)",
+   "old": "69/2014/QH13",
+   "dead": "2025-08-01",
+   "new": "68/2025/QH15",
+   "status": "in_force",
+   "ends": "2026-10-30",
+   "refs": [
+    {
+     "at": "Điều 22 khoản 2",
+     "cites": "khoản 4 Điều 23",
+     "quote": "DATC thực hiện bảo lãnh theo nguyên tắc quy định tại khoản 4 Điều 23 Luật Quản lý, sử dụng vốn nhà nước đầu tư vào sản xuất, kinh doanh tại doanh nghiệp",
+     "new_same_no": "Điều 23. Quản lý của doanh nghiệp đối với công ty do doanh nghiệp nắm… (chủ đề khác); tên luật cũ khác tên luật mới"
+    }
+   ],
+   "days": 433,
+   "src": [
+    {
+     "what": "358/2026/NĐ-CP có hiệu lực 30/10/2026, bãi bỏ 129/2020",
+     "url": "https://hatinh.gov.vn/vi/bai-viet/quy-dinh-moi-ve-hoat-dong-va-quan-ly-tai-chinh-cua-datc"
+    }
+   ],
+   "caveat": "Chưa đọc toàn văn 358/2026; không thấy văn bản sửa 129/2020."
+  },
+  {
+   "doc": "144/2025/NĐ-CP",
+   "title": "Nghị định quy định về phân quyền, phân cấp trong lĩnh vực quản lý nhà nước của Bộ Xây dựng",
+   "old": "21/2017/QH14",
+   "dead": "2026-03-01",
+   "new": "112/2025/QH15",
+   "status": "partially_replaced",
+   "ends": null,
+   "refs": [
+    {
+     "at": "Phụ lục II, Mục 3",
+     "cites": "khoản 3 Điều 25",
+     "quote": "thực hiện theo quy định tại khoản 3 Điều 25 Luật Quy hoạch năm 2017",
+     "new_same_no": "Điều 25. Nội dung quy hoạch tổng thể quốc gia (chủ đề khác)"
+    }
+   ],
+   "days": 221,
+   "src": [
+    {
+     "what": "217/2026/NĐ-CP (hl 01/7/2026) bãi bỏ khoản 1 Điều 4, Điều 10, Điều 11, Phụ lục III — không chạm Phụ lục II",
+     "url": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/7/1/469819-1782815475_v1_1782867244_signed.pdf"
+    }
+   ],
+   "caveat": "Chưa loại trừ hết văn bản sửa khác sau 01/3/2026; nghị định tự hết hiệu lực 01/3/2027 và từng quy định hết hiệu lực khi có văn bản mới cùng thẩm quyền."
   }
  ],
  "coverage_note": "Phủ theo TẦNG: 8 luật đồ-thị-đầy-đủ (time-travel) + 143 ảnh-chụp-VBHN (hiện hành, chưa đối chiếu eval) + 15 luật đích chỉ-mục-bãi-bỏ. Thư viện toàn văn 159 luật."

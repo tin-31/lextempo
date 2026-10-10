@@ -19,8 +19,8 @@
    "known_fn": 5,
    "on": "2026-10-06"
   },
-  "T1R_live": 3,
-  "T1R_unverified": 3,
+  "T1R_live": 8,
+  "T1R_unverified": 5,
   "T1R_on": "2026-10-08",
   "laws": 164,
   "amending": 9,
@@ -4600,6 +4600,7 @@
     }
    ],
    "days": 99,
+   "checked_on": "2026-10-08",
    "src": [
     {
      "what": "291/2026/NĐ-CP (21/7/2026, căn cứ Luật QLT 108/2025) sửa khoản 1 Điều 35 (chèn \"Điều 19a\") nhưng giữ \"khoản 2 Điều 139 Luật Quản lý thuế\"",
@@ -4629,6 +4630,7 @@
     }
    ],
    "days": 433,
+   "checked_on": "2026-10-08",
    "src": [
     {
      "what": "358/2026/NĐ-CP có hiệu lực 30/10/2026, bãi bỏ 129/2020",
@@ -4654,6 +4656,7 @@
     }
    ],
    "days": 221,
+   "checked_on": "2026-10-08",
    "src": [
     {
      "what": "217/2026/NĐ-CP (hl 01/7/2026) bãi bỏ khoản 1 Điều 4, Điều 10, Điều 11, Phụ lục III — không chạm Phụ lục II",
@@ -4661,6 +4664,151 @@
     }
    ],
    "caveat": "Chưa loại trừ hết văn bản sửa khác sau 01/3/2026; nghị định tự hết hiệu lực 01/3/2027 và từng quy định hết hiệu lực khi có văn bản mới cùng thẩm quyền."
+  },
+  {
+   "doc": "145/2020/NĐ-CP",
+   "title": "Nghị định quy định chi tiết và hướng dẫn thi hành một số điều của Bộ luật Lao động về điều kiện lao động và quan hệ lao động",
+   "old": "58/2014/QH13",
+   "dead": "2025-07-01",
+   "new": "41/2024/QH15",
+   "status": "in_force",
+   "ends": null,
+   "refs": [
+    {
+     "at": "Điều 80 khoản 2",
+     "cites": "Điều 32",
+     "quote": "Khuyến khích người sử dụng lao động tạo điều kiện cho lao động nữ đang mang thai được nghỉ đi khám thai nhiều hơn quy định tại Điều 32 của Luật Bảo hiểm xã hội.",
+     "new_same_no": "Điều 32. Tỷ lệ đóng bảo hiểm xã hội (chủ đề khác)"
+    }
+   ],
+   "days": 466,
+   "checked_on": "2026-10-10",
+   "src": [
+    {
+     "what": "Tờ trình dự thảo sửa NĐ 145/2020 của Bộ Nội vụ (7/2026) — NĐ đang được áp dụng; dự thảo không sửa Điều 80",
+     "url": "https://datafiles.chinhphu.vn/cpp/files/duthaovbpl/2026/Thang7/1.totrinhnd145.pdf"
+    }
+   ],
+   "caveat": "Bằng chứng còn hiệu lực gần nhất: 7/2026. Chưa đọc nguyên văn NĐ 129/2025 (phân định thẩm quyền) — không thấy dấu hiệu sửa Điều 80."
+  },
+  {
+   "doc": "137/2021/NĐ-CP",
+   "title": "Nghị định quy định xử phạt vi phạm hành chính trong lĩnh vực kinh doanh đặt cược và trò chơi có thưởng",
+   "old": "07/2012/QH13",
+   "dead": "2023-03-01",
+   "new": "14/2022/QH15",
+   "status": "in_force",
+   "ends": null,
+   "refs": [
+    {
+     "at": "Điều 53 khoản 1",
+     "cites": "Điều 8, Điều 10",
+     "quote": "Phạt tiền từ 40.000.000 đồng đến 60.000.000 đồng đối với hành vi không cập nhật thông tin nhận biết khách hàng theo quy định tại Điều 8, Điều 10 Luật Phòng, chống rửa tiền",
+     "new_same_no": "Điều 8. Các hành vi bị nghiêm cấm trong phòng, chống rửa tiền; Điều 10. Thông tin nhận biết khách hàng"
+    }
+   ],
+   "days": 1319,
+   "checked_on": "2026-10-10",
+   "src": [
+    {
+     "what": "Báo Thanh tra 2/6/2026: dự thảo sửa NĐ 137/2021 đang lấy ý kiến, chưa ban hành",
+     "url": "https://thanhtra.com.vn/hoan-thien-the-che-D4AD3DB96/thanh-tra-chinh-phu-gop-y-hoan-thien-du-thao-nghi-dinh-sua-doi-bo-sung-nghi-dinh-137-2021-nd-cp-261591.html"
+    }
+   ],
+   "caveat": "Bằng chứng còn hiệu lực gần nhất: 6/2026 (gián tiếp). Điều 10 luật mới cùng chủ đề \"thông tin nhận biết khách hàng\"; Điều 8 thì khác."
+  },
+  {
+   "doc": "141/2024/NĐ-CP",
+   "title": "Nghị định quy định chi tiết một số điều của Luật Phòng, chống HIV/AIDS",
+   "old": "66/2006/QH11",
+   "dead": "2026-07-01",
+   "new": "130/2025/QH15",
+   "status": "in_force",
+   "ends": null,
+   "refs": [
+    {
+     "at": "Điều 49 khoản 1 điểm a",
+     "cites": "Điều 72",
+     "quote": "Thành viên tổ lái theo quy định tại Điều 72 của Luật Hàng không dân dụng Việt Nam;",
+     "new_same_no": "Điều 72. Thẩm quyền giải quyết của Tòa án Việt Nam đối với tranh chấp (chủ đề khác)"
+    }
+   ],
+   "days": 101,
+   "checked_on": "2026-10-10",
+   "src": [
+    {
+     "what": "QĐ 2002/QĐ-BYT (7/2026) dẫn NĐ 141/2024 làm căn cứ; NQ 21/2026/NQ-CP không chạm Điều 30, 49",
+     "url": "https://vpubnd.daklak.gov.vn/CMS/Content/VanBan/2026/7.2026/2002-Q%C4%90-BYT.pdf"
+    }
+   ],
+   "caveat": "Bằng chứng còn hiệu lực gần nhất: 7/2026 (gián tiếp)."
+  },
+  {
+   "doc": "141/2024/NĐ-CP",
+   "title": "Nghị định quy định chi tiết một số điều của Luật Phòng, chống HIV/AIDS",
+   "old": "73/2021/QH14",
+   "dead": "2026-07-01",
+   "new": "120/2025/QH15",
+   "status": "in_force",
+   "ends": null,
+   "refs": [
+    {
+     "at": "Điều 30 khoản 1",
+     "cites": "điểm c khoản 5 Điều 27",
+     "quote": "Đối với người nghiện các chất dạng thuốc phiện theo quy định tại điểm c khoản 5 Điều 27 Luật Phòng, chống ma túy",
+     "new_same_no": "Điều 27. Lập danh sách người sử dụng trái phép chất ma túy (chủ đề khác)"
+    }
+   ],
+   "days": 101,
+   "checked_on": "2026-10-10",
+   "src": [
+    {
+     "what": "QĐ 2002/QĐ-BYT (7/2026) dẫn NĐ 141/2024 làm căn cứ",
+     "url": "https://vpubnd.daklak.gov.vn/CMS/Content/VanBan/2026/7.2026/2002-Q%C4%90-BYT.pdf"
+    }
+   ],
+   "caveat": "Bằng chứng còn hiệu lực gần nhất: 7/2026 (gián tiếp)."
+  },
+  {
+   "doc": "111/2022/NĐ-CP",
+   "title": "Nghị định về hợp đồng đối với một số loại công việc trong cơ quan hành chính và đơn vị sự nghiệp công lập",
+   "old": "22/2008/QH12",
+   "dead": "2025-07-01",
+   "new": "80/2025/QH15",
+   "status": "partially_replaced",
+   "ends": null,
+   "refs": [
+    {
+     "at": "Điều 8 khoản 2 điểm b",
+     "cites": "Mục II Chương II",
+     "quote": "được áp dụng chế độ, chính sách theo quy định tại Mục II Chương II Luật Cán bộ, công chức năm 2008",
+     "new_same_no": "không áp dụng — câu dẫn ghi rõ \"năm 2008\", không thể hiểu là luật mới"
+    }
+   ],
+   "days": 466,
+   "checked_on": "2026-10-10",
+   "src": [
+    {
+     "what": "NĐ 235/2026 (26/6/2026) Điều 16 chỉ chấm dứt phần hợp đồng trong đơn vị sự nghiệp công lập — không chạm khoản 2 Điều 4 (cơ quan hành chính)",
+     "url": "https://hcc.nghean.gov.vn/tin-tong-hop/nghi-dinh-so-235-2026-nd-cp-ve-hop-dong-cong-viec-trong-don-vi-su-nghiep-cong-lap-2726/"
+    }
+   ],
+   "caveat": "Phần còn hiệu lực là phần áp dụng cho cơ quan hành chính."
+  }
+ ],
+ "misfixed": [
+  {
+   "doc": "45/2020/NĐ-CP",
+   "title": "Nghị định về thực hiện thủ tục hành chính trên môi trường điện tử",
+   "at": "Điều 5 khoản 3 (hành vi bị cấm)",
+   "fixed_by": "310/2026/NĐ-CP",
+   "fixed_on": "2026-08-05",
+   "law": "20/2023/QH15",
+   "cited_art": "9",
+   "right_art": "6",
+   "note": "Câu gốc: \"không được thực hiện các hành vi bị cấm quy định tại Điều 9 Luật Giao dịch điện tử năm 2005\". Bản sửa 2026 giữ số Điều 9 khi đổi sang luật 20/2023 — trong luật mới, hành vi bị nghiêm cấm là Điều 6; Điều 9 là \"Thông điệp dữ liệu có giá trị như văn bản\". (Dòng đầu trang Công báo chen giữa câu là nguyên trạng tệp.)",
+   "gap_before_fix_days": 765,
+   "checked_on": "2026-10-10"
   }
  ],
  "coverage_note": "Phủ theo TẦNG: 8 luật đồ-thị-đầy-đủ (time-travel) + 143 ảnh-chụp-VBHN (hiện hành, chưa đối chiếu eval) + 15 luật đích chỉ-mục-bãi-bỏ. Thư viện toàn văn 159 luật."

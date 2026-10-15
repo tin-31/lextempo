@@ -2,9 +2,9 @@
  "generated": "2026-09-12",
  "engine": "957103a7b989f995",
  "stats": {
-  "docs": 437,
-  "citations": 49874,
-  "T0": 3,
+  "docs": 742,
+  "citations": 93133,
+  "T0": 0,
   "T1": 18,
   "T2": 68,
   "T3": 85,
@@ -28,8 +28,8 @@
   "snapshot": 143,
   "t1_targets": 15,
   "library": 159,
-  "out_of_graph": 17984,
-  "out_covered_by_index": 20
+  "out_of_graph": 74308,
+  "out_covered_by_index": 17
  },
  "orphans": [
   {
@@ -1294,38 +1294,7 @@
    "name": "Bộ luật Tố tụng dân sự"
   }
  ],
- "t0": [
-  {
-   "citing": "365/2025/NĐ-CP",
-   "citing_title": "Về giám sát, kiểm tra, đánh giá, xếp loại, báo cáo và công khai",
-   "location": "khoản 4 Điều 55",
-   "target": "15/2017/QH14",
-   "target_title": "Luật Quản lý, sử dụng tài sản công",
-   "by": "90/2025/QH15",
-   "on": "2025-07-01",
-   "count": 1
-  },
-  {
-   "citing": "145/2025/NĐ-CP",
-   "citing_title": "Quy định về phân định thẩm quyền của chính quyền địa phương 02 cấp,",
-   "location": "khoản 4 Điều 52",
-   "target": "21/2017/QH14",
-   "target_title": "Luật Quy hoạch",
-   "by": "57/2024/QH15",
-   "on": "2025-01-15",
-   "count": 1
-  },
-  {
-   "citing": "145/2025/NĐ-CP",
-   "citing_title": "Quy định về phân định thẩm quyền của chính quyền địa phương 02 cấp,",
-   "location": "khoản 4 Điều 28",
-   "target": "21/2017/QH14",
-   "target_title": "Luật Quy hoạch",
-   "by": "57/2024/QH15",
-   "on": "2025-01-15",
-   "count": 1
-  }
- ],
+ "t0": [],
  "t2": [
   {
    "citing": "126/2020/NĐ-CP",
@@ -3655,19 +3624,19 @@
   },
   {
    "id": "100/2025/QH15",
-   "name": "Luật Tương trợ tư pháp về dân sự",
+   "name": "Luật Dẫn độ",
    "vbhn": "Luật gốc",
    "n": 45
   },
   {
    "id": "101/2025/QH15",
-   "name": "Luật Dẫn độ",
+   "name": "Luật Chuyển giao người đang chấp hành án phạt tù",
    "vbhn": "Luật gốc",
    "n": 48
   },
   {
    "id": "102/2025/QH15",
-   "name": "Luật Chuyển giao người đang chấp hành án phạt tù",
+   "name": "Luật Tương trợ tư pháp về dân sự",
    "vbhn": "Luật gốc",
    "n": 38
   },
@@ -4796,6 +4765,231 @@
    "caveat": "Phần còn hiệu lực là phần áp dụng cho cơ quan hành chính."
   }
  ],
+ "known_names": [
+  [
+   "Bộ luật Hàng hải",
+   "95/2015/QH13"
+  ],
+  [
+   "Luật Biên giới Quốc gia",
+   null
+  ],
+  [
+   "Luật Biên phòng Việt Nam",
+   "66/2020/QH14"
+  ],
+  [
+   "Luật Báo chí",
+   null
+  ],
+  [
+   "Luật Bưu chính",
+   "49/2010/QH12"
+  ],
+  [
+   "Luật Bảo hiểm tiền gửi",
+   null
+  ],
+  [
+   "Luật Bảo vệ và kiểm dịch thực vật",
+   "41/2013/QH13"
+  ],
+  [
+   "Luật Chuyển giao công nghệ",
+   "07/2017/QH14"
+  ],
+  [
+   "Luật Chất lượng sản phẩm, hàng hoá",
+   "05/2007/QH12"
+  ],
+  [
+   "Luật Công chứng",
+   "46/2024/QH15"
+  ],
+  [
+   "Luật Công nghệ cao",
+   null
+  ],
+  [
+   "Luật Cơ quan đại diện Việt Nam ở nước ngoài",
+   "33/2009/QH12"
+  ],
+  [
+   "Luật Cơ quan đại diện nước Cộng hòa xã hội chủ nghĩa Việt Nam ở nước ngoài",
+   "33/2009/QH12"
+  ],
+  [
+   "Luật Cơ yếu",
+   "05/2011/QH13"
+  ],
+  [
+   "Luật Cảnh sát biển Việt Nam",
+   null
+  ],
+  [
+   "Luật Cảnh vệ",
+   "13/2017/QH14"
+  ],
+  [
+   "Luật Dân quân tự vệ",
+   null
+  ],
+  [
+   "Luật Giáo dục quốc phòng và an ninh",
+   null
+  ],
+  [
+   "Luật Hóa chất",
+   "69/2025/QH15"
+  ],
+  [
+   "Luật Hộ tịch",
+   null
+  ],
+  [
+   "Luật Khoa học và công nghệ",
+   "29/2013/QH13"
+  ],
+  [
+   "Luật Lao động",
+   "45/2019/QH14"
+  ],
+  [
+   "Luật Nuôi con nuôi",
+   "52/2010/QH12"
+  ],
+  [
+   "Luật Phá sản",
+   "51/2014/QH13"
+  ],
+  [
+   "Luật Phát triển đô thị",
+   "18/2026/QH16"
+  ],
+  [
+   "Luật Phòng bệnh",
+   "114/2025/QH15"
+  ],
+  [
+   "Luật Phòng cháy và chữa cháy",
+   null
+  ],
+  [
+   "Luật Phòng chống bệnh truyền nhiễm",
+   null
+  ],
+  [
+   "Luật Phòng, chống bạo lực gia đình",
+   "13/2022/QH15"
+  ],
+  [
+   "Luật Phòng, chống khủng bố",
+   "28/2013/QH13"
+  ],
+  [
+   "Luật Phục hồi, phá sản",
+   "142/2025/QH15"
+  ],
+  [
+   "Luật Quy hoạch đô thị",
+   null
+  ],
+  [
+   "Luật Quân nhân chuyên nghiệp, công nhân và viên chức quốc phòng",
+   "98/2015/QH13"
+  ],
+  [
+   "Luật Quảng cáo",
+   null
+  ],
+  [
+   "Luật Sĩ quan Quân đội nhân dân Việt Nam",
+   "16/1999/QH10"
+  ],
+  [
+   "Luật Sử dụng năng lượng tiết kiệm và hiệu quả",
+   "50/2010/QH12"
+  ],
+  [
+   "Luật Thi hành tạm giữ, tạm giam",
+   null
+  ],
+  [
+   "Luật Thi hành tạm giữ, tạm giam và cấm đi khỏi nơi cư trú",
+   "128/2025/QH15"
+  ],
+  [
+   "Luật Thuế tiêu thụ đặc biệt",
+   "66/2025/QH15"
+  ],
+  [
+   "Luật Thương mại điện tử",
+   "122/2025/QH15"
+  ],
+  [
+   "Luật Thủy lợi",
+   "08/2017/QH14"
+  ],
+  [
+   "Luật Thực hiện dân chủ cơ sở",
+   "10/2022/QH15"
+  ],
+  [
+   "Luật Thực hành tiết kiệm, chống lãng phí",
+   null
+  ],
+  [
+   "Luật Tiêu chuẩn và quy chuẩn kỹ thuật",
+   "68/2006/QH11"
+  ],
+  [
+   "Luật Tiết kiệm, chống lãng phí",
+   "110/2025/QH15"
+  ],
+  [
+   "Luật Trí tuệ nhân tạo",
+   "134/2025/QH15"
+  ],
+  [
+   "Luật Tình trạng khẩn cấp",
+   "104/2025/QH15"
+  ],
+  [
+   "Luật Tố tụng hành chính",
+   null
+  ],
+  [
+   "Luật Tổ chức Quốc hội",
+   "57/2014/QH13"
+  ],
+  [
+   "Luật Tổ chức cơ quan Điều tra hình sự",
+   null
+  ],
+  [
+   "Luật Xuất bản",
+   "19/2012/QH13"
+  ],
+  [
+   "Luật Đa dạng sinh học",
+   "20/2008/QH12"
+  ],
+  [
+   "Luật Đo lường",
+   "04/2011/QH13"
+  ],
+  [
+   "Luật Đê điều",
+   "79/2006/QH11"
+  ]
+ ],
+ "name_default": {
+  "luat dau tu": "61/2020/QH14",
+  "luat quan ly thue": "38/2019/QH14",
+  "luat quy hoach": "21/2017/QH14",
+  "luat nha o": "27/2023/QH15",
+  "luat ngan sach nha nuoc": "89/2025/QH15"
+ },
  "misfixed": [
   {
    "doc": "45/2020/NĐ-CP",
@@ -4809,6 +5003,30 @@
    "note": "Câu gốc: \"không được thực hiện các hành vi bị cấm quy định tại Điều 9 Luật Giao dịch điện tử năm 2005\". Bản sửa 2026 giữ số Điều 9 khi đổi sang luật 20/2023 — trong luật mới, hành vi bị nghiêm cấm là Điều 6; Điều 9 là \"Thông điệp dữ liệu có giá trị như văn bản\". (Dòng đầu trang Công báo chen giữa câu là nguyên trạng tệp.) Hai dẫn chiếu còn lại trong cùng câu sửa đều trỏ đúng điều \"hành vi bị nghiêm cấm\" của luật mới (116/2025 Điều 7, 117/2025 Điều 5) — chỉ dẫn chiếu Luật Giao dịch điện tử bị sót.",
    "gap_before_fix_days": 765,
    "checked_on": "2026-10-10"
+  }
+ ],
+ "born_dead": [
+  {
+   "doc": "94/2026/NĐ-CP",
+   "title": "quy định về hoạt động đào tạo và sát hạch lái xe",
+   "signed": "2026-03-31",
+   "quote": "Căn cứ Luật Tổ chức chính quyền địa phương số 65/2025/QH15;",
+   "old": "65/2025/QH15",
+   "old_dead": "2025-06-16",
+   "new": "72/2025/QH15",
+   "exceptions": null,
+   "note": "văn bản không nhắc 72/2025; luật căn cứ đã chết ~9,5 tháng lúc ký"
+  },
+  {
+   "doc": "273/2026/NĐ-CP",
+   "title": "về kinh doanh hàng miễn thuế",
+   "signed": "2026-07-07",
+   "quote": "Căn cứ Luật Đầu tư số 61/2020/QH14;",
+   "old": "61/2020/QH14",
+   "old_dead": "2026-07-01",
+   "new": "143/2025/QH15",
+   "exceptions": "Điều 7 + Phụ lục IV sống tới 2026-07-01 — đã hết trước ngày ký",
+   "note": "cùng văn bản còn căn cứ Luật QLT 38/2019 (chết 01/7/2026) nhưng có chuyển tiếp k1,k3 Điều 53 Luật 108/2025 → KHÔNG tính"
   }
  ],
  "coverage_note": "Phủ theo TẦNG: 8 luật đồ-thị-đầy-đủ (time-travel) + 143 ảnh-chụp-VBHN (hiện hành, chưa đối chiếu eval) + 15 luật đích chỉ-mục-bãi-bỏ. Thư viện toàn văn 159 luật."

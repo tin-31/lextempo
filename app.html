@@ -641,7 +641,7 @@
       NONLAW=/^ (?:cua )?(?:nghi dinh|thong tu|quyet dinh|nghi quyet|phap lenh|chi thi|van ban|hien phap|luat nay|bo luat nay) /,
       QHRES=/^ (?:cua )?nghi quyet so \d{1,3} \d{4} qh\d{1,2} /,          // Nghị quyết của QUỐC HỘI: có số → giữ
       ENUM=/^(?: (?:va|hoac|den|cac|diem [a-z]\d?|khoan \d+[a-z]?|dieu \d+[a-z]?|\d+[a-z]?))+(?= )/,
-      ASAMEND=/^ (?:duoc (?:sua doi|bo sung|thay the)(?: bo sung)? )?nhu sau /,                                                  // "… Điều 9 như sau:" = điều của VB bị sửa
+      ASAMEND=/^ (?:(?:duoc (?:sua doi|bo sung|thay the)(?: bo sung)? )?nhu sau|vao (?:sau|truoc)) /,                                                  // "… Điều 9 như sau:" = điều của VB bị sửa
       AMOPEN=/ (?:sua doi|bo sung|bai bo) (?:(?! \d{1,3} \d{4} [a-z]).)*$/;
   function qid(m){return m[1]+'/'+m[2]+'/'+m[3].toUpperCase();}
   // Số hiệu / năm KHAI cho một tên luật → tên trơn về sau kế thừa (như bộ tách máy chủ). Khối căn cứ
@@ -691,30 +691,45 @@
     if(!best)return {id:null,resolved:false,known:hit};
     return {id:best,resolved:true,uncovered:!LAW_BY_ID[best]};
   }
-  var LOC=/(?:điểm\s+([a-zđ]\d?)\s+)?(?:khoản\s+(\d+)\s+)?Điều\s+(\d+[a-zđ]?)/gi;
+  // số Điều có hậu tố chữ ("Điều 34a") — nhưng KHÔNG nuốt chữ dính liền ("Điều 27của" dán từ PDF ≠ 27c)
+  var LOC=/(?:điểm\s+([a-zđ]\d?)\s+)?(?:khoản\s+(\d+)\s+)?Điều\s+(\d+(?:[a-zđ](?!\p{L}))?)/giu;
   // trích dẫn TRONG cụm từ đang bị thay thế/bãi bỏ ("Thay thế cụm từ “…khoản 2 Điều 17 Luật X…” thành …"):
   // văn bản đang GỠ dẫn chiếu đó → che bằng khoảng trắng (giữ vị trí), như bộ tách máy chủ
   function maskRemoved(t){return t.replace(/((?:[Tt]hay(?:\s+thế)?|[Bb]ãi\s+bỏ)\s+(?:các\s+)?cụm\s+từ\s*“)([^”]{1,1500})(”)/g,
     function(_,a,b,c){return a+b.replace(/[^\n]/g,' ')+c;});}
+  var SELF=/^ (?:cua )?(?:[a-z]+ ){0,2}nay /,                       // "Nghị định này", "Quy chế này", "Hợp đồng này"…
+      AMDT=/^ (?:cua )?luat sua doi /,                                   // "Điều N Luật sửa đổi, bổ sung … của Luật X"
+      KINDW=/ (?:luat|bo luat|phap lenh) /,                              // đoạn sau CÓ nêu một luật (dù không nhận ra)
+      SEG_END=/[.;](?=\s|$)|\n\s*(?:[a-zđ]\)|\d+\.)\s/,                  // hết câu / sang mục liệt kê mới
+      BCUT=/[\s\S]*(?:[.;:](?=\s)|\n[ \t]*[“"]?Điều \d+[a-zđ]?\.(?=\s)|\n\s*(?:[a-zđ]\)|\d+\.)\s)/;
+  // Mỗi trích dẫn chỉ xét ĐOẠN CỦA NÓ: từ sau nó tới trích dẫn kế / hết câu (≤200 ký tự). Đoạn chỉ là dấu nối liệt kê
+  // (", ", " và ") → lấy luật của mục KẾ ("Điều 26, Điều 27, Điều 28 Nghị định số 126/2020" — soát vòng 3).
+  // Ngay sau là văn bản KHÁC ("… này", "Nghị định số …"), "vào sau / như sau" (điều của văn bản bị sửa), tên LUẬT SỬA
+  // ĐỔI không số → không phải luật được dẫn. Đoạn có nêu một luật mà không nhận ra → không rơi về đoạn trước.
+  // Đoạn TRƯỚC (≤96 ký tự) chỉ trong cùng câu/mục, không vượt tiêu đề "Điều N.".
   function extract(text){
-    text=maskRemoved(String(text).normalize('NFC').replace(CBHEAD,' '));   // NFD ("Unicode tổ hợp") trước đây ra 0 trích dẫn
-    var out=[],m,decl=declared(text); LOC.lastIndex=0;
+    text=maskRemoved(String(text).normalize('NFC').replace(CBHEAD,function(h){return h.replace(/[^\n]/g,' ');}));   // giữ vị trí   // NFD ("Unicode tổ hợp") trước đây ra 0 trích dẫn
+    var decl=declared(text), ms=[], m; LOC.lastIndex=0;
     while((m=LOC.exec(text))){
       if(!m[3])continue;
       var end=LOC.lastIndex, pos=m.index;
-      // tiêu đề "Điều N." đầu dòng (kể cả trong ngoặc kép “Điều N. …” của điều sửa đổi) là ĐIỀU CỦA CHÍNH văn
-      // bản / văn bản bị sửa, không phải trích dẫn (như bộ tách máy chủ)
+      // tiêu đề "Điều N." đầu dòng (kể cả “Điều N. …” trong điều sửa đổi) là ĐIỀU CỦA CHÍNH văn bản / văn bản bị sửa
       if(!m[1]&&!m[2]&&text.charAt(end)==='.'&&/(^|\n)[ \t]*[“"]?$/.test(text.slice(Math.max(0,pos-80),pos)))continue;
-      // đoạn SAU: tới hết câu (≤200 ký tự). Bỏ phần liệt kê ", 48 và 49" rồi xét: ngay sau là văn bản KHÁC
-      // ("Nghị định này", "Nghị định số 178/2025…") hoặc "như sau:" (điều của văn bản bị sửa) → không phải luật.
-      var aft=text.slice(end,end+200).split(/[.;](?=\s|$)/)[0], an=nv(aft).replace(ENUM,''),
-          law={id:null,resolved:false,known:true};
-      if(!(NONLAW.test(an)&&!QHRES.test(an))&&!ASAMEND.test(an)){law=resolveLaw(aft,false,decl);
-        // đoạn TRƯỚC: không vượt qua tiêu đề "Điều N." (phần mở đầu / tên văn bản bị sửa không phải luật được dẫn)
-        if(!law.id&&!law.known)law=resolveLaw(text.slice(Math.max(0,pos-96),pos)
-          .replace(/[\s\S]*\n[ \t]*[“"]?Điều \d+[a-zđ]?\.(?=\s)/,''),true,decl);}
-      out.push({raw:m[0].replace(/\s+/g,' ').trim(),law:law.id,resolved:law.resolved,
-                uncovered:law.uncovered,art:m[3],cl:m[2]||'',pt:(m[1]||'').toLowerCase(),pos:pos});
+      ms.push({m:m,pos:pos,end:end});
+    }
+    var out=[];
+    for(var i=ms.length-1;i>=0;i--){
+      var c=ms[i], nx=ms[i+1], raw=text.slice(c.end,Math.min(c.end+200,nx?nx.pos:Infinity)),
+          k=raw.search(SEG_END), seg=k>=0?raw.slice(0,k):raw, an=nv(seg).replace(ENUM,''), law;
+      if(nx&&k<0&&nx.pos-c.end<=200&&/^(?:(?:va|hoac|den|cac)\s*)*$/.test(an.trim()))law=out[0]._law;
+      else if(((NONLAW.test(an)||SELF.test(an))&&!QHRES.test(an))||ASAMEND.test(an))law={id:null,resolved:false,known:true};
+      else if(AMDT.test(an)){var q=an.match(/ (\d{1,3}) (\d{4}) (qh\d{1,2}) /);
+        law=q?{id:qid(q),resolved:true,uncovered:!LAW_BY_ID[qid(q)]}:{id:null,resolved:false,known:true};}
+      else{law=resolveLaw(seg,false,decl);
+        if(!law.id&&!law.known&&!KINDW.test(an))
+          law=resolveLaw(text.slice(Math.max(0,c.pos-96),c.pos).replace(BCUT,''),true,decl);}
+      out.unshift({raw:c.m[0].replace(/\s+/g,' ').trim(),law:law.id,resolved:law.resolved,uncovered:law.uncovered,
+                   art:c.m[3],cl:c.m[2]||'',pt:(c.m[1]||'').toLowerCase(),pos:c.pos,_law:law});
     }
     return out;
   }

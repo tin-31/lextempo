@@ -3,15 +3,15 @@
  "engine": "957103a7b989f995",
  "stats": {
   "docs": 742,
-  "citations": 93133,
+  "citations": 93102,
   "T0": 0,
-  "T1": 18,
+  "T1": 30,
   "T2": 68,
   "T3": 85,
   "distinct": 4,
   "index_entries": 103,
   "T1_live": 1,
-  "T1_decree_checked": 18,
+  "T1_decree_checked": 26,
   "index_verified": {
    "confirmed": 103,
    "total": 103,
@@ -28,8 +28,8 @@
   "snapshot": 143,
   "t1_targets": 15,
   "library": 159,
-  "out_of_graph": 74308,
-  "out_covered_by_index": 17
+  "out_of_graph": 66219,
+  "out_covered_by_index": 29
  },
  "orphans": [
   {
@@ -45,6 +45,66 @@
     "status": "replaced",
     "by": "252/2026/NĐ-CP",
     "on": "2026-07-01"
+   }
+  },
+  {
+   "citing": "24/2024/NĐ-CP",
+   "citing_title": "Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà thầu",
+   "location": "điểm k khoản 6 Điều 16",
+   "target": "22/2023/QH15",
+   "target_title": "Luật Đấu thầu",
+   "by": "90/2025/QH15",
+   "on": "2025-07-01",
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "214/2025/NĐ-CP",
+    "on": "2025-08-04"
+   }
+  },
+  {
+   "citing": "24/2024/NĐ-CP",
+   "citing_title": "Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà thầu",
+   "location": "điểm k khoản 6 Điều 16",
+   "target": "22/2023/QH15",
+   "target_title": "Luật Đấu thầu",
+   "by": "90/2025/QH15",
+   "on": "2025-07-01",
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "214/2025/NĐ-CP",
+    "on": "2025-08-04"
+   }
+  },
+  {
+   "citing": "24/2024/NĐ-CP",
+   "citing_title": "Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà thầu",
+   "location": "điểm k khoản 6 Điều 16",
+   "target": "22/2023/QH15",
+   "target_title": "Luật Đấu thầu",
+   "by": "90/2025/QH15",
+   "on": "2025-07-01",
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "214/2025/NĐ-CP",
+    "on": "2025-08-04"
+   }
+  },
+  {
+   "citing": "24/2024/NĐ-CP",
+   "citing_title": "Nghị định hướng dẫn Luật Đấu thầu về lựa chọn nhà thầu",
+   "location": "điểm k khoản 6 Điều 16",
+   "target": "22/2023/QH15",
+   "target_title": "Luật Đấu thầu",
+   "by": "90/2025/QH15",
+   "on": "2025-07-01",
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "214/2025/NĐ-CP",
+    "on": "2025-08-04"
    }
   },
   {
@@ -138,6 +198,46 @@
    }
   },
   {
+   "citing": "01/2024/TT-BKHĐT",
+   "citing_title": "Thông tư cung cấp, đăng tải thông tin lựa chọn nhà thầu, mẫu hồ sơ đấu thầu",
+   "location": "điểm k khoản 6 Điều 16",
+   "target": "22/2023/QH15",
+   "target_title": "Luật Đấu thầu",
+   "by": "90/2025/QH15",
+   "on": "2025-07-01",
+   "count": 1
+  },
+  {
+   "citing": "01/2024/TT-BKHĐT",
+   "citing_title": "Thông tư cung cấp, đăng tải thông tin lựa chọn nhà thầu, mẫu hồ sơ đấu thầu",
+   "location": "điểm k khoản 6 Điều 16",
+   "target": "22/2023/QH15",
+   "target_title": "Luật Đấu thầu",
+   "by": "90/2025/QH15",
+   "on": "2025-07-01",
+   "count": 1
+  },
+  {
+   "citing": "01/2024/TT-BKHĐT",
+   "citing_title": "Thông tư cung cấp, đăng tải thông tin lựa chọn nhà thầu, mẫu hồ sơ đấu thầu",
+   "location": "điểm h khoản 1 Điều 79",
+   "target": "22/2023/QH15",
+   "target_title": "Luật Đấu thầu",
+   "by": "90/2025/QH15",
+   "on": "2025-07-01",
+   "count": 1
+  },
+  {
+   "citing": "22/2024/TT-BKHĐT",
+   "citing_title": "Thông tư cung cấp, đăng tải thông tin lựa chọn nhà thầu, mẫu hồ sơ đấu thầu (mới nhất)",
+   "location": "điểm h khoản 1 Điều 79",
+   "target": "22/2023/QH15",
+   "target_title": "Luật Đấu thầu",
+   "by": "90/2025/QH15",
+   "on": "2025-07-01",
+   "count": 1
+  },
+  {
    "citing": "171/2024/NĐ-CP",
    "citing_title": "Sửa đổi, bổ sung một số điều của Nghị định số 166/2017/NĐ-CP",
    "location": "khoản 4 Điều 26",
@@ -215,7 +315,37 @@
   {
    "citing": "151/2017/NĐ-CP",
    "citing_title": "Nghị định quy định chi tiết Luật Quản lý, sử dụng tài sản công",
+   "location": "điểm a khoản 2 Điều 56",
+   "target": "15/2017/QH14",
+   "target_title": "Luật Quản lý, sử dụng tài sản công",
+   "by": "90/2025/QH15",
+   "on": "2025-07-01",
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "186/2025/NĐ-CP",
+    "on": "2025-07-01"
+   }
+  },
+  {
+   "citing": "151/2017/NĐ-CP",
+   "citing_title": "Nghị định quy định chi tiết Luật Quản lý, sử dụng tài sản công",
    "location": "điểm a khoản 2 Điều 57",
+   "target": "15/2017/QH14",
+   "target_title": "Luật Quản lý, sử dụng tài sản công",
+   "by": "90/2025/QH15",
+   "on": "2025-07-01",
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "186/2025/NĐ-CP",
+    "on": "2025-07-01"
+   }
+  },
+  {
+   "citing": "151/2017/NĐ-CP",
+   "citing_title": "Nghị định quy định chi tiết Luật Quản lý, sử dụng tài sản công",
+   "location": "khoản 2 Điều 56",
    "target": "15/2017/QH14",
    "target_title": "Luật Quản lý, sử dụng tài sản công",
    "by": "90/2025/QH15",
@@ -275,7 +405,37 @@
   {
    "citing": "114/2024/NĐ-CP",
    "citing_title": "Nghị định sửa đổi Nghị định 151/2017 (tài sản công)",
+   "location": "khoản 2 Điều 56",
+   "target": "15/2017/QH14",
+   "target_title": "Luật Quản lý, sử dụng tài sản công",
+   "by": "90/2025/QH15",
+   "on": "2025-07-01",
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "186/2025/NĐ-CP",
+    "on": "2025-07-01"
+   }
+  },
+  {
+   "citing": "114/2024/NĐ-CP",
+   "citing_title": "Nghị định sửa đổi Nghị định 151/2017 (tài sản công)",
    "location": "khoản 2 Điều 57",
+   "target": "15/2017/QH14",
+   "target_title": "Luật Quản lý, sử dụng tài sản công",
+   "by": "90/2025/QH15",
+   "on": "2025-07-01",
+   "count": 1,
+   "dstat": {
+    "status": "replaced",
+    "by": "186/2025/NĐ-CP",
+    "on": "2025-07-01"
+   }
+  },
+  {
+   "citing": "114/2024/NĐ-CP",
+   "citing_title": "Nghị định sửa đổi Nghị định 151/2017 (tài sản công)",
+   "location": "khoản 2 Điều 56",
    "target": "15/2017/QH14",
    "target_title": "Luật Quản lý, sử dụng tài sản công",
    "by": "90/2025/QH15",
@@ -3960,7 +4120,7 @@
    "on": "2023-07-01",
    "exc": null,
    "kind": "law",
-   "note": "13/2022/QH15 Điều 515: “1. Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2023. 2. Luật Phòng, chống bạo lực gia đình số 02/2007/QH12 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành.”.”"
+   "note": "13/2022/QH15 Điều 515 (chú thích VBHN — đã tách khỏi thân điều 16/10/2026): “1. Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2023. 2. Luật Phòng, chống bạo lực gia đình số 02/2007/QH12 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành.”.”"
   },
   {
    "old": "39/2019/QH14",
@@ -3976,7 +4136,7 @@
    "on": "2026-07-01",
    "exc": null,
    "kind": "law",
-   "note": "114/2025/QH15 Điều 52: “Điều 45 của Luật Phòng bệnh số 114/2025/QH15, có hiệu lực thi hành từ ngày 01 tháng 7 năm 2026 quy định như sau: “ Điều 45. Hiệu lực thi hành 1. Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2026. 2. Luật Phòng, c”"
+   "note": "114/2025/QH15 Điều 52 (chú thích VBHN — đã tách khỏi thân điều 16/10/2026): “Điều 45 của Luật Phòng bệnh số 114/2025/QH15, có hiệu lực thi hành từ ngày 01 tháng 7 năm 2026 quy định như sau: “ Điều 45. Hiệu lực thi hành 1. Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2026. 2. Luật Phòng, c”"
   },
   {
    "old": "22/2008/QH12",
@@ -4771,8 +4931,8 @@
    "95/2015/QH13"
   ],
   [
-   "Luật Biên giới Quốc gia",
-   null
+   "Luật Biên giới quốc gia",
+   "06/2003/QH11"
   ],
   [
    "Luật Biên phòng Việt Nam",
@@ -4875,8 +5035,8 @@
    null
   ],
   [
-   "Luật Phòng chống bệnh truyền nhiễm",
-   null
+   "Luật Phòng, chống bệnh truyền nhiễm",
+   "03/2007/QH12"
   ],
   [
    "Luật Phòng, chống bạo lực gia đình",

@@ -3,11 +3,11 @@
  "engine": "957103a7b989f995",
  "stats": {
   "docs": 742,
-  "citations": 93102,
+  "citations": 90558,
   "T0": 0,
   "T1": 30,
-  "T2": 68,
-  "T3": 85,
+  "T2": 67,
+  "T3": 87,
   "distinct": 4,
   "index_entries": 103,
   "T1_live": 1,
@@ -28,7 +28,7 @@
   "snapshot": 143,
   "t1_targets": 15,
   "library": 159,
-  "out_of_graph": 66219,
+  "out_of_graph": 71498,
   "out_covered_by_index": 29
  },
  "orphans": [
@@ -1879,16 +1879,6 @@
   {
    "citing": "31/2021/NĐ-CP",
    "citing_title": "Nghị định hướng dẫn Luật Đầu tư",
-   "location": "Điều 20",
-   "target": "61/2020/QH14-full",
-   "target_title": "Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)",
-   "by": null,
-   "on": null,
-   "count": 1
-  },
-  {
-   "citing": "31/2021/NĐ-CP",
-   "citing_title": "Nghị định hướng dẫn Luật Đầu tư",
    "location": "Điều 30",
    "target": "61/2020/QH14-full",
    "target_title": "Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)",
@@ -2491,7 +2481,27 @@
   {
    "citing": "31/2021/NĐ-CP",
    "citing_title": "Nghị định hướng dẫn Luật Đầu tư",
+   "location": "khoản 1 Điều 33",
+   "target": "61/2020/QH14-full",
+   "target_title": "Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)",
+   "by": "33/2024/QH15",
+   "on": "2025-07-01",
+   "count": 1
+  },
+  {
+   "citing": "31/2021/NĐ-CP",
+   "citing_title": "Nghị định hướng dẫn Luật Đầu tư",
    "location": "khoản 2 Điều 33",
+   "target": "61/2020/QH14-full",
+   "target_title": "Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)",
+   "by": "33/2024/QH15",
+   "on": "2025-07-01",
+   "count": 1
+  },
+  {
+   "citing": "31/2021/NĐ-CP",
+   "citing_title": "Nghị định hướng dẫn Luật Đầu tư",
+   "location": "khoản 1 Điều 33",
    "target": "61/2020/QH14-full",
    "target_title": "Luật Đầu tư (hợp nhất đầy đủ tới 90/2025)",
    "by": "33/2024/QH15",
@@ -4120,7 +4130,7 @@
    "on": "2023-07-01",
    "exc": null,
    "kind": "law",
-   "note": "13/2022/QH15 Điều 515 (chú thích VBHN — đã tách khỏi thân điều 16/10/2026): “1. Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2023. 2. Luật Phòng, chống bạo lực gia đình số 02/2007/QH12 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành.”.”"
+   "note": "92/2015/QH13 Điều 515 (chú thích VBHN chép điều hiệu lực của 13/2022/QH15 — đã tách khỏi thân điều 16/10/2026): “1. Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2023. 2. Luật Phòng, chống bạo lực gia đình số 02/2007/QH12 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành.”.”"
   },
   {
    "old": "39/2019/QH14",
@@ -4136,7 +4146,7 @@
    "on": "2026-07-01",
    "exc": null,
    "kind": "law",
-   "note": "114/2025/QH15 Điều 52 (chú thích VBHN — đã tách khỏi thân điều 16/10/2026): “Điều 45 của Luật Phòng bệnh số 114/2025/QH15, có hiệu lực thi hành từ ngày 01 tháng 7 năm 2026 quy định như sau: “ Điều 45. Hiệu lực thi hành 1. Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2026. 2. Luật Phòng, c”"
+   "note": "25/2008/QH12 Điều 52 (chú thích VBHN chép điều hiệu lực của 114/2025/QH15 — đã tách khỏi thân điều 16/10/2026): “Điều 45 của Luật Phòng bệnh số 114/2025/QH15, có hiệu lực thi hành từ ngày 01 tháng 7 năm 2026 quy định như sau: “ Điều 45. Hiệu lực thi hành 1. Luật này có hiệu lực thi hành từ ngày 01 tháng 7 năm 2026. 2. Luật Phòng, c”"
   },
   {
    "old": "22/2008/QH12",
@@ -4272,7 +4282,7 @@
    "on": "2026-07-01",
    "exc": "các trường hợp chuyển tiếp tại Điều 45 của luật này, Điều 48 Luật Chuyển giao người đang chấp hành án phạt tù, khoản 1 Điều 42 Luật TTTP về hình sự và khoản 1 Điều 38 Luật TTTP về dân sự",
    "kind": "law",
-   "note": "100/2025/QH15, 101/2025/QH15, 103/2025/QH15, 102/2025/QH15 Điều 44: “2. Luật Tương trợ tư pháp số 08/2007/QH12 đã được sửa đổi, bổ sung một số điều theo Luật số 81/2025/QH15 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành, trừ trường hợp chuyển tiếp quy định tại Điều 45 của Luật này”"
+   "note": "100/2025/QH15 Điều 44: “2. Luật Tương trợ tư pháp số 08/2007/QH12 đã được sửa đổi, bổ sung một số điều theo Luật số 81/2025/QH15 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành, trừ trường hợp chuyển tiếp quy định tại Điều 45 của Luật này”"
   },
   {
    "old": "35/2009/QH12",
@@ -4560,7 +4570,7 @@
    "on": "2025-07-01",
    "exc": null,
    "kind": "law",
-   "note": "48/2024/QH15 Điều 34: “3. Luật Thuế giá trị gia tăng số 13/2008/QH12 đã được sửa đổi, bổ sung một số điều theo Luật số 31/2013/QH13, Luật số 71/2014/QH13 và Luật số 106/2016/QH13 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành.”.”"
+   "note": "04/2007/QH12 Điều 34 (chú thích VBHN chép điều hiệu lực của 48/2024/QH15 — đã tách khỏi thân điều 17/10/2026): “3. Luật Thuế giá trị gia tăng số 13/2008/QH12 đã được sửa đổi, bổ sung một số điều theo Luật số 31/2013/QH13, Luật số 71/2014/QH13 và Luật số 106/2016/QH13 hết hiệu lực kể từ ngày Luật này có hiệu lực thi hành.”.”"
   },
   {
    "old": "65/2025/QH15",
@@ -4959,6 +4969,10 @@
    "07/2017/QH14"
   ],
   [
+   "Luật Chuyển đổi số",
+   "148/2025/QH15"
+  ],
+  [
    "Luật Chất lượng sản phẩm, hàng hoá",
    "05/2007/QH12"
   ],
@@ -4993,6 +5007,10 @@
   [
    "Luật Dân quân tự vệ",
    null
+  ],
+  [
+   "Luật Dân số",
+   "113/2025/QH15"
   ],
   [
    "Luật Giáo dục quốc phòng và an ninh",

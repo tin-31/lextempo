@@ -114,6 +114,29 @@
   // cùng thuật toán với web/app.html extract (xem chú thích ở đó): đuôi chỉ là dấu nối liệt kê → luật của mục KẾ;
   // "… này"/văn bản khác/"vào sau, như sau"/luật sửa đổi không số → không phải luật; đuôi nêu luật lạ → không rơi về
   // đoạn trước; đoạn trước (40 ký tự) trong cùng câu/mục, không vượt tiêu đề "Điều N."
+  // Liệt kê điểm/khoản KHÔNG kèm Điều ngay trước một trích dẫn có khoản ("các điểm a, b, c và d khoản 2 Điều 11", "khoản 4,
+  // khoản 5 Điều 26", "điểm g, h khoản 6; khoản 8; khoản 9 Điều 16"): mỗi điểm/khoản mượn Điều + luật của trích dẫn đứng sau,
+  // điểm chỉ thuộc khoản ngay sau nó — như bộ tách máy chủ (soát vòng 4: JS bỏ sót 6 lượt T1, add-in tô XANH điểm đã bãi bỏ)
+  var PTL='(?:các\\s+)?điểm\\s+[a-zđ]\\d?(?:\\s*(?:,|và|hoặc)\\s*(?:điểm\\s+)?[a-zđ]\\d?)*',
+      PRE_PT=new RegExp('('+PTL+')\\s+$','iu'),
+      CHAIN=new RegExp('(?:(?:'+PTL+'\\s+)?khoản\\s+\\d+[a-zđ]?\\s*(?:,|;|và|hoặc)\\s*)+$','iu'),
+      ELEM=new RegExp('(?:('+PTL+')\\s+)?khoản\\s+(\\d+[a-zđ]?)','giu');
+  function ptsOf(s){return s.replace(/^(?:các\s+)?điểm\s+/iu,'').split(/\s*(?:,|và|hoặc)\s*(?:điểm\s+)?/iu).map(function(x){return x.trim().toLowerCase();}).filter(Boolean);}
+  function expand(text,out){
+    var res=[];
+    out.forEach(function(c){
+      var st=c.pos, items=[], mine=[c];
+      if(c.cl&&!c.pt){var pre=text.slice(Math.max(0,st-120),st), m=PRE_PT.exec(pre);
+        if(m){mine=ptsOf(m[1]).map(function(p){return Object.assign({},c,{cl:c.cl,pt:p||null,pos:st,loc:(p?'điểm '+p+' ':'')+'khoản '+c.cl+' Điều '+c.art});}); st-=pre.length-m.index;}}
+      if(c.cl){var pre2=text.slice(Math.max(0,st-300),st), m2=CHAIN.exec(pre2), e;
+        if(m2){var base=st-(pre2.length-m2.index); ELEM.lastIndex=0;
+          while((e=ELEM.exec(m2[0]))){var at=base+e.index, cl=e[2];
+            if(e[1])ptsOf(e[1]).forEach(function(p){items.push(Object.assign({},c,{cl:cl,pt:p||null,pos:at,loc:(p?'điểm '+p+' ':'')+'khoản '+cl+' Điều '+c.art}));});
+            else items.push(Object.assign({},c,{cl:cl,pt:null||null,pos:at,loc:(null?'điểm '+null+' ':'')+'khoản '+cl+' Điều '+c.art}));}}}
+      res.push.apply(res,items.concat(mine));
+    });
+    return res;
+  }
   function extract(text) {
     text = maskRemoved(String(text).normalize("NFC").replace(CBHEAD, function (h) { return h.replace(/[^\n]/g, " "); }));   // NFD ("Unicode tổ hợp") trước đây ra 0 trích dẫn
     var ms = [], m, decl = declared(text);
@@ -140,9 +163,9 @@
           r = resolveLaw(text.slice(Math.max(0, m.index - 40), m.index).replace(BCUT, ""), true, decl);
       }
       var loc = (pt ? "điểm " + pt + " " : "") + (cl ? "khoản " + cl + " " : "") + "Điều " + art;
-      out.unshift({ quote: m[0].replace(/\s+/g, " ").trim(), loc: loc, art: art, cl: cl, pt: pt, law: r.id, _r: r });
+      out.unshift({ quote: m[0].replace(/\s+/g, " ").trim(), loc: loc, art: art, cl: cl, pt: pt, law: r.id, _r: r, pos: m.index });
     }
-    return out;
+    return expand(text, out);
   }
 
   // văn bản bị THAY TOÀN BỘ (supersession.json, mỗi cặp có câu nguyên văn)
